@@ -2,7 +2,7 @@ import os
 
 os.system("git clone https://github.com/ivan371/webtanks")
 
-os.chdir("webtanks/mysite")
+os.chdir("webtanks/sources/mysite")
 
 os.system("python manage.py runserver")
 
