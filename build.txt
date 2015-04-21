@@ -3,7 +3,7 @@ sudo apt-get install python-pip
 pip install django
 
 # Копируем программу из репозитория.
-git clone https://github.com/ivan371/webtanks/mysite
+git clone https://github.com/ivan371/webtanks/sources/mysite
 
 # Запускаем сервер
 cd mysite
