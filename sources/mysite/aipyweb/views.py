@@ -4,5 +4,5 @@ from field import field
 
 def index(request):
     newfield = field()
-    file = open('aipyweb/index.html', 'r')
+    file = open('aipyweb/newdrawtank.html', 'r')
     return HttpResponse(file)
