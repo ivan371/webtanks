@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>canvasExample</title>
+    	<meta charset='utf-8' />
+	<head>
+	<body>
+		<canvas height='720' width='1024' id='example'>update browser</canvas>
+    <script>
+        var example = document.getElementById('example'),
+            ctx     = example.getContext('2d');
+	    ctx.fillStyle = 'orange';
+        ctx.fillRect(100, 100, example.width, example.height);
+	    line_1     = example.getContext('2d');
+	    line_1.fillStyle = 'gray';
+	    line_1.fillRect(100, 100, 924, 6);
+            line_1.fillRect(100, 100, 6, 620);
+	    line_1.fillRect(100, 714, 924, 6);
+	    line_1.fillRect(1018, 100, 6, 620);
+	    line_1.fillRect(100, 200, 724, 6);
+            line_1.fillRect(300, 620, 724, 6);
+            line_1.fillRect(400, 300, 6, 250);
+            line_1.fillRect(700, 300, 6, 250);
+	    line_2     = example.getContext('2d');
+	    line_2.fillStyle = 'red';
+            line_2.fillRect(824, 200, 194, 6);
+            line_2.fillRect(106, 620, 200, 6);
+            line_2.fillRect(550, 206, 6, 414);
+	    line_2.fillRect(106, 420, 294, 6);
+            line_2.fillRect(706, 420, 312, 6);
+        </script>
+	</body>
+</html>
