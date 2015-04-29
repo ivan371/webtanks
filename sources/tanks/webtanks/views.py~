@@ -3,4 +3,4 @@ from .field import field
 
 def index(request):
 	newfield = field()
-	return render(request, 'newdrawtanks.html')
+	return render(request, 'webtanks/newdrawtanks.html')

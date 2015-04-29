@@ -1,6 +1,9 @@
 {% load staticfiles %}
 <html>
 	<head>
+	<script src="/static/js/jquery-1.5.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.autocomplete.min.js" type="text/javascript"></script>
+	<link type="text/css" rel="stylesheet" href="/static/css/jquery.autocomplete.css">
     <script  type="text/javascript">
 	var tankX = 120;
 	var tankY = 690;
@@ -9,7 +12,7 @@
 	var back = new Image();
 	var ctx;
 	var type = 1;
-	var oldBack = new Image();
+	//var oldBack = new Image();
 	var oldtankX = 120;
 	var oldtankY = 690;
 	var example;
@@ -42,7 +45,7 @@
                 ctx.fillRect(706, 420, 312, 6);
 		ctx.fill();
 		makeTank();
-		gameLoop = setInterval(doGameLoop, 10);
+		//gameLoop = setInterval(doGameLoop, 10);
 		window.addEventListener('keydown', whatKey, true);
 		
 	}
@@ -143,15 +146,25 @@
 		switch (evt.keyCode) {
 
 	        case 37:
-			ctx.fillStyle = "orange";
-       			ctx.rect(tankX, tankY, 24, 24);
-        		ctx.fill();		          
-			tankX = tankX - 5;
-			  //if(type != 2)
-			  //{
-			  	change(1);
-				//type = 2;
-		          //}
+			$.ajax({
+	  			type: 'POST',
+	  			url: 'treating.py',
+	  			data: 'type=1,
+	  			success: function(data){
+					if(data==1)
+					{
+	   					ctx.fillStyle = "orange";
+       						ctx.rect(tankX, tankY, 24, 24);
+        					ctx.fill();		          
+						tankX = tankX - 5;
+						change(1);
+					}
+					else
+						alert('game over');
+	  			}
+				error:
+					alert('error');
+			});
 			break;
 
 	        case 39:

@@ -1,9 +1,6 @@
 {% load staticfiles %}
 <html>
 	<head>
-	<script src="/static/js/jquery-1.5.min.js" type="text/javascript"></script>
-	<script src="/static/js/jquery.autocomplete.min.js" type="text/javascript"></script>
-	<link type="text/css" rel="stylesheet" href="/static/css/jquery.autocomplete.css">
     <script  type="text/javascript">
 	var tankX = 120;
 	var tankY = 690;
@@ -146,50 +143,83 @@
 		switch (evt.keyCode) {
 
 	        case 37:
-	   		ctx.fillStyle = "orange";
-       			ctx.rect(tankX, tankY, 24, 24);
-        		ctx.fill();		          
-			tankX = tankX - 5;
-			change(1);
+			$.ajax({
+	  			type: 'POST',
+	  			url: 'treating.py',
+	  			data: 'type=1',
+	  			success: function(data){
+					if(data==1)
+					{
+	   					ctx.fillStyle = "orange";
+       						ctx.rect(tankX, tankY, 24, 24);
+        					ctx.fill();		          
+						tankX = tankX - 5;
+						change(1);
+					}
+					else
+						alert('game over');
+	  			}
+			});
 			break;
 
 	        case 39:
-			
-			ctx.fillStyle = "orange";
-       			ctx.rect(tankX, tankY, 24, 24);
-        		ctx.fill();		     
-		          tankX = tankX + 5;
-			//if(type != 1)
-			//{
-			 	 change(2);
-			//	type = 1;			
-			//}		         
+			 $.ajax({
+	  			type: 'POST',
+	  			url: 'treating.py',
+	  			data: 'type=2',
+	  			success: function(data){
+					if(data==1)
+					{
+	   					ctx.fillStyle = "orange";
+       						ctx.rect(tankX, tankY, 24, 24);
+        					ctx.fill();		          
+						tankX = tankX + 5;
+						change(2);
+					}
+					else
+						alert('game over');
+	  			}
+			});		         
 			 break;
 
 	        case 40:
-			
-			ctx.fillStyle = "orange";
-       			ctx.rect(tankX, tankY, 24, 24);
-        		ctx.fill();		     
-			tankY = tankY + 5;
-        		//if(type != 3)
-			//{
-			 	 change(4);
-			//	type = 3;			
-			//}
+			$.ajax({
+	  			type: 'POST',
+	  			url: 'treating.py',
+	  			data: 'type=3',
+	  			success: function(data){
+					if(data==1)
+					{
+	   					ctx.fillStyle = "orange";
+       						ctx.rect(tankX, tankY, 24, 24);
+        					ctx.fill();		          
+						tankY = tankY + 5;
+						change(4);
+					}
+					else
+						alert('game over');
+	  			}
+			});
           		break;
 
       	      	 case 38:
-			
-			ctx.fillStyle = "orange";
-       			ctx.rect(tankX, tankY, 24, 24);
-        		ctx.fill();		     
-         		 tankY = tankY - 5;
-			 //if(type != 4)
-			//{
-			 	 change(3);
-			//	type = 4;			
-			//}
+			$.ajax({
+	  			type: 'POST',
+	  			url: 'treating.py',
+	  			data: 'type=4',
+	  			success: function(data){
+					if(data==1)
+					{
+	   					ctx.fillStyle = "orange";
+       						ctx.rect(tankX, tankY, 24, 24);
+        					ctx.fill();		          
+						tankY = tankY - 5;
+						change(3);
+					}
+					else
+						alert('game over');
+	  			}
+			});
          		 break;
 
        		 default:
