@@ -1,17 +1,24 @@
 from django.shortcuts import render
-<<<<<<< HEAD
+from django.http import HttpResponse
 from .field import field
 
 def index(request):
 	newfield = field()
 	return render(request, 'webtanks/tanks.html')
-=======
-from django.http import HttpResponse
-from .field import field
 
-def index(request):
-    newfield = field()
-    return render(request, 'aipyweb/newdrawtank.html')
-    #file = open('aipyweb/newdrawtank.html', 'r')
-    #return HttpResponse(file)
->>>>>>> 1a7ce2e7043b9ae5bf06962fad6c4dcf27f3b183
+
+def treating(request):
+         if request.method == 'POST':
+		POST = request.POST  
+         	if POST.name == 1:
+			return HttpResponse (1);
+           	if POST.name == 2:
+			return HttpResponse (1);
+		if POST.name == 3:
+			return HttpResponse (1);
+		if POST.name == 4:
+			return HttpResponse (1);
+		return HttpResponse (2);
+ 	#else:
+        	#return HttpResponse (0)
+

@@ -22,22 +22,22 @@
             	example = document.getElementById('example'),
 		example.getContext;            	
 		ctx     = example.getContext('2d');
-	    	ctx.fillStyle = 'orange';
-    	    	ctx.fillRect(100, 100, example.width, example.height);
+	    	ctx.fillStyle = '#FFC552';
+    	    	ctx.fillRect(100, 100, 924, 620);
 		ctx.fill();
 	    	ctx     = example.getContext('2d');
 	    	ctx.fillStyle = 'gray';
-	    	ctx.fillRect(100, 100, 924, 6);
-            	ctx.fillRect(100, 100, 6, 620);
-	    	ctx.fillRect(100, 714, 924, 6);
-	    	ctx.fillRect(1018, 100, 6, 620);
+	    	ctx.fillRect(100, 90, 934, 16);
+            	ctx.fillRect(90, 90,16, 640);
+	    	ctx.fillRect(100, 714, 924, 16);
+	    	ctx.fillRect(1018, 100, 16, 630);
 	    	ctx.fillRect(100, 200, 724, 6);
             	ctx.fillRect(300, 620, 724, 6);
             	ctx.fillRect(400, 300, 6, 250);
             	ctx.fillRect(700, 300, 6, 250);
 		ctx.fill();	    	
 		ctx     = example.getContext('2d');
-	    	ctx.fillStyle = 'red';
+	    	ctx.fillStyle = '#BCF4FF';
             	ctx.fillRect(824, 200, 194, 6);
             	ctx.fillRect(106, 620, 200, 6);
             	ctx.fillRect(550, 206, 6, 414);
@@ -146,7 +146,7 @@
 		switch (evt.keyCode) {
 
 	        case 37:
-	   		ctx.fillStyle = "orange";
+	   		ctx.fillStyle = '#FFC552';
        			ctx.rect(tankX, tankY, 24, 24);
         		ctx.fill();		          
 			tankX = tankX - 5;
@@ -155,7 +155,7 @@
 
 	        case 39:
 			
-			ctx.fillStyle = "orange";
+			ctx.fillStyle = '#FFC552';
        			ctx.rect(tankX, tankY, 24, 24);
         		ctx.fill();		     
 		          tankX = tankX + 5;
@@ -168,7 +168,7 @@
 
 	        case 40:
 			
-			ctx.fillStyle = "orange";
+			ctx.fillStyle = '#FFC552';
        			ctx.rect(tankX, tankY, 24, 24);
         		ctx.fill();		     
 			tankY = tankY + 5;
@@ -181,7 +181,7 @@
 
       	      	 case 38:
 			
-			ctx.fillStyle = "orange";
+			ctx.fillStyle = '#FFC552';
        			ctx.rect(tankX, tankY, 24, 24);
         		ctx.fill();		     
          		 tankY = tankY - 5;
@@ -204,6 +204,6 @@
 		<h1>
       		Tanks
     		</h1>
-    		<canvas id='example' width="1024" height="720"> </canvas>
+    		<canvas id='example' width="1034" height="740"> </canvas>
     	</body>
 </html>

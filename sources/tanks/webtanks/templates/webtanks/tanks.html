@@ -1,7 +1,9 @@
 {% load staticfiles %}
 <html>
 	<head>
-    <script  type="text/javascript" src="jquery.js" >
+    <<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script>
 	var tankX = 120;
 	var tankY = 690;
 	var tank = new Image();
@@ -143,10 +145,17 @@
 		switch (evt.keyCode) {
 
 	        case 37:
-			$.ajax({
+			$.post("treating", {
+      				  name: 1,
+			},
+   			 function(data) {
+     					   alert(data);
+   			 }
+			);
+			/*$.ajax({
 	  			type: 'POST',
-	  			url: 'treating.py',
-	  			data: 'type=1',
+	  			url: "treating",
+	  			data: 'name=1',
 	  			success: function(data){
 					if(data==1)
 					{
@@ -157,16 +166,21 @@
 						change(1);
 					}
 					else
+					{
+						alert(data);
 						alert('game over');
-	  			}
-			});
+					}
+	  			},
+				error: function(data){alert(data);}
+					
+			});*/
 			break;
 
 	        case 39:
 			 $.ajax({
 	  			type: 'POST',
-	  			url: 'treating.py',
-	  			data: 'type=2',
+	  			url: '{% static 'webtanks/treating.py' %}',
+	  			data: 'name=2',
 	  			success: function(data){
 					if(data==1)
 					{
@@ -177,6 +191,7 @@
 						change(2);
 					}
 					else
+						alert(data);
 						alert('game over');
 	  			}
 			});		         
@@ -185,7 +200,7 @@
 	        case 40:
 			$.ajax({
 	  			type: 'POST',
-	  			url: 'treating.py',
+	  			url:  '{% static 'webtanks/treating.py' %}',
 	  			data: 'type=3',
 	  			success: function(data){
 					if(data==1)
@@ -197,6 +212,7 @@
 						change(4);
 					}
 					else
+						alert(data);
 						alert('game over');
 	  			}
 			});
@@ -205,7 +221,7 @@
       	      	 case 38:
 			$.ajax({
 	  			type: 'POST',
-	  			url: 'treating.py',
+	  			url:  '{% static 'webtanks/treating.py' %}',
 	  			data: 'type=4',
 	  			success: function(data){
 					if(data==1)
