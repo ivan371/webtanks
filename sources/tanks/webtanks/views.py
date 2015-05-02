@@ -8,17 +8,17 @@ def index(request):
 
 
 def treating(request):
-         if request.method == 'POST':
+	if request.method == 'POST':
 		POST = request.POST  
-         	if POST.name == 1:
+		if POST.name == 1:
 			return HttpResponse (1);
-           	if POST.name == 2:
+		if POST.name == 2:
 			return HttpResponse (1);
 		if POST.name == 3:
 			return HttpResponse (1);
 		if POST.name == 4:
 			return HttpResponse (1);
 		return HttpResponse (2);
- 	#else:
-        	#return HttpResponse (0)
+	else:
+		return HttpResponse (0)
 

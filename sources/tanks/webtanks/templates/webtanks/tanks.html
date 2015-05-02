@@ -145,13 +145,17 @@
 		switch (evt.keyCode) {
 
 	        case 37:
-			$.post("treating", {
-      				  name: 1,
-			},
-   			 function(data) {
-     					   alert(data);
-   			 }
-			);
+			$.ajax({
+				type: "POST",
+				url:"treating/", 
+				data: { name: 1},
+   				success: function(data) {
+     						alert(data);
+   					},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}
+			});
 			/*$.ajax({
 	  			type: 'POST',
 	  			url: "treating",
