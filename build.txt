@@ -6,8 +6,8 @@ pip install django
 git clone https://github.com/ivan371/webtanks/sources/mysite
 
 # Запускаем сервер
-cd mysite
+cd webtanks/sources/tanks
 python manage.py runserver
 
 # Открываем страничку в браузере
-gnome-open http://127.0.0.1:8000/aipyweb
+gnome-open http://127.0.0.1:8000/webtanks
