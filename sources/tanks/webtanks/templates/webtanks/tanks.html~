@@ -1,7 +1,9 @@
 {% load staticfiles %}
 <html>
 	<head>
-    <script  type="text/javascript">
+    <<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script>
 	var tankX = 120;
 	var tankY = 690;
 	var tank = new Image();
@@ -12,6 +14,7 @@
 	//var oldBack = new Image();
 	var oldtankX = 120;
 	var oldtankY = 690;
+	var datakey = 1;
 	var example;
 	var line_1;
 	var img = new Image();
@@ -19,22 +22,22 @@
             	example = document.getElementById('example'),
 		example.getContext;            	
 		ctx     = example.getContext('2d');
-	    	ctx.fillStyle = 'orange';
-    	    	ctx.fillRect(100, 100, example.width, example.height);
+	    	ctx.fillStyle = '#FFC552';
+    	    	ctx.fillRect(100, 100, 924, 620);
 		ctx.fill();
 	    	ctx     = example.getContext('2d');
 	    	ctx.fillStyle = 'gray';
-	    	ctx.fillRect(100, 100, 924, 6);
-            	ctx.fillRect(100, 100, 6, 620);
-	    	ctx.fillRect(100, 714, 924, 6);
-	    	ctx.fillRect(1018, 100, 6, 620);
+	    	ctx.fillRect(100, 90, 934, 16);
+            	ctx.fillRect(90, 90,16, 640);
+	    	ctx.fillRect(100, 714, 924, 16);
+	    	ctx.fillRect(1018, 100, 16, 630);
 	    	ctx.fillRect(100, 200, 724, 6);
             	ctx.fillRect(300, 620, 724, 6);
             	ctx.fillRect(400, 300, 6, 250);
             	ctx.fillRect(700, 300, 6, 250);
 		ctx.fill();	    	
 		ctx     = example.getContext('2d');
-	    	ctx.fillStyle = 'red';
+	    	ctx.fillStyle = '#BCF4FF';
             	ctx.fillRect(824, 200, 194, 6);
             	ctx.fillRect(106, 620, 200, 6);
             	ctx.fillRect(550, 206, 6, 414);
@@ -42,21 +45,15 @@
                 ctx.fillRect(706, 420, 312, 6);
 		ctx.fill();
 		makeTank();
-		//gameLoop = setInterval(doGameLoop, 10);
 		window.addEventListener('keydown', whatKey, true);
 		
 	}
 	function makeTank()
 	{
-		//back = ctx.getImageData(tankX, tankY, 25, 10);
-		//oldBack = ctx.getImageData(tankX, tankY, 25, 10);
 		img.src = '{% static 'webtanks/images/tank2.png' %}';
       		img.onload = function(){
 			ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
 		}
-		//setInterval(draw, 100);
-		//tank = ctx.getImageData(tankX, tankY, 25, 10);
-		//ctx.putImageData(oldBack, tankX, tankY);
 	}
 	function change(type)
 	{
@@ -67,48 +64,18 @@
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
 			}
-			//setInterval(draw, 100);
-			/*ctx.fillStyle = "black";
-	       		ctx.rect(tankX, tankY, 15, 10);
-	        	ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX+15, tankY+4, 7, 2);
-        		ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX+22, tankY+3, 2, 4);
-        		ctx.fill();*/
 			break;
 		case 2:
 			img.src = '{% static 'webtanks/images/tank3.png' %}';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
 			}
-			//setInterval(draw, 100);
-			/*ctx.fillStyle = "black";
-       			ctx.rect(tankX, tankY, 15, 10);
-        		ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX - 7, tankY+4, 7, 2);
-        		ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX-9, tankY+3, 2, 4);
-        		ctx.fill();*/
 			break;
 		case 3:
 			img.src = '{% static 'webtanks/images/tank1.png' %}';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
 			}
-			//setInterval(draw, 100);
-			/*ctx.fillStyle = "black";
-	       		ctx.rect(tankX, tankY-20, 10, 15);
-	        	ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX+4, tankY-5, 2, 7);
-        		ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX+3, tankY+2, 4, 2);
-        		ctx.fill();*/
 			
 			break;
 		case 4:
@@ -116,16 +83,6 @@
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
 			}
-			//setInterval(draw, 100);
-			/*ctx.fillStyle = "black";
-	       		ctx.rect(tankX, tankY-20, 10, 15);
-	        	ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX+4, tankY-27, 2, 7);
-        		ctx.fill();
-			ctx.fillStyle = "black";
-       			ctx.rect(tankX+3, tankY-29, 4, 2);
-        		ctx.fill();*/
 			break;
 		}
 	}
@@ -141,87 +98,140 @@
         	oldtankY = tankY;
         	oldBack = back;
 		switch (evt.keyCode) {
-
-	        case 37:
+		case 37:
+			datakey = 1;
 			$.ajax({
-	  			type: 'POST',
-	  			url: 'treating.py',
-	  			data: 'type=1',
+	  			type: 'GET',
+	  			url: "treating/",
+	  			data: {'name': 1,},
 	  			success: function(data){
 					if(data==1)
 					{
-	   					ctx.fillStyle = "orange";
+	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankX = tankX - 5;
 						change(1);
 					}
 					else
+					{
 						alert('game over');
-	  			}
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
 			});
 			break;
 
 	        case 39:
+			datakey = 2;
 			 $.ajax({
-	  			type: 'POST',
-	  			url: 'treating.py',
-	  			data: 'type=2',
+	  			type: 'GET',
+	  			url: "treating/",
+	  			data: {'name': 2,},
 	  			success: function(data){
 					if(data==1)
 					{
-	   					ctx.fillStyle = "orange";
+	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankX = tankX + 5;
 						change(2);
 					}
 					else
+					{
 						alert('game over');
-	  			}
-			});		         
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});	         
 			 break;
 
 	        case 40:
+			datakey = 3;
 			$.ajax({
-	  			type: 'POST',
-	  			url: 'treating.py',
-	  			data: 'type=3',
+	  			type: 'GET',
+	  			url: "treating/",
+	  			data: {'name': 3,},
 	  			success: function(data){
 					if(data==1)
 					{
-	   					ctx.fillStyle = "orange";
+	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankY = tankY + 5;
 						change(4);
 					}
 					else
+					{
 						alert('game over');
-	  			}
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
 			});
           		break;
 
       	      	 case 38:
+			datakey = 4;
 			$.ajax({
-	  			type: 'POST',
-	  			url: 'treating.py',
-	  			data: 'type=4',
+	  			type: 'GET',
+	  			url: "treating/",
+	  			data: {'name': 4,},
 	  			success: function(data){
 					if(data==1)
 					{
-	   					ctx.fillStyle = "orange";
+	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankY = tankY - 5;
 						change(3);
 					}
 					else
+					{
 						alert('game over');
-	  			}
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
 			});
          		 break;
-
+		case 32:
+			var slideX;
+			var slideY;
+			switch(datakey)
+			{
+				case 1:
+					slideX = 0;
+					slideY = 0;
+					break;
+				case 2:
+					slideX = 22;
+					slideY = 8;					
+					break;
+				case 3:
+					slideX = 8;
+					slideY = 22;
+					break;
+				case 4:
+					slideX = 8;
+					slideY = -6;
+					break;		
+			} 
+			img.src = '{% static 'webtanks/images/bullet.png' %}';
+      			img.onload = function(){
+				ctx.drawImage(img, 0, 0, 280, 280, tankX + slideX, tankY + slideY, 5, 5);
+			}
+			break;
        		 default:
         		  alert("Please only use the arrow keys.");
 		}
@@ -234,6 +244,6 @@
 		<h1>
       		Tanks
     		</h1>
-    		<canvas id='example' width="1024" height="720"> </canvas>
+    		<canvas id='example' width="1034" height="730"> </canvas>
     	</body>
 </html>
