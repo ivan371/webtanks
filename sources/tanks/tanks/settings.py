@@ -25,8 +25,21 @@ SECRET_KEY = 'vl8(^qo22k9c1i(1zx@^$p+q0kkz_99-bd8128^3q*r492-9#s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
+
+ACCOUNT_ACTIVATION_DAYS = 2
+
+
+AUTH_USER_EMAIL_UNIQUE = True
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'info@google.ru'
 
 # Application definition
 
@@ -35,9 +48,11 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+	'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webtanks'
+    'webtanks',
+	'registration'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,7 +101,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
 
