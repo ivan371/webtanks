@@ -10,7 +10,7 @@ class tank():
 	def search_walls(self, kind):
 		#1 - right, 2 - left, 3 - up, 4 - down
 		if(kind == 1):
-			file = open('webtanks/wall_date/f_vertical.txt', 'r')
+			file = open('webtanks/wall_data/f_vertical.txt', 'r')
 			str = []
 			#write all data to the array
 			for line in file.readlines():
@@ -22,7 +22,7 @@ class tank():
 					return 0
 			return 1
 		if(kind == 2):
-			file = open('webtanks/wall_date/f_vertical.txt', 'r')
+			file = open('webtanks/wall_data/f_vertical.txt', 'r')
 			str = []
 			for line in file.readlines():
 				str.append(int(line))
@@ -32,7 +32,7 @@ class tank():
 					return 0
 			return 1
 		if(kind == 3):
-			file = open('webtanks/wall_date/f_horisontal.txt', 'r')
+			file = open('webtanks/wall_data/f_horizontal.txt', 'r')
 			str = []
 			for line in file.readlines():
 				str.append(int(line))
@@ -42,7 +42,7 @@ class tank():
 					return 0
 			return 1
 		if(kind == 4):
-			file = open('webtanks/wall_date/f_horisontal.txt', 'r')
+			file = open('webtanks/wall_data/f_horizontal.txt', 'r')
 			str = []
 			for line in file.readlines():
 				str.append(int(line))
