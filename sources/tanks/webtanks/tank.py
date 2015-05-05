@@ -1,6 +1,7 @@
 import math
 from django.http import HttpResponse
 from .bullet import bullet
+import xml.etree.ElementTree as ET
 
 class tank():
 	def __init__(self):
@@ -10,43 +11,50 @@ class tank():
 	def search_walls(self, kind):
 		#1 - right, 2 - left, 3 - up, 4 - down
 		if(kind == 1):
-			file = open('webtanks/wall_data/f_vertical.txt', 'r')
+			tree = ET.parse('webtanks/wall_data/walls.xml')
+			root = tree.getroot()
+			vert = root.find('vertical')
 			str = []
-			#write all data to the array
-			for line in file.readlines():
-				str.append(int(line))
-			file.close()			
+			for data in vert:
+				for child in data:
+	  				str.append(int(child.text))			
 			for i in range(0, len(str), 3):
 				#how far from the wall, how far from the begin, how far from the end
 				if(math.fabs(self.X - str[i]) < 11 and str[i + 1] < self.Y and str[i + 2] + str[i + 1] > self.Y):
 					return 0
 			return 1
 		if(kind == 2):
-			file = open('webtanks/wall_data/f_vertical.txt', 'r')
+			tree = ET.parse('webtanks/wall_data/walls.xml')
+			root = tree.getroot()
+			vert = root.find('vertical')
 			str = []
-			for line in file.readlines():
-				str.append(int(line))
-			file.close()
+			for data in vert:
+				for child in data:
+	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
 				if(self.X - str[i] > 20 and self.X - str[i] < 25 and str[i + 1] < self.Y and str[i + 2] + str[i + 1] > self.Y):
 					return 0
 			return 1
 		if(kind == 3):
-			file = open('webtanks/wall_data/f_horizontal.txt', 'r')
+			tree = ET.parse('webtanks/wall_data/walls.xml')
+			root = tree.getroot()
+			vert = root.find('horizontal')
 			str = []
-			for line in file.readlines():
-				str.append(int(line))
-			file.close()
+			for data in vert:
+				for child in data:
+	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
 				if(self.Y - str[i] and self.Y - str[i] < 25 and str[i + 1] < self.X and str[i + 2] + str[i + 1] > self.X):
 					return 0
 			return 1
 		if(kind == 4):
-			file = open('webtanks/wall_data/f_horizontal.txt', 'r')
+			tree = ET.parse('webtanks/wall_data/walls.xml')
+			root = tree.getroot()
+			vert = root.find('horizontal')
 			str = []
-			for line in file.readlines():
-				str.append(int(line))
-			file.close()		
+			for data in vert:
+				for child in data:
+	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
 				if(math.fabs(self.Y - str[i]) < 11 and str[i + 1] < self.X and str[i + 2] + str[i + 1] > self.X):
 					return 0

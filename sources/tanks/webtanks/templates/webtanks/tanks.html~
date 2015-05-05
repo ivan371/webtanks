@@ -211,8 +211,8 @@
 			switch(datakey)
 			{
 				case 1:
-					slideX = 0;
-					slideY = 0;
+					slideX = -6;
+					slideY = 8;
 					break;
 				case 2:
 					slideX = 22;
