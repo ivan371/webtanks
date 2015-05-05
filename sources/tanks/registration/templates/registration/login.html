@@ -1,0 +1,16 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Войти" %}{% endblock %}
+
+{% block content %}
+<form method="post" action="/webtanks/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="{% trans 'Войти' %}" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<p>{% trans "Забыли пароль?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Восстановите его" %}</a>.</p>
+<p>{% trans "Ещё не зарегистрированы?" %} <a href="{% url 'registration_register' %}">{% trans "Зарегистрируйтесь!" %}</a>.</p>
+{% endblock %}

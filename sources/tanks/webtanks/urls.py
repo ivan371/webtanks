@@ -1,11 +1,12 @@
 from django.conf.urls import url
 
 from . import views
+from .tank import tank
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-<<<<<<< HEAD
-=======
-    url(r'^aipyweb/latest\.html$', views.index),
->>>>>>> 1a7ce2e7043b9ae5bf06962fad6c4dcf27f3b183
+    url(r'^webtanks/latest\.html$', views.index),
+    url(r'^treating/$', views.treating),
+    #url(r'^treating/$', tank.treating),
+    #url(r'^treatind/$, tank.treating),
 ]

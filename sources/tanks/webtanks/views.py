@@ -1,17 +1,23 @@
 from django.shortcuts import render
-<<<<<<< HEAD
+from django.http import HttpResponse
 from .field import field
+from .tank import tank
+from .bullet import bullet
+from django.views.decorators.csrf import requires_csrf_token
+from django.views.decorators.csrf import csrf_protect
+from django.core.context_processors import csrf
+import __main__
 
 def index(request):
 	newfield = field()
+	__main__.newtank = tank()
 	return render(request, 'webtanks/tanks.html')
-=======
-from django.http import HttpResponse
-from .field import field
 
-def index(request):
-    newfield = field()
-    return render(request, 'aipyweb/newdrawtank.html')
-    #file = open('aipyweb/newdrawtank.html', 'r')
-    #return HttpResponse(file)
->>>>>>> 1a7ce2e7043b9ae5bf06962fad6c4dcf27f3b183
+
+def treating(request):
+	return __main__.newtank.treating(request)
+
+def flight(request):
+	newbullet = bullet()
+	return newbullet.flight(request)
+

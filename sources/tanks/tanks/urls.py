@@ -5,6 +5,7 @@ urlpatterns = [
     # Examples:
     # url(r'^$', 'tanks.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+	url(r'^accounts/', include('registration.urls')),
 	url(r'^webtanks/', include('webtanks.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
