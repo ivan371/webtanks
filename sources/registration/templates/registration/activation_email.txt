@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load url from future %}
+{% blocktrans with site_name=site.name %}
+Вы (или кто-то другой) зарегистрировался на сайте
+{{ site_name }}. Если это были не вы, пожалуйста, проигнорируйте это письмо, 
+и ваш email будет удалён из нашей базы.
+{% endblocktrans %}
+{% blocktrans %}
+Для активации аккаунта перейдите по заданной ссылке не позднее, чем через
+{{ expiration_days }} дня:
+{% endblocktrans %}
+
+http://{{site.domain}}{% url 'registration_activate' activation_key %}
+
+{% blocktrans with site_name=site.name %}
+С уважением,
+администрация сайта {{ site_name }}.
+{% endblocktrans %}
