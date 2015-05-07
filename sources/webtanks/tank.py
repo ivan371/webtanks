@@ -3,12 +3,12 @@ from django.http import HttpResponse
 from .bullet import bullet
 import xml.etree.ElementTree as ET
 
-class tank():
-	def __init__(self):
-		self.X = 120
-		self.Y = 690
-		self.Xd = 144
-		self.Yd = 714
+class tank:
+	def __init__(self, X, Y):
+		self.X = X
+		self.Y = Y
+		self.Xd = X + 24
+		self.Yd = Y + 24
 
 	def search_walls(self, kind):
 		#1 - right, 2 - left, 3 - up, 4 - down

@@ -3,10 +3,13 @@ from django.http import HttpResponse
 from .bullet import bullet
 import xml.etree.ElementTree as ET
 
-class tank():
-	def __init__(self):
-		self.X = 120
-		self.Y = 690
+class tank:
+	def __init__(self, X, Y):
+		self.X = X
+		self.Y = Y
+		self.Xd = X + 24
+		self.Yd = Y + 24
+		createTank(120, 690)
 
 	def search_walls(self, kind):
 		#1 - right, 2 - left, 3 - up, 4 - down
@@ -32,7 +35,7 @@ class tank():
 				for child in data:
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.X - str[i]) < 11 and str[i + 1] < self.Y and str[i + 2] + str[i + 1] > self.Y):
+				if(math.fabs(self.Xd - str[i]) < 11 and str[i + 1] < self.Yd and str[i + 2] + str[i + 1] > self.Yd):
 					return 0
 			return 1
 		if(kind == 3):
@@ -44,7 +47,7 @@ class tank():
 				for child in data:
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.Y - str[i]) < 11 and str[i + 1] < self.X and str[i + 2] + str[i + 1] > self.X):
+				if(math.fabs(self.Yd - str[i]) < 11 and str[i + 1] < self.Xd and str[i + 2] + str[i + 1] > self.Xd):
 					return 0
 			return 1
 		if(kind == 4):
@@ -66,24 +69,28 @@ class tank():
 			if POST['name'] == '1':
 				if(self.search_walls(1) == 1):
 					self.X = self.X - 5
+					self.Xd = self.Xd - 5
 					return HttpResponse (1)
 				else:
 					return HttpResponse (2)
 			if POST['name'] == '2':
 				if(self.search_walls(2) == 1):
 					self.X = self.X + 5
+					self.Xd = self.Xd + 5
 					return HttpResponse (1)
 				else:
 					return HttpResponse (2)
 			if POST['name'] == '3':
 				if(self.search_walls(3) == 1):
 					self.Y = self.Y + 5
+					self.Yd = self.Yd + 5
 					return HttpResponse (1)
 				else:
 					return HttpResponse (2)			
 			if POST['name'] == '4':
 				if(self.search_walls(4) == 1):
 					self.Y = self.Y - 5
+					self.Yd = self.Yd - 5
 					return HttpResponse (1)
 				else:
 					return HttpResponse (2)			

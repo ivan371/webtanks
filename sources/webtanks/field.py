@@ -1,13 +1,11 @@
 import xml.etree.ElementTree as ET
 import os
+from .tank import tank
 
 def createXML(kind, begin_lenght, begin_height, lenght):
-
 		tree = ET.parse('webtanks/static/wall_data/walls.xml')
 		root = tree.getroot()
-
 		a = root.find(kind)
-
 		if kind == 'vertical':
 			b = ET.SubElement(a, 'vert')
 		if kind == 'horizontal':
@@ -16,19 +14,18 @@ def createXML(kind, begin_lenght, begin_height, lenght):
 			b = ET.SubElement(a, 'breakver')
 		if kind == 'breakhorizontal':
 			b = ET.SubElement(a, 'breakhor')
-
 		c = ET.SubElement(b, 'beginlenght')
 		c.text = begin_lenght
 		c = ET.SubElement(b, 'beginheight')
 		c.text = begin_height
 		c = ET.SubElement(b, 'lenght')
 		c.text = lenght
-
 		tree.write('webtanks/static/wall_data/walls.xml')
 
 class field():
 	def __init__(self):
-		os.remove('webtanks/static/wall_data/walls.xml');
+		self.arrtank = []
+		os.remove('webtanks/static/wall_data/walls.xml')
 		root = ET.Element('root')
 		a = ET.SubElement(root, 'vertical')
 		a = ET.SubElement(root, 'horizontal')
@@ -50,6 +47,10 @@ class field():
 		createXML('breakhorizontal', '620', '106', '200')
 		createXML('breakhorizontal', '420', '106', '294')
 		createXML('breakhorizontal', '420', '706', '312')
-	
 
-		
+	def treating(self, request, num):
+		self.arrtank[num].treating(request)
+
+	def createTank(self, X, Y):
+		newtank = tank(X, Y)
+		self.arrtank.append(newtank)
