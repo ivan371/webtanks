@@ -47,9 +47,10 @@ class field():
 		createXML('breakhorizontal', '620', '106', '200')
 		createXML('breakhorizontal', '420', '106', '294')
 		createXML('breakhorizontal', '420', '706', '312')
-
 		self.num = 0
-		#self.newtank = 0
+		
+	def flight(self, request):
+		return self.arrtank[self.num].flight(request)
 
 
 	def treating(self, request):

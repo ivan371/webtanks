@@ -16,7 +16,6 @@
 	var example;
 	var line_1;
 	var img = new Image();
-	var num = 0;
 	function game() {
             	example = document.getElementById('example'),
 		example.getContext;            	
@@ -47,30 +46,6 @@
 		window.addEventListener('keydown', whatKey, true);
 		
 	}
-	/*function makeTank()
-	{
-		$.ajax({
-	  			type: 'POST',
-	  			url: "treating/",
-	  			success: function(data, X, Y){
-					if(data==1)
-					{
-	   					img.src = '{% static 'webtanks/images/tank2.png' %}';
-      						img.onload = function(){
-							ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
-						}
-					}
-					else
-					{
-						alert('game over');
-					}
-	  			},
-				error: function(xhr, errmsg, err){
-						alert(xhr.status + ": " + xhr.responseText);
-					}	
-					
-			});
-	}*/
 	function change(type, X, Y)
 	{
 		
@@ -127,6 +102,44 @@
 			break;
 		}
 	}
+
+	function flight(num)
+	{
+		var X = 0;
+		var Y = 0;
+		var type = 0;
+		$.ajax({
+	  			type: 'POST',
+	  			url: "flight/",
+				data: {'name': num,},
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					X = arr[1];
+					Y = arr[2];
+					num = arr[3];
+					if(type==2)
+					{
+	   					img.src = '{% static 'webtanks/images/bullet.png' %}';
+      						img.onload = function(){
+							ctx.drawImage(img, 0, 0, 280, 280, X, Y, 5, 5);
+						}
+						ctx.fillStyle = '#FFC552';
+       						ctx.rect(X, Y, 5, 5);
+        					ctx.fill();
+						flight(num);
+					}
+					else
+					{
+						//alert('game over');
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});
+	}
 	
 
 	function whatKey(evt) {
@@ -134,6 +147,10 @@
 		var type = 0;
 		var X = 0;
 		var Y = 0;
+		var fX = 0;
+		var fY = 0;
+		var num = 0;
+		var numer = 0;
 		switch (evt.keyCode) {
 		case 37:
 			datakey = 1;
@@ -164,7 +181,7 @@
 					}
 					else
 					{
-						alert('game over');
+						alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -203,7 +220,7 @@
 					}
 					else
 					{
-						alert('game over');
+						alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -220,8 +237,7 @@
 	  			url: "treating/",
 	  			data: {'name': 3,},
 				dataType: 'json',
-	  			success: function(data){
-					arr = JSON.parse(data);
+	  			success: function(arr){
 					type = arr[0];
 					X = arr[1];
 					Y = arr[2];
@@ -243,7 +259,7 @@
 					}
 					else
 					{
-						alert('game over');
+						alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -260,8 +276,7 @@
 	  			url: "treating/",
 	  			data: {'name': 4,},
 				dataType: 'json',
-	  			success: function(data){
-					arr = JSON.parse(data);
+	  			success: function(arr){
 					type = arr[0];
 					X = arr[1];
 					Y = arr[2];
@@ -283,7 +298,7 @@
 					}
 					else
 					{
-						alert('game over');
+						alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -293,47 +308,27 @@
 			});
          		 break;
 		case 32:
-			var slideX;
-			var slideY;
-			switch(datakey)
-			{
-				case 1:
-					slideX = -6;
-					slideY = 8;
-					break;
-				case 2:
-					slideX = 22;
-					slideY = 8;					
-					break;
-				case 3:
-					slideX = 8;
-					slideY = 22;
-					break;
-				case 4:
-					slideX = 8;
-					slideY = -6;
-					break;		
-			} 
 			$.ajax({
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 5,},
 				dataType: 'json',
-	  			success: function(data){
-					arr = JSON.parse(data);
+	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
-					if(type==1)
+					fX = arr[1];
+					fY = arr[2];
+					num = arr[3];
+					if(type==2)
 					{
 	   					img.src = '{% static 'webtanks/images/bullet.png' %}';
       						img.onload = function(){
-							ctx.drawImage(img, 0, 0, 280, 280, X + slideX, Y + slideY, 5, 5);
+							ctx.drawImage(img, 0, 0, 280, 280, fX, fY, 5, 5);
 						}
+						flight(num);
 					}
 					else
 					{
-						alert('game over');
+						alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){

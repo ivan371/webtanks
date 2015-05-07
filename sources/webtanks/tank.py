@@ -11,6 +11,8 @@ class tank:
 		self.Xd = X + 24
 		self.Yd = Y + 24
 		self.begin()
+		self.flag = 0
+		self.arrbullet = []
 
 	def begin(self):
 		return HttpResponse (1, self.X, self.Y)
@@ -67,17 +69,24 @@ class tank:
 					return 0
 			return 1
 
+	def flight(self, request):
+		if request.method == 'POST':
+			POST = request.POST  
+		print(POST['name'])
+		return self.arrbullet[int(POST['name'])].flight(self.flag)
+
 	def treating(self, request):	
-		arr = [0, 0, 0]
+		arr = [0, 0, 0, 0]
 		if request.method == 'POST':
 			POST = request.POST  
 			if POST['name'] == '1':
 				if(self.search_walls(1) == 1):
 					self.X = self.X - 5
 					self.Xd = self.Xd - 5
-					arr[0] = 	1
-					arr[1] = str(self.X)
-					arr[2] = str(self.Y)
+					self.flag = 1
+					arr[0] = 1
+					arr[1] = self.X
+					arr[2] = self.Y
 					return HttpResponse (json.dumps(arr),
             							content_type="application/json")
 				else:
@@ -87,6 +96,7 @@ class tank:
 				if(self.search_walls(2) == 1):
 					self.X = self.X + 5
 					self.Xd = self.Xd + 5
+					self.flag = 2
 					arr[0] = 1
 					arr[1] = self.X
 					arr[2] = self.Y
@@ -99,6 +109,7 @@ class tank:
 				if(self.search_walls(3) == 1):
 					self.Y = self.Y + 5
 					self.Yd = self.Yd + 5
+					self.flag = 3
 					arr[0] = 1
 					arr[1] = self.X
 					arr[2] = self.Y
@@ -111,6 +122,7 @@ class tank:
 				if(self.search_walls(4) == 1):
 					self.Y = self.Y - 5
 					self.Yd = self.Yd - 5
+					self.flag = 4
 					arr[0] = 1
 					arr[1] = self.X
 					arr[2] = self.Y
@@ -118,7 +130,27 @@ class tank:
             							content_type="application/json")		
 				else:
 					return HttpResponse (json.dumps(arr),
-            							content_type="application/json")			
+            							content_type="application/json")
+			if POST['name'] == '5':
+				if(self.flag == 1):
+					slideX = -6
+					slideY = 8
+				if(self.flag == 2):
+					slideX = 22
+					slideY = 8
+				if(self.flag == 3):
+					slideX = 8
+					slideY = 22
+				if(self.flag == 4):
+					slideX = 8
+					slideY = -6
+				arr[0] = 2
+				arr[1] = self.X + slideX
+				arr[2] = self.Y + slideY
+				arr[3] = len(self.arrbullet)
+				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet))
+				self.arrbullet.append(newbullet)
+							
 			return HttpResponse (json.dumps(arr),
             							content_type="application/json")		
 		else:
