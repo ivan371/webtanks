@@ -22,6 +22,6 @@ def treating(request):
 	__main__.newfield.num = 0
 	return __main__.newfield.treating(request)
 
-def flight(request):
-	newbullet = bullet()
-	return newbullet.flight(request)
+#def flight(request):
+#	newbullet = bullet()
+#	return newbullet.flight(request)

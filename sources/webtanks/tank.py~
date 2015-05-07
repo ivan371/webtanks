@@ -10,9 +10,13 @@ class tank:
 		self.Y = Y
 		self.Xd = X + 24
 		self.Yd = Y + 24
+<<<<<<< HEAD
+		self.begin()
 
 	def begin(self):
 		return HttpResponse (1, self.X, self.Y)
+=======
+>>>>>>> 4284d48454a4879eecf584e2b3a90c45e1e4bb35
 
 	def search_walls(self, kind):
 		#1 - right, 2 - left, 3 - up, 4 - down
