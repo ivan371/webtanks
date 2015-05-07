@@ -48,8 +48,14 @@ class field():
 		createXML('breakhorizontal', '420', '106', '294')
 		createXML('breakhorizontal', '420', '706', '312')
 
-	def treating(self, request, num):
-		self.arrtank[num].treating(request)
+		self.num = 0
+		#self.newtank = 0
+
+
+	def treating(self, request):
+		return self.arrtank[self.num].treating(request)
+
+
 
 	def createTank(self, X, Y):
 		newtank = tank(X, Y)
