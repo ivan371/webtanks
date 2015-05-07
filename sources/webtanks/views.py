@@ -10,17 +10,18 @@ from django.views.decorators.csrf import csrf_exempt
 import __main__
 
 def index(request):
-	newfield = field()
-	__main__.newtank = tank()
-	return render(request, 'webtanks/tanks.html')
+	__main__.newfield = field()
+	__main__.newfield.createTank(120, 690)
+	#__main__.newtank = tank()
+	return render(request, 'webtanks/newtanks.html')
 
 @csrf_exempt
 def treating(request):
 	c = {}
     	c.update(csrf(request))
-	return __main__.newtank.treating(request)
+	__main__.newfield.num = 0
+	return __main__.newfield.treating(request)
 
 def flight(request):
 	newbullet = bullet()
 	return newbullet.flight(request)
-

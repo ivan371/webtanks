@@ -18,6 +18,7 @@
 	var example;
 	var line_1;
 	var img = new Image();
+	var num = 0;
 	function game() {
             	example = document.getElementById('example'),
 		example.getContext;            	
@@ -84,6 +85,31 @@
 				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
 			}
 			break;
+		case 5:
+			img.src = '{% static 'webtanks/images/tank6.png' %}';
+      			img.onload = function(){
+				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+			}
+			break;
+		case 6:
+			img.src = '{% static 'webtanks/images/tank7.png' %}';
+      			img.onload = function(){
+				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+			}
+			break;
+		case 7:
+			img.src = '{% static 'webtanks/images/tank5.png' %}';
+      			img.onload = function(){
+				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+			}
+			
+			break;
+		case 8:
+			img.src = '{% static 'webtanks/images/tank8.png' %}';
+      			img.onload = function(){
+				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+			}
+			break;
 		}
 	}
 	
@@ -93,7 +119,6 @@
         }
 
 	function whatKey(evt) {
-
         	oldtankX = tankX;
         	oldtankY = tankY;
         	oldBack = back;
@@ -104,14 +129,23 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 1,},
-	  			success: function(data){
+	  			success: function(data, X, Y){
 					if(data==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankX = tankX - 5;
-						change(1);
+						if (num != 1)
+						{
+							change(1);
+							num = 1;
+						}
+						else
+						{
+							change(5);
+							num = 5;
+						}
 					}
 					else
 					{
@@ -131,14 +165,23 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 2,},
-	  			success: function(data){
+	  			success: function(data, X, Y){
 					if(data==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankX = tankX + 5;
-						change(2);
+						if (num != 2)
+						{
+							change(2);
+							num = 2;
+						}
+						else
+						{
+							change(6);
+							num = 6;
+						}
 					}
 					else
 					{
@@ -158,14 +201,23 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 3,},
-	  			success: function(data){
+	  			success: function(data, X, Y){
 					if(data==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankY = tankY + 5;
-						change(4);
+						if (num != 4)
+						{
+							change(4);
+							num = 4;
+						}
+						else
+						{
+							change(8);
+							num = 8;
+						}
 					}
 					else
 					{
@@ -185,14 +237,23 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 4,},
-	  			success: function(data){
+	  			success: function(data, X, Y){
 					if(data==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(tankX, tankY, 24, 24);
         					ctx.fill();		          
 						tankY = tankY - 5;
-						change(3);
+						if (num != 3)
+						{
+							change(3);
+							num = 3;
+						}
+						else
+						{
+							change(7);
+							num = 7;
+						}
 					}
 					else
 					{

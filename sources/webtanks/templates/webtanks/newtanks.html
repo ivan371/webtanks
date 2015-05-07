@@ -4,8 +4,6 @@
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script>
-	var tankX = 120;
-	var tankY = 690;
 	var tank = new Image();
  	var oldBack = new Image();
 	var back = new Image();
@@ -45,83 +43,97 @@
 	    	ctx.fillRect(106, 420, 294, 6);
                 ctx.fillRect(706, 420, 312, 6);
 		ctx.fill();
-		makeTank();
+		//makeTank();
 		window.addEventListener('keydown', whatKey, true);
 		
 	}
-	function makeTank()
+	/*function makeTank()
 	{
-		img.src = '{% static 'webtanks/images/tank2.png' %}';
-      		img.onload = function(){
-			ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
-		}
-	}
-	function change(type)
+		$.ajax({
+	  			type: 'POST',
+	  			url: "treating/",
+	  			success: function(data, X, Y){
+					if(data==1)
+					{
+	   					img.src = '{% static 'webtanks/images/tank2.png' %}';
+      						img.onload = function(){
+							ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+						}
+					}
+					else
+					{
+						alert('game over');
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});
+	}*/
+	function change(type, X, Y)
 	{
 		
 		switch (type){	//1 - up; //2 - down //3 - right // 4 - left
 		case 1:
 			img.src = '{% static 'webtanks/images/tank2.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			break;
 		case 2:
 			img.src = '{% static 'webtanks/images/tank3.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			break;
 		case 3:
 			img.src = '{% static 'webtanks/images/tank1.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			
 			break;
 		case 4:
 			img.src = '{% static 'webtanks/images/tank4.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			break;
 		case 5:
 			img.src = '{% static 'webtanks/images/tank6.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			break;
 		case 6:
 			img.src = '{% static 'webtanks/images/tank7.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			break;
 		case 7:
 			img.src = '{% static 'webtanks/images/tank5.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			
 			break;
 		case 8:
 			img.src = '{% static 'webtanks/images/tank8.png' %}';
       			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, tankX, tankY, 20, 20);
+				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 			break;
 		}
 	}
 	
-	function doGameLoop() {
-	        ctx.putImageData(oldBack, oldtankX, oldtankY);
-	        ctx.putImageData(tank, tankX, tankY);
-        }
 
 	function whatKey(evt) {
-        	oldtankX = tankX;
-        	oldtankY = tankY;
         	oldBack = back;
+		var type = 0;
+		var X = 0;
+		var Y = 0;
 		switch (evt.keyCode) {
 		case 37:
 			datakey = 1;
@@ -129,21 +141,24 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 1,},
-	  			success: function(data){
-					if(data==1)
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					X = arr[1];
+					Y = arr[2];
+					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(tankX, tankY, 24, 24);
-        					ctx.fill();		          
-						tankX = tankX - 5;
+       						ctx.rect(X, Y, 24, 24);
+        					ctx.fill();	
 						if (num != 1)
 						{
-							change(1);
+							change(1, X, Y);
 							num = 1;
 						}
 						else
 						{
-							change(5);
+							change(5, X, Y);
 							num = 5;
 						}
 					}
@@ -165,21 +180,24 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 2,},
-	  			success: function(data){
-					if(data==1)
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					X = arr[1];
+					Y = arr[2];
+					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(tankX, tankY, 24, 24);
-        					ctx.fill();		          
-						tankX = tankX + 5;
+       						ctx.rect(X, Y, 24, 24);
+        					ctx.fill();		
 						if (num != 2)
 						{
-							change(2);
+							change(2, X, Y);
 							num = 2;
 						}
 						else
 						{
-							change(6);
+							change(6, X, Y);
 							num = 6;
 						}
 					}
@@ -201,21 +219,24 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 3,},
-	  			success: function(data){
-					if(data==1)
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					X = arr[1];
+					Y = arr[2];
+					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(tankX, tankY, 24, 24);
-        					ctx.fill();		          
-						tankY = tankY + 5;
+       						ctx.rect(X, Y, 24, 24);
+        					ctx.fill();	
 						if (num != 4)
 						{
-							change(4);
+							change(4, X, Y);
 							num = 4;
 						}
 						else
 						{
-							change(8);
+							change(8, X, Y);
 							num = 8;
 						}
 					}
@@ -237,21 +258,24 @@
 	  			type: 'POST',
 	  			url: "treating/",
 	  			data: {'name': 4,},
-	  			success: function(data){
-					if(data==1)
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					X = arr[1];
+					Y = arr[2];
+					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(tankX, tankY, 24, 24);
-        					ctx.fill();		          
-						tankY = tankY - 5;
+       						ctx.rect(X, Y, 24, 24);
+        					ctx.fill();	
 						if (num != 3)
 						{
-							change(3);
+							change(3, X, Y);
 							num = 3;
 						}
 						else
 						{
-							change(7);
+							change(7, X, Y);
 							num = 7;
 						}
 					}
@@ -288,11 +312,32 @@
 					slideY = -6;
 					break;		
 			} 
-			img.src = '{% static 'webtanks/images/bullet.png' %}';
-      			img.onload = function(){
-				ctx.drawImage(img, 0, 0, 280, 280, tankX + slideX, tankY + slideY, 5, 5);
-			}
-			break;
+			$.ajax({
+	  			type: 'POST',
+	  			url: "treating/",
+	  			data: {'name': 5,},
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					X = arr[1];
+					Y = arr[2];
+					if(type==1)
+					{
+	   					img.src = '{% static 'webtanks/images/bullet.png' %}';
+      						img.onload = function(){
+							ctx.drawImage(img, 0, 0, 280, 280, X + slideX, Y + slideY, 5, 5);
+						}
+					}
+					else
+					{
+						alert('game over');
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});
        		 default:
         		  //alert("Please only use the arrow keys.");
 		}
