@@ -3,6 +3,9 @@
 	<head>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src='{% static 'webtanks/change.js' %}'></script>
+	<script src='{% static 'webtanks/whatKey.js' %}'></script>
+	<script src='{% static 'webtanks/flight.js' %}'></script>
 	<script>
 	var tank = new Image();
  	var oldBack = new Image();
@@ -15,11 +18,16 @@
 	var datakey = 1;
 	var example;
 	var line_1;
+	var btx;
 	var img = new Image();
+	var newimg = new Image();
+	var timeid = 0;
+	var time = [];
 	function game() {
             	example = document.getElementById('example'),
 		example.getContext;            	
 		ctx     = example.getContext('2d');
+		btx = example.getContext('2d');
 	    	ctx.fillStyle = '#FFC552';
     	    	ctx.fillRect(100, 100, 924, 620);
 		ctx.fill();
@@ -103,11 +111,12 @@
 		}
 	}
 
-	function flight(num)
+	function flight(num, t)
 	{
 		var X = 0;
 		var Y = 0;
 		var type = 0;
+		window.addEventListener('keydown', whatKey, true);
 		$.ajax({
 	  			type: 'POST',
 	  			url: "flight/",
@@ -117,25 +126,27 @@
 					type = arr[0];
 					X = arr[1];
 					Y = arr[2];					
-					num = arr[3];
-					if(type==2)
+					//num = arr[3];
+					if(type==3)
 					{
-	   					img.src = '{% static 'webtanks/images/bullet.png' %}';
-      						img.onload = function(){
-							ctx.drawImage(img, 0, 0, 280, 280, X, Y, 5, 5);
+						btx.fillStyle = '#FFC552';
+       						btx.rect(X, Y, 5, 5);
+        					btx.fill();
+	   					newimg.src = '{% static 'webtanks/images/bullet.png' %}';
+      						newimg.onload = function(){
+							btx.drawImage(newimg, 0, 0, 280, 280, X, Y, 5, 5);
 						}
-						ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 5, 5);
-        					ctx.fill();
-						flight(num);
+						//setInterval(function() { flight(num) }, 20);
 					}
 					else
 					{
+						clearInterval(time[t]);					
 						//alert('game over');
 					}
 	  			},
 				error: function(xhr, errmsg, err){
 						alert(xhr.status + ": " + xhr.responseText);
+						//window.addEventListener('keydown', whatKey, true);
 					}	
 					
 			});
@@ -151,6 +162,7 @@
 		var fY = 0;
 		var num = 0;
 		var numer = 0;
+		var t = 0;
 		switch (evt.keyCode) {
 		case 37:
 			datakey = 1;
@@ -318,13 +330,19 @@
 					fX = arr[1];
 					fY = arr[2];
 					num = arr[3];
+					X = arr[4];
+					Y = arr[5];
 					if(type==2)
 					{
-	   					img.src = '{% static 'webtanks/images/bullet.png' %}';
-      						img.onload = function(){
-							ctx.drawImage(img, 0, 0, 280, 280, fX, fY, 5, 5);
+	   					newimg.src = '{% static 'webtanks/images/bullet.png' %}';
+      						newimg.onload = function(){
+							btx.drawImage(newimg, 0, 0, 280, 280, fX, fY, 5, 5);
 						}
-						flight(num);
+						
+						//window.preventDefault();
+						t = timeid;
+						time[t] = setInterval(function() {flight(num, t)}, 20);
+						timeid++;
 					}
 					else
 					{

@@ -6,30 +6,33 @@ import json
 
 class tank:
 	def __init__(self, X, Y):
+		#X and Y are initial coordinates of tank
+		#self.X and self.Y are coordinates of left and upper point of tank 
 		self.X = X
 		self.Y = Y
+		#self.Xd and self.Yd are coordinates of right and lower point of tank
 		self.Xd = X + 24
-		self.Yd = Y + 24
-		self.begin()
+		self.Yd = Y + 24	
 		self.flag = 0
 		self.arrbullet = []
 
-	def begin(self):
-		return HttpResponse (1, self.X, self.Y)
-
+	#investigating a question about collision with a wall
 	def search_walls(self, kind):
-		#1 - right, 2 - left, 3 - up, 4 - down
+		#kind: 1 - left, 2 - right, 3 - down, 4 - up
 		if(kind == 1):
+			#collecting information about walls from xml-file
 			tree = ET.parse('webtanks/static/wall_data/walls.xml')
 			root = tree.getroot()
 			vert = root.find('vertical')
 			str = []
+			#creating a string with information about the particular kind of walls
 			for data in vert:
 				for child in data:
-	  				str.append(int(child.text))			
+	  				str.append(int(child.text))
+			#investigating a question about collision with a wall: 0 - a collusion, 1 - no collusion
 			for i in range(0, len(str), 3):
-				#how far from the wall, how far from the begin, how far from the end
-				if(math.fabs(self.X - str[i]) < 11 and str[i + 1] < self.Y and str[i + 2] + str[i + 1] > self.Y):
+				#checking how far from the wall, how far from the beginning, how far from the end
+				if(math.fabs(self.X - str[i]) < 11 and str[i + 1] <= self.Y and str[i + 1] + str[i + 2] >= self.Y):
 					return 0
 			return 1
 		if(kind == 2):
@@ -41,7 +44,7 @@ class tank:
 				for child in data:
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.Xd - str[i]) < 11 and str[i + 1] < self.Yd and str[i + 2] + str[i + 1] > self.Yd):
+				if(math.fabs(self.Xd - str[i]) < 11 and str[i + 1] <= self.Yd and str[i + 1] + str[i + 2] >= self.Yd):
 					return 0
 			return 1
 		if(kind == 3):
@@ -53,7 +56,7 @@ class tank:
 				for child in data:
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.Yd - str[i]) < 11 and str[i + 1] < self.Xd and str[i + 2] + str[i + 1] > self.Xd):
+				if(math.fabs(self.Yd - str[i]) < 11 and str[i + 1] <= self.Xd and str[i + 1] + str[i + 2] >= self.Xd):
 					return 0
 			return 1
 		if(kind == 4):
@@ -63,9 +66,9 @@ class tank:
 			str = []
 			for data in vert:
 				for child in data:
-	  				str.append(int(child.text))	
+	  				str.append(int(child.text))
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.Y - str[i]) < 11 and str[i + 1] < self.X and str[i + 2] + str[i + 1] > self.X):
+				if(math.fabs(self.Y - str[i]) < 11 and str[i + 1] <= self.X and str[i + 1] + str[i + 2] >= self.Xd):
 					return 0
 			return 1
 
@@ -75,6 +78,7 @@ class tank:
 		print(POST['name'])
 		return self.arrbullet[int(POST['name'])].flight()
 
+	#receiving information from server about pressing keys
 	def treating(self, request):	
 		arr = [0, 0, 0, 0, 0, 0, 0]
 		if request.method == 'POST':
@@ -158,9 +162,4 @@ class tank:
             							content_type="application/json")		
 		else:
 			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")		
-
-	
-				
-				
-				
+            							content_type="application/json")
