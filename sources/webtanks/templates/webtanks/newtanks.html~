@@ -116,7 +116,7 @@
 	  			success: function(arr){
 					type = arr[0];
 					X = arr[1];
-					Y = arr[2];
+					Y = arr[2];					
 					num = arr[3];
 					if(type==2)
 					{

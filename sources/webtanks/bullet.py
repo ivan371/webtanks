@@ -65,22 +65,22 @@ class bullet():
 					return 0
 			return 1	
 
-	def flight(self, kind):
+	def flight(self):
 		arr = [0, 0, 0, 0]
-		if (self.search_walls(kind) == 1):
-			if kind == 1:
+		if (self.search_walls(self.kind) == 1):
+			if self.kind == 1:
 				self.X = self.X - 5
 				self.Xd = self.Xd - 5
-			if kind == 2:
+			if self.kind == 2:
 				self.X = self.X + 5
 				self.Xd = self.Xd + 5
-			if kind == 3:
+			if self.kind == 3:
 				self.Y = self.Y + 5
 				self.Yd = self.Yd + 5
-			if kind == 4:
+			if self.kind == 4:
 				self.Y = self.Y - 5
 				self.Yd = self.Yd - 5
-			arr[0] = 2
+			arr[0] = 3
 			arr[1] = self.X
 			arr[2] = self.Y
 			arr[3] = self.num

@@ -73,10 +73,10 @@ class tank:
 		if request.method == 'POST':
 			POST = request.POST  
 		print(POST['name'])
-		return self.arrbullet[int(POST['name'])].flight(self.flag)
+		return self.arrbullet[int(POST['name'])].flight()
 
 	def treating(self, request):	
-		arr = [0, 0, 0, 0]
+		arr = [0, 0, 0, 0, 0, 0, 0]
 		if request.method == 'POST':
 			POST = request.POST  
 			if POST['name'] == '1':
@@ -148,6 +148,9 @@ class tank:
 				arr[1] = self.X + slideX
 				arr[2] = self.Y + slideY
 				arr[3] = len(self.arrbullet)
+				arr[4] = self.X
+				arr[5] = self.Y
+				arr[6] = self.flag
 				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet))
 				self.arrbullet.append(newbullet)
 							
