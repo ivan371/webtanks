@@ -6,6 +6,7 @@
 	<script src='{% static 'webtanks/change.js' %}'></script>
 	<script src='{% static 'webtanks/whatKey.js' %}'></script>
 	<script src='{% static 'webtanks/flight.js' %}'></script>
+	<script src='{% static 'webtanks/bot.js' %}'></script>
 	<script>
 	var tank = new Image();
  	var oldBack = new Image();
@@ -51,6 +52,7 @@
                 ctx.fillRect(706, 420, 312, 6);
 		ctx.fill();
 		//makeTank();
+		bot()
 		window.addEventListener('keydown', whatKey, true);
 		
 	}

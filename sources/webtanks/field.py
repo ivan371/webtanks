@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
 from .tank import tank
+from .bot import bot
 
 #adding a new wall to the xml-file with information of walls
 def createXML(kind, begin_length, begin_height, length):
@@ -29,6 +30,7 @@ def createXML(kind, begin_length, begin_height, length):
 class field():
 	def __init__(self):
 		self.arrtank = []
+		self.arrbots = []
 		#deleting a previous version of xml-file with information about walls
 		os.remove('webtanks/static/wall_data/walls.xml')
 		#creating a new version of xml-file
@@ -74,6 +76,11 @@ class field():
 		createXML('breakhorizontal', '420', '706', '312')
 
 		self.num = 0
+		self.bum = 0
+
+	def bot(self, request):
+		return self.arrbots[self.bum].bot(request)
+
 
 	def treating(self, request):
 		return self.arrtank[self.num].treating(request)
@@ -81,6 +88,12 @@ class field():
 	def createTank(self, X, Y):
 		newtank = tank(X, Y)
 		self.arrtank.append(newtank)
+		self.num = self.num + 1
+
+	def createBot(self, X, Y):
+		newbot = bot(X, Y)
+		self.arrbots.append(newtank)
+		self.bum = self.bum + 1
 
 	def flight(self, request):
 		return self.arrtank[self.num].flight(request)

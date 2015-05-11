@@ -13,6 +13,7 @@ import __main__
 def index(request):
 	__main__.newfield = field()
 	__main__.newfield.createTank(120, 690)
+	__main__.newfield.createbot(120, 120)
 	#__main__.newfield.createTank(100, 390)
 	#__main__.newtank = tank()
 	return render(request, 'webtanks/newtanks.html')
@@ -29,3 +30,9 @@ def flight(request):
 	c = {}
     	c.update(csrf(request))
 	return __main__.newfield.flight(request)
+
+@csrf_exempt
+def bot(request):
+	c = {}
+    	c.update(csrf(request))
+	return __main__.newfield.bot(request)
