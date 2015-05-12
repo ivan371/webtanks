@@ -90,10 +90,10 @@ class field():
 		self.arrtank.append(newtank)
 		self.num = self.num + 1
 
-	def createBot(self, X, Y):
+	"""def createbot(self, X, Y):
 		newbot = bot(X, Y)
 		self.arrbots.append(newtank)
-		self.num = self.num + 1
+		self.bum = self.bum + 1"""
 
 	def flight(self, request):
 		return self.arrtank[self.num].flight(request)
