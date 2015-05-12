@@ -8,6 +8,6 @@ urlpatterns = [
     url(r'^webtanks/latest\.html$', views.index),
     url(r'^treating/$', views.treating),
     url(r'^flight/$', views.flight),
-    url(r'^bot/$', views.bot),
+    #url(r'^bot/$', views.bot),
     #url(r'^treatind/$, tank.treating),
 ]
