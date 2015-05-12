@@ -22,14 +22,14 @@ def index(request):
 @csrf_exempt
 def treating(request):
 	c = {}
-    	c.update(csrf(request))
+    c.update(csrf(request))
 	__main__.newfield.num = 0
 	return __main__.newfield.treating(request)
 
 @csrf_exempt
 def flight(request):
 	c = {}
-    	c.update(csrf(request))
+    c.update(csrf(request))
 	return __main__.newfield.flight(request)
 
 """@csrf_exempt
