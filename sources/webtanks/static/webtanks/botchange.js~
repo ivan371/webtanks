@@ -27,7 +27,6 @@ function botchange(kind, Xb, Yb)
 				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
 			}
 			break;
-		}
 		case 5:
 			newimg.src = '/static/webtanks/images/bot6.png';
       			newimg.onload = function(){

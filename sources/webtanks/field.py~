@@ -77,12 +77,12 @@ class field():
 		createXML('breakhorizontal', '420', '706', '312')
 
 		self.num = 0
-		self.bum = 0
+		self.bum = -1
 
 	def bott(self, request):
-		print(111)
-		return self.arrbots[self.bum].bott(request)
-		#return HttpResponse(0)
+		if request.method == 'POST':
+			POST = request.POST 
+		return self.arrbots[int(POST['num'])].bott(request)
 
 	def treating(self, request):
 		return self.arrtank[self.num].treating(request)
@@ -93,9 +93,14 @@ class field():
 		self.num = self.num + 1
 
 	def createBot(self, X, Y):
-		newbot = bot(X, Y)
+		newbot = bot(X, Y, len(self.arrbots))
 		self.arrbots.append(newbot)
 		self.bum = self.bum + 1
 
 	def flight(self, request):
-		return self.arrtank[self.num].flight(request)
+		if request.method == 'POST':
+			POST = request.POST
+			if POST['who'] == '0': 
+				return self.arrtank[self.num].flight(request)
+			else:
+				return self.arrbot[int(POST['who']) - 1].flight(request)

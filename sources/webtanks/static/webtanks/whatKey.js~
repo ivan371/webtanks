@@ -18,11 +18,13 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
-	   					dtx.fillStyle = '#FFC552';
-       						dtx.rect(XT, YT, 24, 24);
-        					dtx.fill();	
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();	
 						if (nums != 1)
 						{
 							change(1, XT, YT);
@@ -57,11 +59,13 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
-	   					dtx.fillStyle = '#FFC552';
-       						dtx.rect(XT, YT, 24, 24);
-        					dtx.fill();		
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();		
 						if (nums != 2)
 						{
 							change(2, XT, YT);
@@ -96,11 +100,13 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
-	   					dtx.fillStyle = '#FFC552';
-       						dtx.rect(XT, YT, 24, 24);
-        					dtx.fill();	
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();	
 						if (nums != 4)
 						{
 							change(4, XT, YT);
@@ -135,11 +141,13 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
-	   					dtx.fillStyle = '#FFC552';
-       						dtx.rect(XT, YT, 24, 24);
-        					dtx.fill();	
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();	
 						if (nums != 3)
 						{
 							change(3, XT, YT);
@@ -184,7 +192,7 @@ function whatKey(evt) {
 						
 						//window.preventDefault();
 						t = timeid;
-						time[t] = setInterval(function() {flight(num, t)}, 10);
+						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
 						timeid++;
 					}
 					else

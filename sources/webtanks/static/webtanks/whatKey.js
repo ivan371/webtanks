@@ -18,6 +18,8 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -57,6 +59,8 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -96,6 +100,8 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -135,6 +141,8 @@ function whatKey(evt) {
 					type = arr[0];
 					XT = arr[1];
 					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -175,6 +183,8 @@ function whatKey(evt) {
 					num = arr[3];
 					XT = arr[4];
 					YT = arr[5];
+					Xs[0] = arr[4];
+					Ys[0] = arr[5];
 					if(type==2)
 					{
 	   					//newimg.src = '/static/webtanks/images/bullet.png';
@@ -184,7 +194,7 @@ function whatKey(evt) {
 						
 						//window.preventDefault();
 						t = timeid;
-						time[t] = setInterval(function() {flight(num, t)}, 20);
+						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
 						timeid++;
 					}
 					else

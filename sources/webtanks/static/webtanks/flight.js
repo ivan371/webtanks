@@ -1,12 +1,19 @@
-function flight(num, t)
+function flight(num, t, numtank)
 	{
 		var X = 0;
 		var Y = 0;
 		var kind = 0;
-		X = XT;
-		Y = YT;
+		X = Xs[numtank];
+		Y = Ys[numtank];
 		kind = nums;
-		change(kind, X, Y);
+		if(numtank == 0)
+		{
+			change(kind, X, Y);
+		}			
+		else
+		{
+			botchange(kind, X, Y, numtank - 1);
+		}	
 		if(nums < 5)
 		{
 			nums = nums + 4;
@@ -19,7 +26,8 @@ function flight(num, t)
 		$.ajax({
 	  			type: 'POST',
 	  			url: "flight/",
-				data: {'name': num,},
+				data: {'name': num,
+					'who': numtank,},
 				dataType: 'json',
 	  			success: function(arr){
 					kind = arr[0];

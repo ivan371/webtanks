@@ -1,10 +1,10 @@
-function flight(num, t)
+function flight(num, t, numtank)
 	{
 		var X = 0;
 		var Y = 0;
 		var kind = 0;
-		X = XT;
-		Y = YT;
+		X = Xs[numtank];
+		Y = Ys[numtank];
 		kind = nums;
 		change(kind, X, Y);
 		if(nums < 5)
@@ -19,7 +19,8 @@ function flight(num, t)
 		$.ajax({
 	  			type: 'POST',
 	  			url: "flight/",
-				data: {'name': num,},
+				data: {'name': num,
+					'who': numtank,},
 				dataType: 'json',
 	  			success: function(arr){
 					kind = arr[0];
@@ -28,9 +29,7 @@ function flight(num, t)
 					//num = arr[3];
 					if(kind==3)
 					{
-						dtx.fillStyle = '#FFC552';
-       						dtx.rect(X, Y, 5, 5);
-        					dtx.fill();
+						dtx.clearRect(0, 0, 1034, 730); 
 							if(bulnum == 0)
 							{	   					
 								newimg.src = '/static/webtanks/images/bullet.png';

@@ -10,18 +10,6 @@
 	<script src='{% static 'webtanks/bot.js' %}'></script>
 	<script src='{% static 'webtanks/botchange.js' %}'></script>
 	<script>
-	//<img id="tank2" src='/static/webtanks/images/tank2.png'> 
-	//<img id="tank3" src='/static/webtanks/images/tank3.png'>
-	//<img id="tank1" src='/static/webtanks/images/tank1.png'>
-	//<img id="tank4" src='/static/webtanks/images/tank4.png'>
-	//<img id="tank6" src='/static/webtanks/images/tank6.png'>
-	//<img id="tank7" src='/static/webtanks/images/tank7.png'>
-	//<img id="tank5" src='/static/webtanks/images/tank5.png'>
-	//<img id="tank8" src='/static/webtanks/images/tank8.png'>
-	//<img id="bot2" src='/static/webtanks/images/bot2.png'>
-	//<img id="bot3" src='/static/webtanks/images/bot3.png'>
-	//<img id="bot1" src='/static/webtanks/images/bot1.png'>
-	//<img id="bot4" src='/static/webtanks/images/bot4.png'>
 	var tank = new Image();
  	var oldBack = new Image();
 	var back = new Image();
@@ -37,19 +25,28 @@
 	var line_1;
 	var btx;
 	var dtx;
+	var bnum;
 	var XT = 0;
 	var YT = 0; 
 	var img = new Image();
 	var newimg = new Image();
 	var timeid = 0;
 	var time = [];
+	var bots = [];
+	var botx = [];
+	var numbots = 0;
 	function game() {
             	example = document.getElementById('example');     	
-		bott = document.getElementById('bott');
-		bott = document.getElementById('bull');
+		//bott = document.getElementById('bott');
+		boll = document.getElementById('bull');
 		ctx     = example.getContext('2d');
-		btx = bott.getContext('2d');
-		dtx = bott.getContext('2d');
+		bots[numbots] = document.getElementById('bott');
+		botx[numbots] = bots[numbots].getContext('2d');
+		numbots++;
+		bots[numbots] = document.getElementById('bott1');
+		botx[numbots] = bots[numbots].getContext('2d');
+		numbots++;
+		dtx = boll.getContext('2d');
 	    	ctx.fillStyle = '#FFC552';
     	    	ctx.fillRect(100, 100, 924, 620);
 		ctx.fill();
@@ -73,7 +70,8 @@
                 ctx.fillRect(706, 420, 312, 6);
 		ctx.fill();	
 		//makeTank();
-		bot()
+		bot(0);
+		bot(1);
 		window.addEventListener('keydown', whatKey, true);
 		//setInterval(function() {change(nums, XT, YT)}, 1);
 		
@@ -87,6 +85,7 @@
     		</h1>
     		<canvas id='example' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas>
 		<canvas id='bott' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='bott1' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
 		<canvas id='bull' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
     	</body>
 </html>
