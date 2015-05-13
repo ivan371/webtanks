@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .field import field
 from .tank import tank
+from .bot import bot
 from .bullet import bullet
 #from .bot import bot
 from django.views.decorators.csrf import requires_csrf_token
@@ -15,6 +16,7 @@ def index(request):
 	__main__.newfield = field()
 	__main__.newfield.createTank(120, 690)
 	__main__.newfield.createBot(120, 120)
+	__main__.newfield.createBot(120, 300)
 	#__main__.newfield.createTank(100, 390)
 	#__main__.newtank = tank()
 	return render(request, 'webtanks/newtanks.html')
@@ -34,8 +36,6 @@ def flight(request):
 
 @csrf_exempt
 def bot(request):
-	s = {}
-	s.update(csrf(request))
-	__main__.newfield.bot = 0
-	#return HttpResponse(0)
-	return __main__.newfield.bot(request)
+	c = {}
+	c.update(csrf(request))
+	return __main__.newfield.bott(request)

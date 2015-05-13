@@ -1,30 +1,55 @@
-function change(type, X, Y)
+function botchange(kind, Xb, Yb)
 	{
 		
-		switch (type){	//1 - up; //2 - down //3 - right // 4 - left
+		switch (kind){	//1 - up; //2 - down //3 - right // 4 - left
 		case 1:
-			img.src = '/static/webtanks/images/bot2.png';
-      			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+			newimg.src = '/static/webtanks/images/bot2.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
 			}
 			break;
 		case 2:
-			img.src = '/static/webtanks/images/bot3.png';
-      			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+			newimg.src = '/static/webtanks/images/bot3.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
 			}
 			break;
 		case 3:
-			img.src = '/static/webtanks/images/bot1.png';
-      			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+			newimg.src = '/static/webtanks/images/bot1.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
 			}
 			
 			break;
 		case 4:
-			img.src = '/static/webtanks/images/bot4.png';
-      			img.onload = function(){
-				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+			newimg.src = '/static/webtanks/images/bot4.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
+			}
+			break;
+		case 5:
+			newimg.src = '/static/webtanks/images/bot6.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
+			}
+			break;
+		case 6:
+			newimg.src = '/static/webtanks/images/bot7.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
+			}
+			break;
+		case 7:
+			newimg.src = '/static/webtanks/images/bot5.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
+			}
+			
+			break;
+		case 8:
+			newimg.src = '/static/webtanks/images/bot8.png';
+      			newimg.onload = function(){
+				btx.drawImage(newimg, 100, 100, 800, 800, Xb, Yb, 20, 20);
 			}
 			break;
 		}

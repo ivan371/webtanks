@@ -1,6 +1,9 @@
 from .tank import tank
 import random
 from django.http import HttpResponse
+import json
+from .bullet import bullet
+import time
 
 class bot(tank):
 	def __init__(self, X, Y):
@@ -9,21 +12,22 @@ class bot(tank):
 		self.Xd = X + 24
 		self.Yd = Y + 24
 		self.cur = 1
+		self.flag = 0
 
 	def change(self):
-		time.sleep(1)
+		time.sleep(0.1)
 		cur = random.randint(1, 4)
 		if(self.search_walls(cur) == 1):
 			self.cur = cur
 		else:
 			self.cur = 5 - cur 
 
-	def bot(self, request):
+	def bott(self, request):
 		arr = [0, 0, 0, 0, 0, 0, 0]
 		if request.method == 'POST':
 			POST = request.POST  
 			if POST['name'] == '6':
-				change()
+				self.change()
 				if(self.cur == 1):
 					self.left()
 				if(self.cur == 2):
@@ -36,5 +40,6 @@ class bot(tank):
 				arr[1] = self.X
 				arr[2] = self.Y
 				arr[3] = self.cur
-		#return HttpResponse (json.dumps(arr), content_type="application/json")
-		return HttpResponse(0)
+		print (list(arr))
+		return HttpResponse (json.dumps(arr), content_type="application/json")
+		#return HttpResponse(0)

@@ -77,11 +77,12 @@ class field():
 		createXML('breakhorizontal', '420', '706', '312')
 
 		self.num = 0
-		self.bum = 0
+		self.bum = -1
 
-	def bot(self, request):
-		#return self.arrbots[self.bum].bot(request)
-		return HttpResponse(0)
+	def bott(self, request):
+		print(111)
+		return self.arrbots[self.bum].bott(request)
+		#return HttpResponse(0)
 
 	def treating(self, request):
 		return self.arrtank[self.num].treating(request)

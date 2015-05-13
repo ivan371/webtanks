@@ -197,6 +197,10 @@ function whatKey(evt) {
 					}	
 					
 			});
+			break;
+		//case 49:
+		//	bot()
+			//break;
        		 default:
         		  //alert("Please only use the arrow keys.");
 		}

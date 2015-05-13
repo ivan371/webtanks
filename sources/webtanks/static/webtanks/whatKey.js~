@@ -16,21 +16,21 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
-	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
-        					ctx.fill();	
+	   					dtx.fillStyle = '#FFC552';
+       						dtx.rect(XT, YT, 24, 24);
+        					dtx.fill();	
 						if (nums != 1)
 						{
-							change(1, X, Y);
+							change(1, XT, YT);
 							nums = 1;
 						}
 						else
 						{
-							change(5, X, Y);
+							change(5, XT, YT);
 							nums = 5;
 						}
 					}
@@ -55,21 +55,21 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
-	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
-        					ctx.fill();		
+	   					dtx.fillStyle = '#FFC552';
+       						dtx.rect(XT, YT, 24, 24);
+        					dtx.fill();		
 						if (nums != 2)
 						{
-							change(2, X, Y);
+							change(2, XT, YT);
 							nums = 2;
 						}
 						else
 						{
-							change(6, X, Y);
+							change(6, XT, YT);
 							nums = 6;
 						}
 					}
@@ -94,21 +94,21 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
-	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
-        					ctx.fill();	
+	   					dtx.fillStyle = '#FFC552';
+       						dtx.rect(XT, YT, 24, 24);
+        					dtx.fill();	
 						if (nums != 4)
 						{
-							change(4, X, Y);
+							change(4, XT, YT);
 							nums = 4;
 						}
 						else
 						{
-							change(8, X, Y);
+							change(8, XT, YT);
 							nums = 8;
 						}
 					}
@@ -133,21 +133,21 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
-	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
-        					ctx.fill();	
+	   					dtx.fillStyle = '#FFC552';
+       						dtx.rect(XT, YT, 24, 24);
+        					dtx.fill();	
 						if (nums != 3)
 						{
-							change(3, X, Y);
+							change(3, XT, YT);
 							nums = 3;
 						}
 						else
 						{
-							change(7, X, Y);
+							change(7, XT, YT);
 							nums = 7;
 						}
 					}
@@ -173,8 +173,8 @@ function whatKey(evt) {
 					fX = arr[1];
 					fY = arr[2];
 					num = arr[3];
-					X = arr[4];
-					Y = arr[5];
+					XT = arr[4];
+					YT = arr[5];
 					if(type==2)
 					{
 	   					//newimg.src = '/static/webtanks/images/bullet.png';
@@ -184,7 +184,7 @@ function whatKey(evt) {
 						
 						//window.preventDefault();
 						t = timeid;
-						time[t] = setInterval(function() {flight(num, t)}, 20);
+						time[t] = setInterval(function() {flight(num, t)}, 10);
 						timeid++;
 					}
 					else
@@ -197,6 +197,10 @@ function whatKey(evt) {
 					}	
 					
 			});
+			break;
+		//case 49:
+		//	bot()
+			//break;
        		 default:
         		  //alert("Please only use the arrow keys.");
 		}

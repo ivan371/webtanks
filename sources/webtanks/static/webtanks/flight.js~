@@ -2,8 +2,11 @@ function flight(num, t)
 	{
 		var X = 0;
 		var Y = 0;
-		var type = 0;
-		change(nums, X, Y);
+		var kind = 0;
+		X = XT;
+		Y = YT;
+		kind = nums;
+		change(kind, X, Y);
 		if(nums < 5)
 		{
 			nums = nums + 4;
@@ -12,22 +15,22 @@ function flight(num, t)
 		{
 			nums = nums - 4;
 		}
-		window.addEventListener('keydown', whatKey, true);
+		//window.addEventListener('keydown', whatKey, true);
 		$.ajax({
 	  			type: 'POST',
 	  			url: "flight/",
 				data: {'name': num,},
 				dataType: 'json',
 	  			success: function(arr){
-					type = arr[0];
+					kind = arr[0];
 					X = arr[1];
 					Y = arr[2];					
 					//num = arr[3];
-					if(type==3)
+					if(kind==3)
 					{
-						btx.fillStyle = '#FFC552';
-       						btx.rect(X, Y, 5, 5);
-        					btx.fill();
+						dtx.fillStyle = '#FFC552';
+       						dtx.rect(X, Y, 5, 5);
+        					dtx.fill();
 							if(bulnum == 0)
 							{	   					
 								newimg.src = '/static/webtanks/images/bullet.png';
@@ -39,7 +42,7 @@ function flight(num, t)
 								bulnum = 0;
 							}			
 							newimg.onload = function(){
-							btx.drawImage(newimg, 0, 0, 280, 280, X, Y, 5, 5);
+							dtx.drawImage(newimg, 0, 0, 280, 280, X, Y, 5, 5);
 						}
 						//setInterval(function() { flight(num) }, 20);
 					}
