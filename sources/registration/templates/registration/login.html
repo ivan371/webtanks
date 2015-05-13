@@ -4,13 +4,19 @@
 {% block title %}{% trans "Войти" %}{% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
+Что такое, {{ user.username }}? Вы же уже авторизорваны.
+Можете <a href="/webtanks/">начать играть</a>! 
+Впрочем, всегда можно <a href="{% url auth_logout %}">выйти</a>.<br/><br/>
+{% else %}
 <form method="post" action="/webtanks/">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="{% trans 'Войти' %}" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
 <p>{% trans "Забыли пароль?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Восстановите его" %}</a>.</p>
 <p>{% trans "Ещё не зарегистрированы?" %} <a href="{% url 'registration_register' %}">{% trans "Зарегистрируйтесь!" %}</a>.</p>
+{% endif %}
 {% endblock %}
