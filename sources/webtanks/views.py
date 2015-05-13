@@ -34,7 +34,8 @@ def flight(request):
 
 @csrf_exempt
 def bot(request):
-	c = {}
-    c.update(csrf(request))
+	s = {}
+	s.update(csrf(request))
 	__main__.newfield.bot = 0
+	#return HttpResponse(0)
 	return __main__.newfield.bot(request)

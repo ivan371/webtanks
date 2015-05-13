@@ -1,5 +1,6 @@
 from .tank import tank
 import random
+from django.http import HttpResponse
 
 class bot(tank):
 	def __init__(self, X, Y):
@@ -35,4 +36,5 @@ class bot(tank):
 				arr[1] = self.X
 				arr[2] = self.Y
 				arr[3] = self.cur
-		return HttpResponse (json.dumps(arr), content_type="application/json")
+		#return HttpResponse (json.dumps(arr), content_type="application/json")
+		return HttpResponse(0)

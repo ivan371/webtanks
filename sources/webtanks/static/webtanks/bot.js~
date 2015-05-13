@@ -23,7 +23,7 @@ function bot()
 			}
 			else
 			{
-				alert('bot died!')
+				//alert('bot died!')
 			}
 	  	},
 		error: function(xhr, errmsg, err){

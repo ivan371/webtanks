@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import os
 from .tank import tank
 from .bot import bot
+from django.http import HttpResponse
 
 #adding a new wall to the xml-file with information of walls
 def createXML(kind, begin_length, begin_height, length):
@@ -79,8 +80,8 @@ class field():
 		self.bum = 0
 
 	def bot(self, request):
-		return self.arrbots[self.bum].bot(request)
-
+		#return self.arrbots[self.bum].bot(request)
+		return HttpResponse(0)
 
 	def treating(self, request):
 		return self.arrtank[self.num].treating(request)

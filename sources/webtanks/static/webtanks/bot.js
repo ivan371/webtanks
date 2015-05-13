@@ -16,14 +16,14 @@ function bot()
 			if(type == 4)
 			{
 				ctx.fillStyle = '#FFC552';
-      				ctx.rect(Xb, Yb, 24, 24);
-        			ctx.fill();	
+      			ctx.rect(Xb, Yb, 24, 24);
+        		ctx.fill();	
 				botchange(kind, Xb, Yb);
 				bot();
 			}
 			else
 			{
-				alert('bot died!')
+				//alert('bot died!')
 			}
 	  	},
 		error: function(xhr, errmsg, err){
