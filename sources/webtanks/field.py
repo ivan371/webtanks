@@ -8,7 +8,7 @@ def createXML(kind, begin_length, begin_height, length):
 		#kind: vertical, horizontal, breakvertical or breakhorizontal
 		#begin_length - coordinate x of the beginning of the wall
 		#begin_height - coordinate x of the beginning of the wall
-		tree = ET.parse('webtanks/static/wall_data/walls.xml')
+		tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
 		root = tree.getroot()
 		a = root.find(kind)
 		if kind == 'vertical':
@@ -25,14 +25,14 @@ def createXML(kind, begin_length, begin_height, length):
 		c.text = begin_height
 		c = ET.SubElement(b, 'length')
 		c.text = length
-		tree.write('webtanks/static/wall_data/walls.xml')
+		tree.write('webtanks/static/webtanks/xml/walls.xml')
 
 class field():
 	def __init__(self):
 		self.arrtank = []
 		self.arrbots = []
 		#deleting a previous version of xml-file with information about walls
-		os.remove('webtanks/static/wall_data/walls.xml')
+		os.remove('webtanks/static/webtanks/xml/walls.xml')
 		#creating a new version of xml-file
 		root = ET.Element('root')
 		a = ET.SubElement(root, 'vertical')
@@ -40,7 +40,7 @@ class field():
 		a = ET.SubElement(root, 'breakvertical')
 		a = ET.SubElement(root, 'breakhorizontal')
 		tree = ET.ElementTree(root)
-		tree.write('webtanks/static/wall_data/walls.xml')
+		tree.write('webtanks/static/webtanks/xml/walls.xml')
 
 		#adding new walls to the xml-file
 		createXML('vertical', '100', '100', '620')

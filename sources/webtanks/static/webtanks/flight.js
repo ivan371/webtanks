@@ -3,6 +3,15 @@ function flight(num, t)
 		var X = 0;
 		var Y = 0;
 		var type = 0;
+		change(nums, XT, YT);
+		if(nums < 5)
+		{
+			nums = nums + 4;
+		}			
+		else
+		{
+			nums = nums - 4;
+		}
 		window.addEventListener('keydown', whatKey, true);
 		$.ajax({
 	  			type: 'POST',
@@ -19,8 +28,17 @@ function flight(num, t)
 						btx.fillStyle = '#FFC552';
        						btx.rect(X, Y, 5, 5);
         					btx.fill();
-	   					newimg.src = '/static/webtanks/images/bullet.png';
-      						newimg.onload = function(){
+							if(bulnum == 0)
+							{	   					
+								newimg.src = '/static/webtanks/images/bullet.png';
+								bulnum = 1;
+							}      			
+							else
+							{
+								newimg.src = '/static/webtanks/images/bullet2.png';
+								bulnum = 0;
+							}			
+							newimg.onload = function(){
 							btx.drawImage(newimg, 0, 0, 280, 280, X, Y, 5, 5);
 						}
 						//setInterval(function() { flight(num) }, 20);

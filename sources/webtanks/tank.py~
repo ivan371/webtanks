@@ -16,7 +16,6 @@ class tank(bullet):
 		self.flag = 0
 		self.arrbullet = []
 
-
 	def flight(self, request):
 		if request.method == 'POST':
 			POST = request.POST  
@@ -37,6 +36,12 @@ class tank(bullet):
 		self.Y = self.Y + 5
 		self.Yd = self.Yd + 5
 		self.flag = 3
+
+	def up(self):
+		self.Y = self.Y - 5
+		self.Yd = self.Yd - 5
+		self.flag = 4
+
 	#receiving information from server about pressing keys
 	def treating(self, request):	
 		arr = [0, 0, 0, 0, 0, 0, 0]
@@ -77,9 +82,7 @@ class tank(bullet):
             							content_type="application/json")			
 			if POST['name'] == '4':
 				if(self.search_walls(4) == 1):
-					self.Y = self.Y - 5
-					self.Yd = self.Yd - 5
-					self.flag = 4
+					self.up()
 					arr[0] = 1
 					arr[1] = self.X
 					arr[2] = self.Y

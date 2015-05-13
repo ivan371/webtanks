@@ -1,8 +1,6 @@
 function whatKey(evt) {
         	oldBack = back;
 		var type = 0;
-		var X = 0;
-		var Y = 0;
 		var fX = 0;
 		var fY = 0;
 		var num = 0;
@@ -18,22 +16,22 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
+       						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (num != 1)
+						if (nums != 1)
 						{
-							change(1, X, Y);
-							num = 1;
+							change(1, XT, YT);
+							nums = 1;
 						}
 						else
 						{
-							change(5, X, Y);
-							num = 5;
+							change(5, XT, YT);
+							nums = 5;
 						}
 					}
 					else
@@ -57,22 +55,22 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
+       						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();		
-						if (num != 2)
+						if (nums != 2)
 						{
-							change(2, X, Y);
-							num = 2;
+							change(2, XT, YT);
+							nums = 2;
 						}
 						else
 						{
-							change(6, X, Y);
-							num = 6;
+							change(6, XT, YT);
+							nums = 6;
 						}
 					}
 					else
@@ -96,22 +94,22 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
+       						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (num != 4)
+						if (nums != 4)
 						{
-							change(4, X, Y);
-							num = 4;
+							change(4, XT, YT);
+							nums = 4;
 						}
 						else
 						{
-							change(8, X, Y);
-							num = 8;
+							change(8, XT, YT);
+							nums = 8;
 						}
 					}
 					else
@@ -135,22 +133,22 @@ function whatKey(evt) {
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
-					X = arr[1];
-					Y = arr[2];
+					XT = arr[1];
+					YT = arr[2];
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
-       						ctx.rect(X, Y, 24, 24);
+       						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (num != 3)
+						if (nums != 3)
 						{
-							change(3, X, Y);
-							num = 3;
+							change(3, XT, YT);
+							nums = 3;
 						}
 						else
 						{
-							change(7, X, Y);
-							num = 7;
+							change(7, XT, YT);
+							nums = 7;
 						}
 					}
 					else
@@ -175,14 +173,14 @@ function whatKey(evt) {
 					fX = arr[1];
 					fY = arr[2];
 					num = arr[3];
-					X = arr[4];
-					Y = arr[5];
+					XT = arr[4];
+					YT = arr[5];
 					if(type==2)
 					{
-	   					newimg.src = '/static/webtanks/images/bullet.png';
-      						newimg.onload = function(){
-							btx.drawImage(newimg, 0, 0, 280, 280, fX, fY, 5, 5);
-						}
+	   					//newimg.src = '/static/webtanks/images/bullet.png';
+      						//newimg.onload = function(){
+						//	btx.drawImage(newimg, 0, 0, 280, 280, fX, fY, 5, 5);
+						//}
 						
 						//window.preventDefault();
 						t = timeid;

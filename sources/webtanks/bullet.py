@@ -14,9 +14,9 @@ class bullet():
 		self.num = num
 
 	def search_walls(self, kind):
-		#1 - right, 2 - left, 3 - up, 4 - down
+		#1 - left, 2 - right, 3 - up, 4 - down
 		if(kind == 1):
-			tree = ET.parse('webtanks/static/wall_data/walls.xml')
+			tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
 			root = tree.getroot()
 			vert = root.find('vertical')
 			str = []
@@ -25,11 +25,13 @@ class bullet():
 	  				str.append(int(child.text))			
 			for i in range(0, len(str), 3):
 				#how far from the wall, how far from the begin, how far from the end
-				if(math.fabs(self.X - str[i]) < 11 and str[i + 1] < self.Y and str[i + 2] + str[i + 1] > self.Y):
+				if(math.fabs(self.X - str[i]) < 11 and str[i + 1] < self.Y and str[i + 2] + str[i + 1] > self.Y): #Y
+					print 'left', 'horizontal', str[i], str[i+1], str[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
+			print 'left', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 2):
-			tree = ET.parse('webtanks/static/wall_data/walls.xml')
+			tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
 			root = tree.getroot()
 			vert = root.find('vertical')
 			str = []
@@ -37,11 +39,13 @@ class bullet():
 				for child in data:
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.Xd - str[i]) < 11 and str[i + 1] < self.Yd and str[i + 2] + str[i + 1] > self.Yd):
+				if(math.fabs(self.Xd - str[i]) < 11 and str[i + 1] < self.Yd and str[i + 2] + str[i + 1] > self.Y): #Yd
+					print 'right', 'horizontal', str[i], str[i+1], str[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
+			print 'right', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 3):
-			tree = ET.parse('webtanks/static/wall_data/walls.xml')
+			tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
 			root = tree.getroot()
 			vert = root.find('horizontal')
 			str = []
@@ -50,10 +54,12 @@ class bullet():
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
 				if(math.fabs(self.Yd - str[i]) < 11 and str[i + 1] < self.Xd and str[i + 2] + str[i + 1] > self.Xd):
+					print 'down', 'horizontal', str[i], str[i+1], str[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
+			print 'down', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 4):
-			tree = ET.parse('webtanks/static/wall_data/walls.xml')
+			tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
 			root = tree.getroot()
 			vert = root.find('horizontal')
 			str = []
@@ -61,8 +67,10 @@ class bullet():
 				for child in data:
 	  				str.append(int(child.text))	
 			for i in range(0, len(str), 3):
-				if(math.fabs(self.Y - str[i]) < 11 and str[i + 1] < self.X and str[i + 2] + str[i + 1] > self.X):
+				if(math.fabs(self.Y - str[i]) < 11 and str[i + 1] < self.X and str[i + 2] + str[i + 1] > self.Xd):
+					print 'up', 'horizontal', str[i], str[i+1], str[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
+			print 'up', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1	
 
 	def flight(self):
@@ -84,10 +92,8 @@ class bullet():
 			arr[1] = self.X
 			arr[2] = self.Y
 			arr[3] = self.num
-			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")
+			return HttpResponse (json.dumps(arr), content_type="application/json")
 				
 		else:
-			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")
+			return HttpResponse (json.dumps(arr), content_type="application/json")
 				

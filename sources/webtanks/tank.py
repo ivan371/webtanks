@@ -16,7 +16,6 @@ class tank(bullet):
 		self.flag = 0
 		self.arrbullet = []
 
-
 	def flight(self, request):
 		if request.method == 'POST':
 			POST = request.POST  
@@ -115,8 +114,6 @@ class tank(bullet):
 				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet))
 				self.arrbullet.append(newbullet)
 							
-			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")		
+			return HttpResponse (json.dumps(arr), content_type="application/json")		
 		else:
-			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")
+			return HttpResponse (json.dumps(arr), content_type="application/json")

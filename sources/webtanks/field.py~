@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
 from .tank import tank
-from .bot import bot
+#from .bot import bot
 
 #adding a new wall to the xml-file with information of walls
 def createXML(kind, begin_length, begin_height, length):

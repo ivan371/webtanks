@@ -6,18 +6,21 @@ function change(type, X, Y)
 			img.src = '/static/webtanks/images/tank2.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();			
 			}
 			break;
 		case 2:
 			img.src = '/static/webtanks/images/tank3.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			break;
 		case 3:
 			img.src = '/static/webtanks/images/tank1.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			
 			break;
@@ -25,24 +28,28 @@ function change(type, X, Y)
 			img.src = '/static/webtanks/images/tank4.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			break;
 		case 5:
 			img.src = '/static/webtanks/images/tank6.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			break;
 		case 6:
 			img.src = '/static/webtanks/images/tank7.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			break;
 		case 7:
 			img.src = '/static/webtanks/images/tank5.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			
 			break;
@@ -50,7 +57,9 @@ function change(type, X, Y)
 			img.src = '/static/webtanks/images/tank8.png';
       			img.onload = function(){
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
+				ctx.restore();
 			}
 			break;
 		}
 	}
+
