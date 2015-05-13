@@ -36,6 +36,8 @@
 	var botx = [];
 	var Xs = [];
 	var Ys = [];
+	var numz = [];
+	var dbot = [];
 	var numbots = 0;
 	function game() {
             	example = document.getElementById('example');     	
@@ -44,9 +46,11 @@
 		ctx     = example.getContext('2d');
 		bots[numbots] = document.getElementById('bott');
 		botx[numbots] = bots[numbots].getContext('2d');
+		dbot[numbots] = 0;
 		numbots++;
 		bots[numbots] = document.getElementById('bott1');
 		botx[numbots] = bots[numbots].getContext('2d');
+		dbot[numbots] = 0;		
 		numbots++;
 		dtx = boll.getContext('2d');
 	    	ctx.fillStyle = '#FFC552';

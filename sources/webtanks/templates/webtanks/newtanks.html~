@@ -34,6 +34,9 @@
 	var time = [];
 	var bots = [];
 	var botx = [];
+	var Xs = [];
+	var Ys = [];
+	var numz = [];
 	var numbots = 0;
 	function game() {
             	example = document.getElementById('example');     	

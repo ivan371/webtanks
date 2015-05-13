@@ -7,6 +7,13 @@ function bot(num)
 	var fX = 0;
 	var fY = 0;
 	var numb = 0;
+	if(dbot[num] == 1)
+	{
+		botx[num].clearRect(0, 0, 1034, 730);
+		alert('bot died!');
+	}
+	else
+	{
 	$.ajax({
 		type: 'POST',
 		url: "bot/",
@@ -29,8 +36,8 @@ function bot(num)
 					bnum = bnum + 4;
 					kind = bnum;
 				}					
-				botchange(kind, Xb, Yb, num);
-				bnum = kind;
+				botchange(kind, Xs[num + 1], Ys[num + 1], num);
+				bnum = kind;	
 				$.ajax({
 	  			type: 'POST',
 	  			url: "bot/",
@@ -50,13 +57,14 @@ function bot(num)
 						//}
 						
 						//window.preventDefault();
+						//alert("OK");						
 						t = timeid;
 						time[t] = setInterval(function() {flight(numb, t, num + 1)}, 20);
 						timeid++;
 					}
 					else
 					{
-						alert('game over')
+						alert('game over');
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -76,4 +84,5 @@ function bot(num)
 			}	
 					
 	});
+	}	
 }

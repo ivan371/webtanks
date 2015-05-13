@@ -16,11 +16,10 @@ class tank(bullet):
 		self.flag = 0
 		self.arrbullet = []
 
-	def flight(self, request):
+	def flight(self, request, Xtanks, Ytanks):
 		if request.method == 'POST':
 			POST = request.POST  
-		print(POST['name'])
-		return self.arrbullet[int(POST['name'])].flight()
+		return self.arrbullet[int(POST['name'])].flight(Xtanks, Ytanks, 0)
 	
 	def left(self):
 		self.X = self.X - 5
@@ -93,17 +92,17 @@ class tank(bullet):
             							content_type="application/json")
 			if POST['name'] == '5':
 				if(self.flag == 1):
-					slideX = -6
+					slideX = -7
 					slideY = 8
 				if(self.flag == 2):
-					slideX = 22
+					slideX = 23
 					slideY = 8
 				if(self.flag == 3):
 					slideX = 8
-					slideY = 22
+					slideY = 23
 				if(self.flag == 4):
 					slideX = 8
-					slideY = -6
+					slideY = -7
 				arr[0] = 2
 				arr[1] = self.X + slideX
 				arr[2] = self.Y + slideY
@@ -114,8 +113,6 @@ class tank(bullet):
 				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet))
 				self.arrbullet.append(newbullet)
 							
-			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")		
+			return HttpResponse (json.dumps(arr), content_type="application/json")		
 		else:
-			return HttpResponse (json.dumps(arr),
-            							content_type="application/json")
+			return HttpResponse (json.dumps(arr), content_type="application/json")

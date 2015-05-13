@@ -25,15 +25,15 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (nums != 1)
+						if (numz[0] != 1)
 						{
 							change(1, XT, YT);
-							nums = 1;
+							numz[0] = 1;
 						}
 						else
 						{
 							change(5, XT, YT);
-							nums = 5;
+							numz[0] = 5;
 						}
 					}
 					else
@@ -66,15 +66,15 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();		
-						if (nums != 2)
+						if (numz[0] != 2)
 						{
 							change(2, XT, YT);
-							nums = 2;
+							numz[0] = 2;
 						}
 						else
 						{
 							change(6, XT, YT);
-							nums = 6;
+							numz[0] = 6;
 						}
 					}
 					else
@@ -107,15 +107,15 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (nums != 4)
+						if (numz[0] != 4)
 						{
 							change(4, XT, YT);
-							nums = 4;
+							numz[0] = 4;
 						}
 						else
 						{
 							change(8, XT, YT);
-							nums = 8;
+							numz[0] = 8;
 						}
 					}
 					else
@@ -148,15 +148,15 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (nums != 3)
+						if (numz[0] != 3)
 						{
 							change(3, XT, YT);
-							nums = 3;
+							numz[0] = 3;
 						}
 						else
 						{
 							change(7, XT, YT);
-							nums = 7;
+							numz[0] = 7;
 						}
 					}
 					else
@@ -183,6 +183,8 @@ function whatKey(evt) {
 					num = arr[3];
 					XT = arr[4];
 					YT = arr[5];
+					Xs[0] = arr[4];
+					Ys[0] = arr[5];
 					if(type==2)
 					{
 	   					//newimg.src = '/static/webtanks/images/bullet.png';

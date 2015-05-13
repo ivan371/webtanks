@@ -78,29 +78,42 @@ class field():
 
 		self.num = 0
 		self.bum = -1
+		self.numbul = 0
+		self.Xbots = []
+		self.Ybots = []
+		self.Xtanks = []
+		self.Ytanks = []
 
 	def bott(self, request):
 		if request.method == 'POST':
 			POST = request.POST 
+		self.Xbots[int(POST['num'])] = self.arrbots[int(POST['num'])].X		
+		self.Ybots[int(POST['num'])] = self.arrbots[int(POST['num'])].Y
 		return self.arrbots[int(POST['num'])].bott(request)
 
 	def treating(self, request):
+		self.Xtanks[self.num] = self.arrbots[self.num].X		
+		self.Ytanks[self.num] = self.arrbots[self.num].Y
 		return self.arrtank[self.num].treating(request)
 
 	def createTank(self, X, Y):
 		newtank = tank(X, Y)
 		self.arrtank.append(newtank)
+		self.Xtanks.append(X)
+		self.Ytanks.append(Y)
 		self.num = self.num + 1
 
 	def createBot(self, X, Y):
 		newbot = bot(X, Y, len(self.arrbots))
 		self.arrbots.append(newbot)
+		self.Xbots.append(X)
+		self.Ybots.append(Y)
 		self.bum = self.bum + 1
 
 	def flight(self, request):
 		if request.method == 'POST':
 			POST = request.POST
 			if POST['who'] == '0': 
-				return self.arrtank[self.num].flight(request)
+				return self.arrtank[self.num].flight(request, self.Xbots, self.Ybots)
 			else:
-				return self.arrbot[int(POST['who']) - 1].flightb(request)
+				return self.arrbots[int(POST['who']) - 1].flightb(request, self.Xtanks, self.Ytanks)

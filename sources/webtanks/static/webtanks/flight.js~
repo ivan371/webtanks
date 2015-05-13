@@ -6,7 +6,15 @@ function flight(num, t, numtank)
 		X = Xs[numtank];
 		Y = Ys[numtank];
 		kind = nums;
-		change(kind, X, Y);
+		if(numtank == 0)
+		{
+			change(kind, X, Y);
+		}			
+		else
+		{
+			kind = numz[numtank - 1];
+			botchange(kind, X, Y, numtank - 1);
+		}	
 		if(nums < 5)
 		{
 			nums = nums + 4;
@@ -48,7 +56,13 @@ function flight(num, t, numtank)
 					else
 					{
 						clearInterval(time[t]);					
-						//alert('game over');
+						if(kind == 6)
+						{
+							if(Y == 0)
+							{
+								alert('YOU LOSE');
+							}
+						}
 					}
 	  			},
 				error: function(xhr, errmsg, err){

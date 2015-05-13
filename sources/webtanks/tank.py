@@ -16,11 +16,10 @@ class tank(bullet):
 		self.flag = 0
 		self.arrbullet = []
 
-	def flight(self, request):
+	def flight(self, request, Xtanks, Ytanks):
 		if request.method == 'POST':
 			POST = request.POST  
-		print(POST['name'])
-		return self.arrbullet[int(POST['name'])].flight()
+		return self.arrbullet[int(POST['name'])].flight(Xtanks, Ytanks, 0)
 	
 	def left(self):
 		self.X = self.X - 5

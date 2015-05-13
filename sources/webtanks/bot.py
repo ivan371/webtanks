@@ -30,11 +30,11 @@ class bot(tank):
 				self.cur = 4
 			else:
 				self.cur = 3			
-	def flight(self, request):
+	def flightb(self, request, Xtanks, Ytanks):
 		if request.method == 'POST':
 			POST = request.POST  
 		print(POST['name'])
-		return self.arrbullet[int(POST['name'])].flight()
+		return self.arrbull[int(POST['name'])].flight(Xtanks, Ytanks, 1)
 
 	def bott(self, request):
 		arr = [0, 0, 0, 0, 0, 0, 0]
@@ -56,6 +56,7 @@ class bot(tank):
 				arr[3] = self.cur
 				arr[4] = self.num
 			if POST['name'] == '5':
+				print("lalal")
 				if(self.flag == 1):
 					slideX = -6
 					slideY = 8
@@ -71,11 +72,11 @@ class bot(tank):
 				arr[0] = 2
 				arr[1] = self.X + slideX
 				arr[2] = self.Y + slideY
-				arr[3] = len(self.arrbullet)
+				arr[3] = len(self.arrbull)
 				arr[4] = self.X
 				arr[5] = self.Y
 				arr[6] = self.flag
-				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet))
-				self.arrbullet.append(newbullet)
+				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbull))
+				self.arrbull.append(newbullet)
 		return HttpResponse (json.dumps(arr), content_type="application/json")
 		#return HttpResponse(0)

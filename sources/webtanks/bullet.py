@@ -73,8 +73,26 @@ class bullet():
 			print 'up', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1	
 
-	def flight(self):
+	def searchtanks(self, Xtanks, Ytanks):
+		for i in range (len(Xtanks)):
+			if self.X > Xtanks[i] and self.Xd < Xtanks[i] + 24:
+				return i
+			print(1)
+		for i in range (len(Ytanks)):
+			if self.Y > Ytanks[i] and self.Yd < Ytanks[i] + 24:
+				return i
+			print(1)
+		return 1
+
+	def flight(self, Xtanks, Ytanks, sort):
 		arr = [0, 0, 0, 0]
+		'''res = self.searchtanks(Xtanks, Ytanks)
+		if res != 1:
+			arr[0] = 6
+			arr[1] = res
+			arr[2] = sort
+			#bot 1; tank 0
+			return HttpResponse (json.dumps(arr), content_type="application/json")'''
 		if (self.search_walls(self.kind) == 1):
 			if self.kind == 1:
 				self.X = self.X - 5
