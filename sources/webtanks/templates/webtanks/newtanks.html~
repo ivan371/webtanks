@@ -22,7 +22,7 @@
 	var example;
 	var line_1;
 	var btx;
-	var X = 0;
+	var XT = 0;
 	var Y = 0; 
 	var img = new Image();
 	var newimg = new Image();

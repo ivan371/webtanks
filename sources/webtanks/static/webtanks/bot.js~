@@ -6,7 +6,7 @@ function bot()
 	$.ajax({
 		type: 'POST',
 		url: "bot/",
-		data: {'name': 1,},
+		data: {'name': 6,},
 		dataType: 'json',
 		success: function(arr){
 			type = arr[0];

@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
 from .tank import tank
-#from .bot import bot
+from .bot import bot
 
 #adding a new wall to the xml-file with information of walls
 def createXML(kind, begin_length, begin_height, length):
@@ -90,10 +90,10 @@ class field():
 		self.arrtank.append(newtank)
 		self.num = self.num + 1
 
-	"""def createbot(self, X, Y):
+	def createBot(self, X, Y):
 		newbot = bot(X, Y)
-		self.arrbots.append(newtank)
-		self.bum = self.bum + 1"""
+		self.arrbots.append(newbot)
+		self.bum = self.bum + 1
 
 	def flight(self, request):
 		return self.arrtank[self.num].flight(request)
