@@ -92,17 +92,17 @@ class tank(bullet):
             							content_type="application/json")
 			if POST['name'] == '5':
 				if(self.flag == 1):
-					slideX = -7
+					slideX = -6
 					slideY = 8
 				if(self.flag == 2):
-					slideX = 23
+					slideX = 22
 					slideY = 8
 				if(self.flag == 3):
 					slideX = 8
-					slideY = 23
+					slideY = 22
 				if(self.flag == 4):
 					slideX = 8
-					slideY = -7
+					slideY = -6
 				arr[0] = 2
 				arr[1] = self.X + slideX
 				arr[2] = self.Y + slideY

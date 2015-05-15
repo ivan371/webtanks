@@ -19,7 +19,7 @@ class bot(tank):
 	def change(self):
 		time.sleep(1)
 		cur = random.randint(1, 4)
-		if(self.search_walls(cur) == 1):
+		if(self.search_solid_walls(cur) == 1):
 			self.cur = cur
 		else:
 			if(cur == 1):

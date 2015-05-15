@@ -1,6 +1,4 @@
-function botchange(kind, Xb, Yb, num)
-	{
-		
+function botchange(kind, Xb, Yb, num) {
 		switch (kind){	//1 - up; //2 - down //3 - right // 4 - left
 		case 1:
 			newimg.src = '/static/webtanks/images/bot2.png';
@@ -59,5 +57,4 @@ function botchange(kind, Xb, Yb, num)
 			numz[num] = 8;
 			break;
 		}
-	}
-
+}

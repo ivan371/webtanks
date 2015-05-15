@@ -87,8 +87,8 @@ class field():
 	def bott(self, request):
 		if request.method == 'POST':
 			POST = request.POST 
-		self.Xbots[int(POST['num'])] = arrbots[int(POST['num'])].X		
-		self.Ybots[int(POST['num'])] = arrbots[int(POST['num'])].Y
+		self.Xbots[int(POST['num'])] = self.arrbots[int(POST['num'])].X		
+		self.Ybots[int(POST['num'])] = self.arrbots[int(POST['num'])].Y
 		return self.arrbots[int(POST['num'])].bott(request)
 
 	def treating(self, request):

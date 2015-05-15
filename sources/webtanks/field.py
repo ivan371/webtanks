@@ -5,28 +5,46 @@ from .bot import bot
 from django.http import HttpResponse
 
 #adding a new wall to the xml-file with information of walls
-def createXML(kind, begin_length, begin_height, length):
-		#kind: vertical, horizontal, breakvertical or breakhorizontal
-		#begin_length - coordinate x of the beginning of the wall
-		#begin_height - coordinate x of the beginning of the wall
-		tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
-		root = tree.getroot()
-		a = root.find(kind)
-		if kind == 'vertical':
-			b = ET.SubElement(a, 'vert')
-		if kind == 'horizontal':
-			b = ET.SubElement(a, 'hor')
-		if kind == 'breakvertical':
-			b = ET.SubElement(a, 'breakver')
-		if kind == 'breakhorizontal':
-			b = ET.SubElement(a, 'breakhor')
+def createXML(kind, begin_arg1, begin_arg2, length):
+	#kind: vertical, horizontal, breakvertical or breakhorizontal
+	#begin_length - coordinate x of the beginning of the wall
+	#begin_height - coordinate x of the beginning of the wall
+	tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
+	root = tree.getroot()
+	a = root.find(kind)
+	if kind == 'vertical':
+		b = ET.SubElement(a, 'vert')
 		c = ET.SubElement(b, 'beginlength')
-		c.text = begin_length
+		c.text = begin_arg1
 		c = ET.SubElement(b, 'beginheight')
-		c.text = begin_height
+		c.text = begin_arg2
 		c = ET.SubElement(b, 'length')
 		c.text = length
-		tree.write('webtanks/static/webtanks/xml/walls.xml')
+	if kind == 'horizontal':
+		b = ET.SubElement(a, 'hor')
+		c = ET.SubElement(b, 'beginheight')
+		c.text = begin_arg1
+		c = ET.SubElement(b, 'beginlength')
+		c.text = begin_arg2
+		c = ET.SubElement(b, 'length')
+		c.text = length
+	if kind == 'breakvertical':
+		b = ET.SubElement(a, 'breakver')
+		c = ET.SubElement(b, 'beginlength')
+		c.text = begin_arg1
+		c = ET.SubElement(b, 'beginheight')
+		c.text = begin_arg2
+		c = ET.SubElement(b, 'length')
+		c.text = length
+	if kind == 'breakhorizontal':
+		b = ET.SubElement(a, 'breakhor')
+		c = ET.SubElement(b, 'beginheight')
+		c.text = begin_arg1
+		c = ET.SubElement(b, 'beginlength')
+		c.text = begin_arg2
+		c = ET.SubElement(b, 'length')
+		c.text = length
+	tree.write('webtanks/static/webtanks/xml/walls.xml')
 
 class field():
 	def __init__(self):
@@ -55,7 +73,7 @@ class field():
 		createXML('horizontal', '200', '100', '724')
 		createXML('vertical', '820', '175', '33')
 
-		createXML('horizontal', '620', '300', '730')
+		createXML('horizontal', '620', '286', '730')
 		createXML('vertical', '310', '620', '33')
 
 		createXML('vertical', '400', '300', '250')
@@ -66,11 +84,11 @@ class field():
 		createXML('horizontal', '305', '703', '28')
 		createXML('horizontal', '548', '675', '50')
 
-		createXML('breakvertical', '550', '206', '414')
+		createXML('breakvertical', '555', '206', '414')
 
 		createXML('breakhorizontal', '200', '824', '294')		
 
-		createXML('breakhorizontal', '620', '106', '200')
+		createXML('breakhorizontal', '620', '106', '210') 
 
 		createXML('breakhorizontal', '420', '106', '294')
 
