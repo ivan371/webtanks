@@ -55,7 +55,7 @@ def numbots(request):
 	c.update(csrf(request))
 	POST = request.POST  
 	if request.method == 'POST':
-        	res = int(POST['num'])
+		res = int(POST['num'])
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
 		__main__.res = res
