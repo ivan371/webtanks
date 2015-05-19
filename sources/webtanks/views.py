@@ -17,19 +17,12 @@ import json
 
 
 def index(request):
-<<<<<<< Updated upstream
 	#__main__.newfield = field()
 	#__main__.newfield.createTank(120, 690)
 	#__main__.newfield.createBot(120, 120)
 	#__main__.newfield.createBot(120, 300)
-=======
 	if not request.user.is_authenticated():
 	        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
-	__main__.newfield = field()
-	__main__.newfield.createTank(120, 690)
-	__main__.newfield.createBot(120, 120)
-	__main__.newfield.createBot(120, 300)
->>>>>>> Stashed changes
 	#__main__.newfield.createTank(100, 390)
 	#__main__.newtank = tank()
 	#return render(request, 'webtanks/newtanks.html')
