@@ -19,7 +19,7 @@ class tank(bullet):
 	def flight(self, request, Xtanks, Ytanks):
 		if request.method == 'POST':
 			POST = request.POST  
-		return self.arrbullet[int(POST['name'])].flight(Xtanks, Ytanks, 0)
+		return self.arrbullet[int(POST['name'])].flight(Xtanks, Ytanks, 1)
 	
 	def left(self):
 		self.X = self.X - 5
@@ -47,7 +47,7 @@ class tank(bullet):
 		if request.method == 'POST':
 			POST = request.POST  
 			if POST['name'] == '1':
-				if(self.search_solid_walls(1) == 1 and self.search_break_walls_for_tank(1) == 1):
+				if(self.search_solid_walls(1) == 1):
 					self.left()
 					arr[0] = 1
 					arr[1] = self.X
@@ -56,7 +56,7 @@ class tank(bullet):
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")
 			if POST['name'] == '2':
-				if(self.search_solid_walls(2) == 1 and self.search_break_walls_for_tank(2) == 1):
+				if(self.search_solid_walls(2) == 1):
 					self.right()
 					arr[0] = 1
 					arr[1] = self.X
@@ -65,7 +65,7 @@ class tank(bullet):
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")
 			if POST['name'] == '3':
-				if(self.search_solid_walls(3) == 1 and self.search_break_walls_for_tank(3) == 1):
+				if(self.search_solid_walls(3) == 1):
 					self.down()
 					arr[0] = 1
 					arr[1] = self.X
@@ -74,7 +74,7 @@ class tank(bullet):
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")			
 			if POST['name'] == '4':
-				if(self.search_solid_walls(4) == 1 and self.search_break_walls_for_tank(4) == 1):
+				if(self.search_solid_walls(4) == 1):
 					self.up()
 					arr[0] = 1
 					arr[1] = self.X

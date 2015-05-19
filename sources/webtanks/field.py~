@@ -92,8 +92,8 @@ class field():
 		return self.arrbots[int(POST['num'])].bott(request)
 
 	def treating(self, request):
-		self.Xtanks[self.num] = self.arrbots[self.num].X		
-		self.Ytanks[self.num] = self.arrbots[self.num].Y
+		self.Xtanks[self.num] = self.arrtank[self.num].X		
+		self.Ytanks[self.num] = self.arrtank[self.num].Y
 		return self.arrtank[self.num].treating(request)
 
 	def createTank(self, X, Y):

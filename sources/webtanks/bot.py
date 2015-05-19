@@ -17,7 +17,7 @@ class bot(tank):
 		self.arrbull = []
 
 	def change(self):
-		time.sleep(1)
+		time.sleep(0.5)
 		cur = random.randint(1, 4)
 		if(self.search_solid_walls(cur) == 1):
 			self.cur = cur
@@ -34,7 +34,7 @@ class bot(tank):
 		if request.method == 'POST':
 			POST = request.POST  
 		print(POST['name'])
-		return self.arrbull[int(POST['name'])].flight(Xtanks, Ytanks, 1)
+		return self.arrbull[int(POST['name'])].flight(Xtanks, Ytanks, 0)
 
 	def bott(self, request):
 		arr = [0, 0, 0, 0, 0, 0, 0]

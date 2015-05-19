@@ -25,20 +25,20 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (numz[0] != 1)
+						if (nums != 1)
 						{
 							change(1, XT, YT);
-							numz[0] = 1;
+							nums = 1;
 						}
 						else
 						{
 							change(5, XT, YT);
-							numz[0] = 5;
+							nums = 5;
 						}
 					}
 					else
 					{
-						alert('game over')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -66,20 +66,20 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();		
-						if (numz[0] != 2)
+						if (nums != 2)
 						{
 							change(2, XT, YT);
-							numz[0] = 2;
+							nums = 2;
 						}
 						else
 						{
 							change(6, XT, YT);
-							numz[0] = 6;
+							nums = 6;
 						}
 					}
 					else
 					{
-						alert('game over')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -107,20 +107,20 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (numz[0] != 4)
+						if (nums != 4)
 						{
 							change(4, XT, YT);
-							numz[0] = 4;
+							nums = 4;
 						}
 						else
 						{
 							change(8, XT, YT);
-							numz[0] = 8;
+							nums = 8;
 						}
 					}
 					else
 					{
-						alert('game over')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -148,15 +148,15 @@ function whatKey(evt) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (numz[0] != 3)
+						if (nums != 3)
 						{
 							change(3, XT, YT);
-							numz[0] = 3;
+							nums = 3;
 						}
 						else
 						{
 							change(7, XT, YT);
-							numz[0] = 7;
+							nums = 7;
 						}
 					}
 					else
@@ -199,7 +199,7 @@ function whatKey(evt) {
 					}
 					else
 					{
-						alert('game over')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){

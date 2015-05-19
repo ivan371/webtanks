@@ -57,6 +57,7 @@ def walls_list(kind):
 			list.append(int(child.text))	
 	return list
 
+
 class bullet():
 	def __init__(self, X, Y, kind, num):
 		self.X = X
@@ -66,7 +67,6 @@ class bullet():
 		self.kind = kind
 		self.num = num
 
-	#tank is workind with solid walls
 	def search_solid_walls(self, kind):
 		#1 - left, 2 - right, 3 - down, 4 - up
 		if(kind == 1):
@@ -153,19 +153,14 @@ class bullet():
 					return (0, 4, i // 3, list[i], list[i + 1], list[i + 2])
 			return (1, 0, 0, 0, 0, 0)
 
+
 	def searchtanks(self, Xtanks, Ytanks):
 		for i in range (len(Xtanks)):
-			if self.X > Xtanks[i] and self.Xd < Xtanks[i] + 24:
-				return i
-			print(1)
-		for i in range (len(Ytanks)):
-			if self.Y > Ytanks[i] and self.Yd < Ytanks[i] + 24:
-				return i
-			print(1)
-		return 1
-
-	#bullet is flying
-	def flight(self, Xtanks, Ytanks, sort):
+				if self.X < Xtanks[i] + 24 and self.X > Xtanks[i] and self.Y < Ytanks[i] + 24 and self.Yd > Ytanks[i]:
+					return i
+		return -1
+	
+	def tankflight(self, Xtanks, Ytanks, sort):
 		arr = [0, 0, 0, 0]
 		'''res = self.searchtanks(Xtanks, Ytanks)
 		if res != 1:
@@ -226,3 +221,37 @@ class bullet():
 				
 		else:
 			return HttpResponse (json.dumps(arr), content_type="application/json")
+
+	def flight(self, Xtanks, Ytanks, sort):
+		arr = [0, 0, 0, 0]
+		res = self.searchtanks(Xtanks, Ytanks)
+		print("haha")
+		print(res)
+		if res != -1:
+			arr[0] = 6
+			arr[1] = res
+			arr[2] = sort
+			#bot 1; tank 0
+			return HttpResponse (json.dumps(arr), content_type="application/json")
+		if (self.search_solid_walls(self.kind) == 1):
+			if self.kind == 1:
+				self.X = self.X - 5
+				self.Xd = self.Xd - 5
+			if self.kind == 2:
+				self.X = self.X + 5
+				self.Xd = self.Xd + 5
+			if self.kind == 3:
+				self.Y = self.Y + 5
+				self.Yd = self.Yd + 5
+			if self.kind == 4:
+				self.Y = self.Y - 5
+				self.Yd = self.Yd - 5
+			arr[0] = 3
+			arr[1] = self.X
+			arr[2] = self.Y
+			arr[3] = self.num
+			return HttpResponse (json.dumps(arr), content_type="application/json")
+				
+		else:
+			return HttpResponse (json.dumps(arr), content_type="application/json")
+				

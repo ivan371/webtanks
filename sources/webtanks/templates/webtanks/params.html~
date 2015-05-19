@@ -1,0 +1,10 @@
+{% load staticfiles %}
+<html>
+<body>
+<form action="/webtanks/num" method="post">
+    <label for="num">NUM OF BOTS: </label>
+    <input id="num" type="text" name="num" value="2">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

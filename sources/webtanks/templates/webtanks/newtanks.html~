@@ -37,18 +37,13 @@
 	var Xs = [];
 	var Ys = [];
 	var numz = [];
+	var dbot = [];
 	var numbots = 0;
 	function game() {
             	example = document.getElementById('example');     	
 		//bott = document.getElementById('bott');
 		boll = document.getElementById('bull');
 		ctx     = example.getContext('2d');
-		bots[numbots] = document.getElementById('bott');
-		botx[numbots] = bots[numbots].getContext('2d');
-		numbots++;
-		bots[numbots] = document.getElementById('bott1');
-		botx[numbots] = bots[numbots].getContext('2d');
-		numbots++;
 		dtx = boll.getContext('2d');
 	    	ctx.fillStyle = '#FFC552';
     	    	ctx.fillRect(100, 100, 924, 620);
@@ -71,10 +66,46 @@
             	ctx.fillRect(550, 206, 6, 414);
 	    	ctx.fillRect(106, 420, 294, 6);
                 ctx.fillRect(706, 420, 312, 6);
-		ctx.fill();	
+		ctx.fill();
+		var i = 0;
+		$.ajax({
+  			type: 'POST',
+  			url: "numbot/",
+			dataType: 'json',
+  			success: function(res){
+				for (i = 0; i < res; i++)
+				{
+					bots[i] = document.getElementById(String(i + 1));
+					botx[i] = bots[numbots].getContext('2d');
+					dbot[i] = 0;
+					
+					bot(i);
+				}
+				numbots = res - 1;
+  			},
+			error: function(xhr, errmsg, err){
+					alert(xhr.status + ": " + xhr.responseText);
+				}					
+			});
+		/*for (i = 0; i < res; i++)
+		{
+			bots[numbots] = document.getElementById(String(i + 1));
+			botx[numbots] = bots[numbots].getContext('2d');
+			dbot[numbots] = 0;
+			numbots++;
+			bot(i);
+		}*/
+		//bots[numbots] = document.getElementById('bott1');
+		//botx[numbots] = bots[numbots].getContext('2d');
+		//dbot[numbots] = 0;
+		//numbots++;
+		//bots[numbots] = document.getElementById('bott2');
+		//botx[numbots] = bots[numbots].getContext('2d');
+		//dbot[numbots] = 0;		
+		//numbots++;	
 		//makeTank();
-		bot(0);
-		bot(1);
+		//bot(0);
+		//bot(1);
 		window.addEventListener('keydown', whatKey, true);
 		//setInterval(function() {change(nums, XT, YT)}, 1);
 		
@@ -87,8 +118,17 @@
       		Tanks
     		</h1>
     		<canvas id='example' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas>
-		<canvas id='bott' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
-		<canvas id='bott1' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='1' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='2' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='3' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='4' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='5' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='6' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='7' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='8' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='9' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='10' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
 		<canvas id='bull' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		
     	</body>
 </html>

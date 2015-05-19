@@ -64,7 +64,7 @@ function bot(num)
 					}
 					else
 					{
-						alert('game over');
+						//alert('game over');
 					}
 	  			},
 				error: function(xhr, errmsg, err){

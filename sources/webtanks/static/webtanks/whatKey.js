@@ -1,9 +1,18 @@
-function send_for_pressing(keydata, numchange) {
-			datakey = keydata,
+function whatKey(evt) {
+        	oldBack = back;
+		var type = 0;
+		var fX = 0;
+		var fY = 0;
+		var num = 0;
+		var numer = 0;
+		var t = 0;
+		switch (evt.keyCode) {
+		case 37:
+			datakey = 1;
 			$.ajax({
 	  			type: 'POST',
 	  			url: "treating/",
-	  			data: {'name': keydata,},
+	  			data: {'name': 1,},
 				dataType: 'json',
 	  			success: function(arr){
 					type = arr[0];
@@ -16,20 +25,20 @@ function send_for_pressing(keydata, numchange) {
 	   					ctx.fillStyle = '#FFC552';
        						ctx.rect(XT, YT, 24, 24);
         					ctx.fill();	
-						if (nums != numchange)
+						if (nums != 1)
 						{
-							change(numchange, XT, YT);
-							nums = numchange;
+							change(1, XT, YT);
+							nums = 1;
 						}
 						else
 						{
-							change(numchange + 4, XT, YT);
-							nums = numchange + 4;
+							change(5, XT, YT);
+							nums = 5;
 						}
 					}
 					else
 					{
-						alert('Oops!')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -37,33 +46,130 @@ function send_for_pressing(keydata, numchange) {
 					}	
 					
 			});
-}
+			break;
 
-function whatKey(evt) {
-        oldBack = back;
-		var type = 0;
-		var fX = 0;
-		var fY = 0;
-		var num = 0;
-		var numer = 0;
-		var t = 0;
-		switch (evt.keyCode) {
-		case 37:
-			send_for_pressing(1, 1)
-		break;
+	        case 39:
+			datakey = 2;
+			 $.ajax({
+	  			type: 'POST',
+	  			url: "treating/",
+	  			data: {'name': 2,},
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					XT = arr[1];
+					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
+					if(type==1)
+					{
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();		
+						if (nums != 2)
+						{
+							change(2, XT, YT);
+							nums = 2;
+						}
+						else
+						{
+							change(6, XT, YT);
+							nums = 6;
+						}
+					}
+					else
+					{
+						//alert('game over')
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});	         
+			 break;
 
-	    case 39:
-			send_for_pressing(2, 2)
-		break;
+	        case 40:
+			datakey = 3;
+			$.ajax({
+	  			type: 'POST',
+	  			url: "treating/",
+	  			data: {'name': 3,},
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					XT = arr[1];
+					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
+					if(type==1)
+					{
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();	
+						if (nums != 4)
+						{
+							change(4, XT, YT);
+							nums = 4;
+						}
+						else
+						{
+							change(8, XT, YT);
+							nums = 8;
+						}
+					}
+					else
+					{
+						//alert('game over')
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});
+          		break;
 
-	    case 40:
-			send_for_pressing(3, 4)
-        break;
-
-      	case 38:
-			send_for_pressing(4, 3)
-        break;
-
+      	      	 case 38:
+			datakey = 4;
+			$.ajax({
+	  			type: 'POST',
+	  			url: "treating/",
+	  			data: {'name': 4,},
+				dataType: 'json',
+	  			success: function(arr){
+					type = arr[0];
+					XT = arr[1];
+					YT = arr[2];
+					Xs[0] = arr[1];
+					Ys[0] = arr[2];
+					if(type==1)
+					{
+	   					ctx.fillStyle = '#FFC552';
+       						ctx.rect(XT, YT, 24, 24);
+        					ctx.fill();	
+						if (nums != 3)
+						{
+							change(3, XT, YT);
+							nums = 3;
+						}
+						else
+						{
+							change(7, XT, YT);
+							nums = 7;
+						}
+					}
+					else
+					{
+						//alert('game over')
+					}
+	  			},
+				error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+					
+			});
+         		 break;
 		case 32:
 			$.ajax({
 	  			type: 'POST',
@@ -93,7 +199,7 @@ function whatKey(evt) {
 					}
 					else
 					{
-						alert('Oops!')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -109,4 +215,4 @@ function whatKey(evt) {
         		  //alert("Please only use the arrow keys.");
 		}
 
-}
+        }

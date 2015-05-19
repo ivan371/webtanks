@@ -46,6 +46,7 @@ def createXML(kind, begin_arg1, begin_arg2, length):
 		c.text = length
 	tree.write('webtanks/static/webtanks/xml/walls.xml')
 
+
 class field():
 	def __init__(self):
 		self.arrtank = []
@@ -73,7 +74,7 @@ class field():
 		createXML('horizontal', '200', '100', '724')
 		createXML('vertical', '820', '175', '33')
 
-		createXML('horizontal', '620', '286', '730')
+		createXML('horizontal', '620', '300', '730')
 		createXML('vertical', '310', '620', '33')
 
 		createXML('vertical', '400', '300', '250')
@@ -84,11 +85,11 @@ class field():
 		createXML('horizontal', '305', '703', '28')
 		createXML('horizontal', '548', '675', '50')
 
-		createXML('breakvertical', '555', '206', '414')
+		createXML('breakvertical', '550', '206', '414')
 
 		createXML('breakhorizontal', '200', '824', '294')		
 
-		createXML('breakhorizontal', '620', '106', '210') 
+		createXML('breakhorizontal', '620', '106', '200')
 
 		createXML('breakhorizontal', '420', '106', '294')
 
@@ -110,8 +111,8 @@ class field():
 		return self.arrbots[int(POST['num'])].bott(request)
 
 	def treating(self, request):
-		self.Xtanks[self.num] = self.arrbots[self.num].X		
-		self.Ytanks[self.num] = self.arrbots[self.num].Y
+		self.Xtanks[self.num] = self.arrtank[self.num].X		
+		self.Ytanks[self.num] = self.arrtank[self.num].Y
 		return self.arrtank[self.num].treating(request)
 
 	def createTank(self, X, Y):

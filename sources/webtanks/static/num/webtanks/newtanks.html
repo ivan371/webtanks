@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<html>
+	<head>
+	
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src='{% static 'webtanks/change.js' %}'></script>
+	<script src='{% static 'webtanks/whatKey.js' %}'></script>
+	<script src='{% static 'webtanks/flight.js' %}'></script>
+	<script src='{% static 'webtanks/bot.js' %}'></script>
+	<script src='{% static 'webtanks/botchange.js' %}'></script>
+	<script>
+	var tank = new Image();
+ 	var oldBack = new Image();
+	var back = new Image();
+	var ctx;
+	var type = 1;
+	var nums = 0;
+	var bulnum = 0;
+	//var oldBack = new Image();
+	var oldtankX = 120;
+	var oldtankY = 690;
+	var datakey = 1;
+	var example;
+	var line_1;
+	var btx;
+	var dtx;
+	var bnum;
+	var XT = 0;
+	var YT = 0; 
+	var img = new Image();
+	var newimg = new Image();
+	var timeid = 0;
+	var time = [];
+	var bots = [];
+	var botx = [];
+	var Xs = [];
+	var Ys = [];
+	var numz = [];
+	var dbot = [];
+	var numbots = 0;
+	function game() {
+            	example = document.getElementById('example');     	
+		//bott = document.getElementById('bott');
+		boll = document.getElementById('bull');
+		ctx     = example.getContext('2d');
+		bots[numbots] = document.getElementById('bott');
+		botx[numbots] = bots[numbots].getContext('2d');
+		dbot[numbots] = 0;
+		numbots++;
+		bots[numbots] = document.getElementById('bott1');
+		botx[numbots] = bots[numbots].getContext('2d');
+		dbot[numbots] = 0;		
+		numbots++;
+		dtx = boll.getContext('2d');
+	    	ctx.fillStyle = '#FFC552';
+    	    	ctx.fillRect(100, 100, 924, 620);
+		ctx.fill();
+	    	ctx     = example.getContext('2d');
+	    	ctx.fillStyle = 'gray';
+	    	ctx.fillRect(100, 90, 934, 16);
+            	ctx.fillRect(90, 90,16, 640);
+	    	ctx.fillRect(100, 714, 924, 16);
+	    	ctx.fillRect(1018, 100, 16, 630);
+	    	ctx.fillRect(100, 200, 724, 6);
+            	ctx.fillRect(300, 620, 724, 6);
+            	ctx.fillRect(400, 300, 6, 250);
+            	ctx.fillRect(700, 300, 6, 250);
+		ctx.fill();	    	
+		ctx     = example.getContext('2d');
+	    	ctx.fillStyle = '#BCF4FF';
+            	ctx.fillRect(824, 200, 194, 6);
+            	ctx.fillRect(106, 620, 200, 6);
+            	ctx.fillRect(550, 206, 6, 414);
+	    	ctx.fillRect(106, 420, 294, 6);
+                ctx.fillRect(706, 420, 312, 6);
+		ctx.fill();	
+		//makeTank();
+		bot(0);
+		bot(1);
+		window.addEventListener('keydown', whatKey, true);
+		//setInterval(function() {change(nums, XT, YT)}, 1);
+		
+	}
+
+        </script>
+	</head>
+	<body onload="game()">
+		<h1>
+      		Tanks
+    		</h1>
+    		<canvas id='example' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas>
+		<canvas id='bott' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='bott1' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<canvas id='bull' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+    	</body>
+</html>

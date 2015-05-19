@@ -60,7 +60,16 @@ function flight(num, t, numtank)
 						{
 							if(Y == 0)
 							{
-								alert('YOU LOSE');
+								document.location.href = '/static/webtanks/LOSE.html';
+							}
+							else
+							{
+								dbot[X] = 1;
+								numbots--;
+								if(numbots < 0)
+								{
+									document.location.href = '/static/webtanks/WIN.html';
+								}
 							}
 						}
 					}
