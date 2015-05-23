@@ -2,9 +2,10 @@ function shoot(flag, X, Y, hex)
 {
 	//alert(Xt);
 	//alert(X);
-	if((X - 10 <= Xt && X + 20 >= Xt && Y - 10 <= Yt && Y + 20 >= Yt))
+	if((X - 20 <= Xt && X + 20 >= Xt && Y - 20 <= Yt && Y + 20 >= Yt))
 	{
 		alert("YOU LOSE");
+		//document.location.href = '/static/webtanks/LOSE.html'
 	}
 	else
 	{

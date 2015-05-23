@@ -1,3 +1,14 @@
+function isbot(X, Y)
+{
+	//alert(numbots);
+	for(var i = 0; i < numbots; i++)
+	{
+		if((X - 20 <= botX[i] && X + 20 >= botX[i] && Y - 20 <= botY[i] && Y + 20 >= botY[i]))
+		{
+			dbot[i] = 1;
+		}
+	}
+}
 function flight(num, t, numtank, Xc, Yc)
 	{
 		var X = 0;
@@ -35,7 +46,8 @@ function flight(num, t, numtank, Xc, Yc)
 	  			success: function(arr){
 					kind = arr[0];
 					X = arr[1];
-					Y = arr[2];					
+					Y = arr[2];
+					isbot(X, Y);					
 					//num = arr[3];
 					if(kind==3)
 					{
@@ -57,13 +69,13 @@ function flight(num, t, numtank, Xc, Yc)
 					}
 					else
 					{
-						alert(kind);
 						clearInterval(time[t]);					
 						if(kind == 6)
 						{
 							if(Y == 0)
 							{
-								alert("lose");
+								//alert("lose");
+								//document.location.href = '/static/webtanks/LOSE.html'
 								/*$.ajax({
 									type: 'POST',
 									url: "lose/",
@@ -90,6 +102,7 @@ function flight(num, t, numtank, Xc, Yc)
 									//document.location.href = '/static/webtanks/WIN.html';
 								}
 							}
+						
 						}
 					}
 	  			},

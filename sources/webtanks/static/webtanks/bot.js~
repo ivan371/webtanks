@@ -17,6 +17,18 @@ function bot(num, perc)
 	var elem = 0;
 	var X = 0;
 	var Y = 0;
+	var j = 0;
+	for(var i = 0; i < numbots; i++)
+	{
+		if(dbot[num] == 1)
+		{
+			j++;
+		}
+	}
+	if(j == numbots)
+	{
+		document.location.href = '/static/webtanks/WIN.html'
+	}
 	if(dbot[num] == 1)
 	{
 		botx[num].clearRect(0, 0, 1034, 730);
@@ -69,9 +81,9 @@ function bot(num, perc)
 				if(perc == 3)
 				{
 					X = botX[num];
-					Y = botY[num];
+					Y = botY[num] + 11;
 					perc = 0;
-					shoot(flag, botX[num], botY[num], 0);
+					shoot(flag, X, Y, 0);
 				}
 				else
 				{
@@ -93,10 +105,10 @@ function bot(num, perc)
 				}
 				if(perc == 3)
 				{
-					X = botX[num];
+					X = botX[num] + 11;
 					Y = botY[num];
 					perc = 0;
-					shoot(flag, botX[num], botY[num], 0);
+					shoot(flag, X, Y, 0);
 				}
 				else
 				{
@@ -118,10 +130,10 @@ function bot(num, perc)
 				}
 				if(perc == 3)
 				{
-					X = botX[num];
+					X = botX[num] + 11;
 					Y = botY[num];
 					perc = 0;
-					shoot(flag, botX[num], botY[num], 0);
+					shoot(flag, X, Y, 0);
 				}
 				else
 				{

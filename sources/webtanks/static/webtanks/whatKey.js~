@@ -6,6 +6,18 @@ function whatKey(evt) {
 		var num = 0;
 		var numer = 0;
 		var t = 0;
+		var j = 0;
+		for(var i = 0; i < numbots + 1; i++)
+		{
+			if(dbot[num] == 1)
+			{
+				j++;
+			}
+		}
+		if(j == numbots)
+		{
+			document.location.href = '/static/webtanks/WIN.html'
+		}
 		switch (evt.keyCode) {
 		case 37:
 			datakey = 1;
@@ -20,6 +32,8 @@ function whatKey(evt) {
 					YT = arr[2];
 					Xs[0] = arr[1];
 					Ys[0] = arr[2];
+					Xt = XT;
+					Yt = YT;
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -61,6 +75,8 @@ function whatKey(evt) {
 					YT = arr[2];
 					Xs[0] = arr[1];
 					Ys[0] = arr[2];
+					Xt = XT;
+					Yt = YT;
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -102,6 +118,8 @@ function whatKey(evt) {
 					YT = arr[2];
 					Xs[0] = arr[1];
 					Ys[0] = arr[2];
+					Xt = XT;
+					Yt = YT;
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -143,6 +161,8 @@ function whatKey(evt) {
 					YT = arr[2];
 					Xs[0] = arr[1];
 					Ys[0] = arr[2];
+					Xt = XT;
+					Yt = YT;
 					if(type==1)
 					{
 	   					ctx.fillStyle = '#FFC552';
@@ -185,6 +205,8 @@ function whatKey(evt) {
 					YT = arr[5];
 					Xs[0] = arr[4];
 					Ys[0] = arr[5];
+					Xt = XT;
+					Yt = YT;
 					if(type==2)
 					{
 	   					//newimg.src = '/static/webtanks/images/bullet.png';

@@ -6,6 +6,18 @@ function whatKey(evt) {
 		var num = 0;
 		var numer = 0;
 		var t = 0;
+		var j = 0;
+		for(var i = 0; i < numbots; i++)
+		{
+			if(dbot[num] == 1)
+			{
+				j++;
+			}
+		}
+		if(j == numbots)
+		{
+			document.location.href = '/static/webtanks/WIN.html'
+		}
 		switch (evt.keyCode) {
 		case 37:
 			datakey = 1;

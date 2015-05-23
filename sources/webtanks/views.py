@@ -24,9 +24,9 @@ def index(request):
 	#__main__.newfield.createBot(120, 300)
 	#__main__.newfield.createTank(100, 390)
 	#__main__.newtank = tank()
-	#return render(request, 'webtanks/newtanks.html')
-	if not request.user.is_authenticated():
-	        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
+	return render(request, 'webtanks/params.html')
+	#if not request.user.is_authenticated():
+	#        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
 	#return HttpResponseRedirect('webtanks/params.html')
 
 @csrf_exempt
