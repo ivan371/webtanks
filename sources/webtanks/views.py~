@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .field import field
@@ -21,12 +22,11 @@ def index(request):
 	#__main__.newfield.createTank(120, 690)
 	#__main__.newfield.createBot(120, 120)
 	#__main__.newfield.createBot(120, 300)
-	if not request.user.is_authenticated():
-	        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
 	#__main__.newfield.createTank(100, 390)
 	#__main__.newtank = tank()
 	#return render(request, 'webtanks/newtanks.html')
-	return render(request, 'webtanks/params.html')
+	if not request.user.is_authenticated():
+	        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
 	#return HttpResponseRedirect('webtanks/params.html')
 
 @csrf_exempt
@@ -48,7 +48,12 @@ def bot(request):
 	c.update(csrf(request))
 	return __main__.newfield.bott(request)
 
-
+@csrf_exempt
+def shot(request):
+	c = {}
+	c.update(csrf(request))
+	return __main__.newfield.shot(request)	
+	
 @csrf_exempt
 def numbots(request):
 	c = {}
@@ -59,9 +64,26 @@ def numbots(request):
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
 		__main__.res = res
-		for i in range (res):
-			__main__.newfield.createBot(random.randint(100, 1000), random.randint(100, 700))
+		#for i in range (res):
+		#	__main__.newfield.createBot(random.randint(100, 1000), random.randint(100, 700))
 		return render(request, 'webtanks/newtanks.html')
+
+@csrf_exempt
+def win(request):
+	c = {}
+	c.update(csrf(request))
+	if request.method == 'POST':	
+		render_to_response('webtanks/WIN.html')
+		return render(request, 'webtanks/WIN.html')
+
+@csrf_exempt
+def lose(request):
+	c = {}
+	c.update(csrf(request))
+	res = 1	
+	if request.method == 'POST':
+		HttpResponseRedirect('webtanks/LOSE.html')
+		return HttpResponse (json.dumps(res), content_type="application/json")		
 
 @csrf_exempt
 def numbot(request):

@@ -161,7 +161,7 @@ function whatKey(evt) {
 					}
 					else
 					{
-						alert('game over')
+						//alert('game over')
 					}
 	  			},
 				error: function(xhr, errmsg, err){
@@ -194,7 +194,7 @@ function whatKey(evt) {
 						
 						//window.preventDefault();
 						t = timeid;
-						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
+						time[t] = setInterval(function() {flight(num, t, 0, 0, 0)}, 20);
 						timeid++;
 					}
 					else

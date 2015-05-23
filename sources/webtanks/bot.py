@@ -35,6 +35,33 @@ class bot(tank):
 			POST = request.POST  
 		print(POST['name'])
 		return self.arrbull[int(POST['name'])].flight(Xtanks, Ytanks, 0)
+	
+	def shot(self, request):
+		arr = [0, 0, 0, 0, 0, 0]
+		if request.method == 'POST':
+			POST = request.POST
+			flag = POST['flag'] 
+			slideX = 0
+			slideY = 0
+			if(flag == 1):
+				slideX = -6
+				slideY = 8
+			if(flag == 2):
+				slideX = 22
+				slideY = 8
+			if(flag == 3):
+				slideX = 8
+				slideY = 22
+			if(flag == 4):
+				slideX = 8
+				slideY = -6
+			arr[0] = 2
+			arr[1] = int(POST['X']) + slideX
+			arr[2] = int(POST['Y']) + slideY
+			arr[3] = len(self.arrbull)
+			newbullet = bullet(int(POST['X']) + slideX, int(POST['Y']) + slideY, flag, len(self.arrbull))
+			self.arrbull.append(newbullet)
+		return HttpResponse (json.dumps(arr), content_type="application/json")
 
 	def bott(self, request):
 		arr = [0, 0, 0, 0, 0, 0, 0]

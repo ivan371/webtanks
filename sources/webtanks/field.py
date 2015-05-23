@@ -102,6 +102,11 @@ class field():
 		self.Ybots = []
 		self.Xtanks = []
 		self.Ytanks = []
+		self.bot = bot(0, 0, 0)
+
+	def shot(self, request):
+		if request.method == 'POST':
+			return self.bot.shot(request)
 
 	def bott(self, request):
 		if request.method == 'POST':
@@ -134,5 +139,6 @@ class field():
 			POST = request.POST
 			if POST['who'] == '0': 
 				return self.arrtank[self.num].flight(request, self.Xbots, self.Ybots)
-			else:
-				return self.arrbots[int(POST['who']) - 1].flightb(request, self.Xtanks, self.Ytanks)
+			else:	
+				return self.bot.flightb(request, self.Xtanks, self.Ytanks)
+				#return self.arrbots[int(POST['who']) - 1].flightb(request, self.Xtanks, self.Ytanks)

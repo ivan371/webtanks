@@ -8,7 +8,9 @@ urlpatterns = [
 	url(r'^num/treating/$', views.treating),
 	url(r'^num/flight/$', views.flight),
 	url(r'^num/bot/$', views.bot),
-	url(r'^num/numbots/$', views.numbot),
+	url(r'^num/numbot/$', views.numbot),
 	url(r'^num/$', views.numbots),
+	url(r'^num/win/$', views.win),
+	url(r'^num/lose/$', views.lose),
 	#url(r'^treatind/$, tank.treating),
 ]

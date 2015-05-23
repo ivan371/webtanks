@@ -159,20 +159,48 @@ class bullet():
 				if self.X < Xtanks[i] + 24 and self.X > Xtanks[i] and self.Y < Ytanks[i] + 24 and self.Yd > Ytanks[i]:
 					return i
 		return -1
-
-
-	def flight(self, Xtanks, Ytanks, sort):
+	
+	def tankflight(self, Xtanks, Ytanks, sort):
 		arr = [0, 0, 0, 0]
-		res = self.searchtanks(Xtanks, Ytanks)
-		print("haha")
-		print(res)
-		if res != -1:
+		'''res = self.searchtanks(Xtanks, Ytanks)
+		if res != 1:
 			arr[0] = 6
 			arr[1] = res
 			arr[2] = sort
 			#bot 1; tank 0
-			return HttpResponse (json.dumps(arr), content_type="application/json")
-		if (self.search_solid_walls(self.kind) == 1):
+			return HttpResponse (json.dumps(arr), content_type="application/json")'''
+		t = self.search_break_walls_for_bullet(self.kind)
+		(res, type, number, arg1, arg2, arg3) = t
+		if (res == 0):
+			if (type == 1 or type == 2):
+				tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
+				root = tree.getroot()
+				edge = root.find('breakvertical')
+				i = 0
+				for data in edge:
+					if (i == number):
+						for child in data:
+							if (child.text == str(arg3)):
+								child.text = str(self.Yd - arg2 + 7)							
+								tree.write('webtanks/static/webtanks/xml/walls.xml')
+								createXML('breakvertical', str(arg1), str(self.Yd + 12), str(arg2 + arg3 - self.Yd))
+								#createXML('breakhorizontal', str(self.Yd), str(arg1 - 10), '30')
+					i = i + 1
+			if (type == 3 or type == 4):
+				tree = ET.parse('webtanks/static/webtanks/xml/walls.xml')
+				root = tree.getroot()
+				edge = root.find('breakhorizontal')
+				i = 0
+				for data in edge:
+					if (i == number):
+						for child in data:
+							if (child.text == str(arg3)):
+								child.text = str(self.Xd - arg2 + 7)								
+								tree.write('webtanks/static/webtanks/xml/walls.xml')
+								createXML('breakhorizontal', str(arg1), str(self.Xd - 11), str(arg2 + arg3 - self.Xd))
+					i = i + 1
+			return HttpResponse (json.dumps(arr), content_type="application/json")		
+		elif (self.search_solid_walls(self.kind) == 1):
 			if self.kind == 1:
 				self.X = self.X - 5
 				self.Xd = self.Xd - 5
@@ -193,4 +221,36 @@ class bullet():
 				
 		else:
 			return HttpResponse (json.dumps(arr), content_type="application/json")
+
+	def flight(self, Xtanks, Ytanks, sort):
+		arr = [0, 0, 0, 0]
+		res = self.searchtanks(Xtanks, Ytanks)
+		print("haha")
+		print(res)
+		#if res != -1:
+		##	arr[0] = 6
+		#	arr[1] = res
+		#	arr[2] = sort
+			#bot 1; tank 0
+		#	return HttpResponse (json.dumps(arr), content_type="application/json")
+		if (self.search_solid_walls(self.kind) == 1 or 1):
+			if self.kind == 1:
+				self.X = self.X - 5
+				self.Xd = self.Xd - 5
+			if self.kind == 2:
+				self.X = self.X + 5
+				self.Xd = self.Xd + 5
+			if self.kind == 3:
+				self.Y = self.Y + 5
+				self.Yd = self.Yd + 5
+			if self.kind == 4:
+				self.Y = self.Y - 5
+				self.Yd = self.Yd - 5
+			arr[0] = 3
+			arr[1] = self.X
+			arr[2] = self.Y
+			arr[3] = self.num
+			return HttpResponse (json.dumps(arr), content_type="application/json")
 				
+		else:
+			return HttpResponse (json.dumps(arr), content_type="application/json")

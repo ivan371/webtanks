@@ -227,12 +227,12 @@ class bullet():
 		res = self.searchtanks(Xtanks, Ytanks)
 		print("haha")
 		print(res)
-		if res != -1:
-			arr[0] = 6
-			arr[1] = res
-			arr[2] = sort
+		#if res != -1:
+		##	arr[0] = 6
+		#	arr[1] = res
+		#	arr[2] = sort
 			#bot 1; tank 0
-			return HttpResponse (json.dumps(arr), content_type="application/json")
+		#	return HttpResponse (json.dumps(arr), content_type="application/json")
 		if (self.search_solid_walls(self.kind) == 1):
 			if self.kind == 1:
 				self.X = self.X - 5
@@ -254,4 +254,3 @@ class bullet():
 				
 		else:
 			return HttpResponse (json.dumps(arr), content_type="application/json")
-				
