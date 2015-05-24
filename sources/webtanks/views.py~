@@ -16,7 +16,6 @@ import __main__
 import random
 import json
 
-
 def index(request):
 	#__main__.newfield = field()
 	#__main__.newfield.createTank(120, 690)
@@ -24,10 +23,45 @@ def index(request):
 	#__main__.newfield.createBot(120, 300)
 	#__main__.newfield.createTank(100, 390)
 	#__main__.newtank = tank()
-	#return render(request, 'webtanks/newtanks.html')
+	print(request.session)
+	return render(request, 'webtanks/switch_mod.html')
 	#if not request.user.is_authenticated():
 	#        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
-	return HttpResponseRedirect('webtanks/params.html')
+	#return HttpResponseRedirect('webtanks/params.html')
+
+@csrf_exempt
+def switchmod(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		res = int(POST['num'])
+		if res == 1:
+			return render(request, 'webtanks/params.html')
+		else:
+			return sessions(request)
+
+@csrf_exempt
+def sessions(request):
+	c = {}
+	c.update(csrf(request))
+	f = open('webtanks/switch_mod.html', 'w')
+	f.write("{% load staticfiles %}"
+		"<html>"
+		"<body>")
+	for i in request.session:
+		if request.session[i] == 1:
+			f.write("<H1>")
+			f.write(request.session[i])
+			f.write("</H1>")
+	f.write("<form action=""/webtanks/users/"" method=""post"">"
+  		  "<label for=""num"">input users_name: </label>"
+   		 "<input id=""num"" type=""text"" name=""num"" value=""2"">"
+   		 "<input type=""submit"" value=""OK"">"
+		"</form>"
+		"</body>"
+		"</html>")
+	f.close
 
 @csrf_exempt
 def treating(request):

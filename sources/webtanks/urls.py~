@@ -5,12 +5,14 @@ from .tank import tank
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
 	url(r'^webtanks/latest\.html$', views.index),
-	url(r'^num/treating/$', views.treating),
-	url(r'^num/flight/$', views.flight),
-	url(r'^num/bot/$', views.bot),
-	url(r'^num/numbot/$', views.numbot),
-	url(r'^num/$', views.numbots),
-	url(r'^num/win/$', views.win),
-	url(r'^num/lose/$', views.lose),
+	url(r'^chmod/num/treating/$', views.treating),
+	url(r'^chmod/num/flight/$', views.flight),
+	url(r'^chmod/num/bot/$', views.bot),
+	url(r'^chmod/num/numbot/$', views.numbot),
+	url(r'^chmod/num/$', views.numbots),
+	url(r'^chmod/num/win/$', views.win),
+	url(r'^chmod/num/lose/$', views.lose),
+	url(r'^chmod/num/shot/$', views.shot),
+	url(r'^chmod/$', views.chmod)
 	#url(r'^treatind/$, tank.treating),
 ]
