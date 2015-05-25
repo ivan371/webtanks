@@ -1,11 +1,11 @@
 import math
 from django.http import HttpResponse
 from .bullet import bullet
-import xml.etree.ElementTree as ET
 import json
+from .map import map
 
 class tank(bullet):
-	def __init__(self, X, Y):
+	def __init__(self, X, Y, mapp):
 		#X and Y are initial coordinates of tank
 		#self.X and self.Y are coordinates of left and upper point of tank 
 		self.X = X
@@ -15,6 +15,7 @@ class tank(bullet):
 		self.Yd = Y + 24	
 		self.flag = 0
 		self.arrbullet = []
+		self.map = mapp
 
 	def flight(self, request, Xtanks, Ytanks):
 		if request.method == 'POST':
@@ -47,7 +48,7 @@ class tank(bullet):
 		if request.method == 'POST':
 			POST = request.POST  
 			if POST['name'] == '1':
-				if(self.search_solid_walls(1) == 1):
+				if(self.search_solid_walls(1) == 1 and self.search_break_walls_for_tank(1) == 1):
 					self.left()
 					arr[0] = 1
 					arr[1] = self.X
@@ -56,7 +57,7 @@ class tank(bullet):
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")
 			if POST['name'] == '2':
-				if(self.search_solid_walls(2) == 1):
+				if(self.search_solid_walls(2) == 1 and self.search_break_walls_for_tank(2) == 1):
 					self.right()
 					arr[0] = 1
 					arr[1] = self.X
@@ -65,7 +66,7 @@ class tank(bullet):
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")
 			if POST['name'] == '3':
-				if(self.search_solid_walls(3) == 1):
+				if(self.search_solid_walls(3) == 1 and self.search_break_walls_for_tank(3) == 1):
 					self.down()
 					arr[0] = 1
 					arr[1] = self.X
@@ -74,7 +75,7 @@ class tank(bullet):
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")			
 			if POST['name'] == '4':
-				if(self.search_solid_walls(4) == 1):
+				if(self.search_solid_walls(4) == 1 and self.search_break_walls_for_tank(4) == 1):
 					self.up()
 					arr[0] = 1
 					arr[1] = self.X
@@ -102,7 +103,7 @@ class tank(bullet):
 				arr[4] = self.X
 				arr[5] = self.Y
 				arr[6] = self.flag
-				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet))
+				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet), self.map)
 				self.arrbullet.append(newbullet)
 							
 			return HttpResponse (json.dumps(arr), content_type="application/json")		

@@ -83,7 +83,6 @@ class bot(tank):
 				arr[3] = self.cur
 				arr[4] = self.num
 			if POST['name'] == '5':
-				print("lalal")
 				if(self.flag == 1):
 					slideX = -6
 					slideY = 8
