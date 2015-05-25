@@ -1,4 +1,4 @@
-{% extends "registration/registration_base.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Войти" %}{% endblock %}
@@ -10,6 +10,7 @@
 Можете <a href="/webtanks/">начать играть</a>! 
 Впрочем, всегда можно <a href="{% url 'auth_logout' %}">выйти</a>.<br/><br/>
 {% else %}
+<h2><span class="fontawesome-lock"></span>Авторизация</h2>
 <form method="post" action=".">
     {% csrf_token %}
     {{ form.as_p }}
