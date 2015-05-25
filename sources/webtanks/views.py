@@ -39,8 +39,36 @@ def index(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/webtanks/login/")
 	else:
-		print(request.session)
 		return render(request, 'webtanks/switch_mod.html')
+
+
+@csrf_exempt
+def sessions(request):
+	c = {}
+	c.update(csrf(request))
+	f = open("webtanks/templates/webtanks/users.html", "w")
+	f.write("{% load staticfiles %}"
+		"<html>"
+		"<body>")
+	dic = request.session.keys()
+	arr = []	
+	print(dic)
+	for i in dic:
+		tmp = str(i)
+		print(str(i))
+		if request.session[tmp] == 1:
+			f.write("<H1>")
+			f.write(tmp)
+			f.write("</H1>")
+	f.write("<form action=""/webtanks/users/"" method=""post"">"
+  		  "<label for=""num"">input users_name: </label>"
+   		 "<input id=""num"" type=""text"" name=""num"">"
+   		 "<input type=""submit"" value=""OK"">"
+		"</form>"
+		"</body>"
+		"</html>")
+	f.close
+	return request
 
 @csrf_exempt
 def switchmod(request):
@@ -52,29 +80,10 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
-			return sessions(request)
+			request.session[str(request.user)] = 1
+			request =  sessions(request)
+			return render(request, 'webtanks/users.html')
 
-@csrf_exempt
-def sessions(request):
-	c = {}
-	c.update(csrf(request))
-	f = open('webtanks/users.html', 'w')
-	f.write("{% load staticfiles %}"
-		"<html>"
-		"<body>")
-	for i in request.session:
-		if request.session[i] == 1:
-			f.write("<H1>")
-			f.write(request.session[i])
-			f.write("</H1>")
-	f.write("<form action=""/webtanks/users/"" method=""post"">"
-  		  "<label for=""num"">input users_name: </label>"
-   		 "<input id=""num"" type=""text"" name=""num"" value=""2"">"
-   		 "<input type=""submit"" value=""OK"">"
-		"</form>"
-		"</body>"
-		"</html>")
-	f.close
 
 @csrf_exempt
 def treating(request):
