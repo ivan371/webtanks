@@ -20,30 +20,22 @@ class bullet():
 			for i in range(0, len(self.map.vertwall), 3):
 				#how far from the wall, how far from the begin, how far from the end
 				if(math.fabs(self.X - self.map.vertwall[i]) < 11 and self.map.vertwall[i + 1] <= self.Y and self.map.vertwall[i + 1] + self.map.vertwall[i + 2] >= self.Y):
-					print 'W left ver', self.map.vertwall[i], self.map.vertwall[i+1], self.map.vertwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'left', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 2):
 			for i in range(0, len(self.map.vertwall), 3):
 				if(math.fabs(self.Xd - self.map.vertwall[i]) < 11 and self.map.vertwall[i + 1] <= self.Yd and self.map.vertwall[i + 1] + self.map.vertwall[i + 2] >= self.Yd):
-					print 'W right ver', self.map.vertwall[i], self.map.vertwall[i+1], self.map.vertwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'right', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 3):
 			for i in range(0, len(self.map.horwall), 3):
 				if(math.fabs(self.Yd - self.map.horwall[i]) < 11 and self.map.horwall[i + 1] <= self.Xd and self.map.horwall[i + 1] + self.map.horwall[i + 2] >= self.Xd):
-					print 'W down hor', self.map.horwall[i], self.map.horwall[i+1], self.map.horwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'down', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 4):
 			for i in range(0, len(self.map.horwall), 3):
 				if(math.fabs(self.Y - self.map.horwall[i]) < 11 and self.map.horwall[i + 1] <= self.X and self.map.horwall[i + 1] + self.map.horwall[i + 2] >= self.Xd):
-					print 'W up ver', self.map.horwall[i], self.map.horwall[i+1], self.map.horwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'up', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 
 	#tank is workind with durable walls
@@ -53,30 +45,22 @@ class bullet():
 			for i in range(0, len(self.map.breakvertwall), 3):
 				#how far from the wall, how far from the begin, how far from the end
 				if(math.fabs(self.X - self.map.breakvertwall[i]) < 11 and self.map.breakvertwall[i + 1] <= self.Yd and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd):
-					print 'BWT left ver', self.map.breakvertwall[i], self.map.breakvertwall[i+1], self.map.breakvertwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'left', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 2):
 			for i in range(0, len(self.map.breakvertwall), 3):
 				if(math.fabs(self.Xd - self.map.breakvertwall[i]) < 11 and self.map.breakvertwall[i + 1] <= self.Yd and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd):
-					print 'BWT right ver', self.map.breakvertwall[i], self.map.breakvertwall[i+1], self.map.breakvertwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'right', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 3):
 			for i in range(0, len(self.map.breakhorwall), 3):
 				if(math.fabs(self.Yd - self.map.breakhorwall[i]) < 11 and self.map.breakhorwall[i + 1] <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd):
-					print 'BWT down ver', self.map.breakhorwall[i], self.map.breakhorwall[i+1], self.map.breakhorwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
-			print 'down', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 		if(kind == 4):
 			for i in range(0, len(self.map.breakhorwall), 3):
-				if(math.fabs(self.Y - self.map.breakhorwall[i]) < 11 and self.map.breakhorwall[i + 1] <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd): #Xd
-					print 'BWT up ver', self.map.breakhorwall[i], self.map.breakhorwall[i+1], self.map.breakhorwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
+				if(math.fabs(self.Y - self.map.breakhorwall[i]) < 11 and self.map.breakhorwall[i + 1] <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd):
 					return 0
-			print 'up', self.X, self.Y, '|', self.Xd, self.Yd
 			return 1
 
 	#bullet is workind with durable walls

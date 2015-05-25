@@ -1,10 +1,22 @@
 {% load staticfiles %}
 <html>
-<body>
+<style>
+   .b1 {
+    background: gray;
+    color: white;
+    font-size: 40pt;
+   }
+</style>
+<body style="background:#FE9A2E">
+<div style="display: table; margin: 0 auto; padding: 3em 0; text-align: center;">
 <form action="/webtanks/chmod/num/" method="post">
-    <label for="num">NUM OF BOTS: </label>
-    <input id="num" type="text" name="num" value="2">
-    <input type="submit" value="OK">
+    <p><label for="num"><font size="10" color="black" face="Calibri">A number of bots: </font></label></p>
+    <p><input id="num" type="text" name="num" value="2" size="10"></p>
+    <input type="submit" class="b1" value="OK">
 </form>
+</div>
+<div style="display: table; margin: 0 auto; padding: 31em 0; text-align: center;">
+	<font size="5" color="navy" face="Calibri">DCAM 371</font>
+</div>
 </body>
 </html>
