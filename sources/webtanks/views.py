@@ -6,7 +6,26 @@ from .field import field
 from .tank import tank
 from .bot import bot
 from .bullet import bullet
+
+from webtanks import signals
+from .models import RegistrationProfile
+from .users import UserModel
+
+from django.shortcuts import redirect
+from django.views.generic.base import TemplateView
+try:
+    from django.utils.module_loading import import_string
+except ImportError:
+    from .utils import import_string
+
 #from .bot import bot
+from django.conf import settings
+from django.contrib.sites.models import RequestSite
+from django.contrib.sites.models import Site
+from django.contrib import auth
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import UserCreationForm
+
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.csrf import csrf_protect
 from django.core.context_processors import csrf
@@ -17,17 +36,11 @@ import random
 import json
 
 def index(request):
-	#__main__.newfield = field()
-	#__main__.newfield.createTank(120, 690)
-	#__main__.newfield.createBot(120, 120)
-	#__main__.newfield.createBot(120, 300)
-	#__main__.newfield.createTank(100, 390)
-	#__main__.newtank = tank()
-	print(request.session)
-	return render(request, 'webtanks/switch_mod.html')
-	#if not request.user.is_authenticated():
-	#        return HttpResponseRedirect('/accounts/login/?next=%s' % request.path)
-	#return HttpResponseRedirect('webtanks/params.html')
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/webtanks/login/")
+	else:
+		print(request.session)
+		return render(request, 'webtanks/switch_mod.html')
 
 @csrf_exempt
 def switchmod(request):
