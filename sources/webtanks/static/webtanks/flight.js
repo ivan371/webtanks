@@ -105,6 +105,26 @@ function flight(num, t, numtank, Xc, Yc)
 						
 						}
 					}
+					if(arr[4] == 1)
+					{
+						switch(arr[5])
+						{
+							case 1:
+								X = X - 5;
+								break;
+							case 2:
+								X = X + 5;
+								break;
+							case 3:
+								Y = Y + 5;
+								break;
+							case 4:
+								Y = Y - 5;
+								break;
+						}
+						dtx.clearRect(0, 0, 1034, 730); 
+						wtx.clearRect(X-10, Y-10, 24, 24);	
+					}
 	  			},
 				error: function(xhr, errmsg, err){
 						alert(xhr.status + ": " + xhr.responseText);

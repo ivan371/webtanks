@@ -111,7 +111,7 @@ class bullet():
 		return -1
 	
 	def flight(self, Xtanks, Ytanks, sort):
-		arr = [0, 0, 0, 0, 0]
+		arr = [0, 0, 0, 0, 0, 0]
 		t = self.search_break_walls_for_bullet(self.kind)
 		(type, number) = t
 		if (type != 5):
@@ -127,7 +127,8 @@ class bullet():
 				self.map.breakhorwall.append(self.map.breakhorwall[number + 1] + self.map.breakhorwall[number + 2] - self.Xd)
 				self.map.breakhorwall[number + 2] = self.Xd - self.map.breakhorwall[number + 1] + 7
 				print self.map.breakhorwall
-						
+			arr[4] = 1	
+			arr[5] = self.kind		
 		elif (self.search_solid_walls(self.kind) == 1):
 			if self.kind == 1:
 				self.X = self.X - 5
@@ -142,7 +143,8 @@ class bullet():
 				self.Y = self.Y - 5
 				self.Yd = self.Yd - 5
 			arr[0] = 3
-			arr[1] = self.X
-			arr[2] = self.Y
-			arr[3] = self.num
+			arr[4] = 2
+		arr[1] = self.X
+		arr[2] = self.Y
+		arr[3] = self.num
 		return HttpResponse (json.dumps(arr), content_type="application/json"), self.map

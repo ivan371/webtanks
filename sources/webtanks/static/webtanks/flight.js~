@@ -1,7 +1,7 @@
 function isbot(X, Y)
 {
 	//alert(numbots);
-	for(var i = 0; i < numbots; i++)
+	for(var i = 0; i < numbots+1; i++)
 	{
 		if((X - 20 <= botX[i] && X + 20 >= botX[i] && Y - 20 <= botY[i] && Y + 20 >= botY[i]))
 		{
@@ -104,6 +104,25 @@ function flight(num, t, numtank, Xc, Yc)
 							}
 						
 						}
+					}
+					if(arr[4] == 1)
+					{
+						switch(arr[5])
+						{
+							case 1:
+								X = X - 5;
+								break;
+							case 2:
+								X = X + 5;
+								break;
+							case 3:
+								Y = Y + 5;
+								break;
+							case 4:
+								Y = Y - 5;
+								break;
+						}
+						wtx.clearRect(X-10, Y-10, 24, 24);	
 					}
 	  			},
 				error: function(xhr, errmsg, err){
