@@ -62,4 +62,3 @@ function change(type, X, Y)
 			break;
 		}
 	}
-
