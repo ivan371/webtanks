@@ -46,29 +46,33 @@ def index(request):
 def sessions(request):
 	c = {}
 	c.update(csrf(request))
-	f = open("webtanks/templates/webtanks/users.html", "w")
-	f.write("{% load staticfiles %}"
-		"<html>"
-		"<body>")
-	dic = request.session.keys()
-	arr = []	
-	print(dic)
-	for i in dic:
-		tmp = str(i)
-		print(str(i))
-		if request.session[tmp] == 1:
-			f.write("<H1>")
-			f.write(tmp)
-			f.write("</H1>")
-	f.write("<form action=""/webtanks/users/"" method=""post"">"
-  		  "<label for=""num"">input users_name: </label>"
-   		 "<input id=""num"" type=""text"" name=""num"">"
-   		 "<input type=""submit"" value=""OK"">"
-		"</form>"
-		"</body>"
-		"</html>")
-	f.close
-	return request
+	#if 1:	
+	if request.session[str(request.user)]  != 2:
+		f = open("webtanks/templates/webtanks/users.html", "w")
+		f.write("{% load staticfiles %}"
+			"<html>"
+			"<body>")
+		dic = request.session.keys()
+		arr = []	
+		print(dic)
+		for i in dic:
+			tmp = str(i)
+			print(str(i))
+			if request.session[tmp] == 1:
+				f.write("<H1>")
+				f.write(tmp)
+				f.write("</H1>")
+		f.write("<form action=""/webtanks/users/"" method=""post"">"
+  			  "<label for=""num"">input users_name: </label>"
+   			 "<input id=""num"" type=""text"" name=""num"">"
+   			 "<input type=""submit"" value=""OK"">"
+			"</form>"
+			"</body>"
+			"</html>")
+		f.close
+		return (request, 'webtanks/users.html')
+	else:
+		return (request, 'webtanks/multitanks.html')	
 
 @csrf_exempt
 def switchmod(request):
@@ -80,9 +84,10 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
+			print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
-			request =  sessions(request)
-			return render(request, 'webtanks/users.html')
+			(request, val) = (sessions(request))
+			return render(request, val)
 
 
 @csrf_exempt
@@ -129,8 +134,7 @@ def win(request):
 	c = {}
 	c.update(csrf(request))
 	if request.method == 'POST':	
-		render_to_response('webtanks/WIN.html')
-		return render(request, 'webtanks/WIN.html')
+		return redirect('webtanks/templates/	webtanks/WIN.html')
 
 @csrf_exempt
 def lose(request):
@@ -138,8 +142,7 @@ def lose(request):
 	c.update(csrf(request))
 	res = 1	
 	if request.method == 'POST':
-		HttpResponseRedirect('webtanks/LOSE.html')
-		return HttpResponse (json.dumps(res), content_type="application/json")		
+		return redirect('webtanks/templates/webtanks/LOSE.html')	
 
 @csrf_exempt
 def numbot(request):

@@ -58,7 +58,14 @@ function whatKey(evt) {
 		}
 		if(j == numbots)
 		{
-			document.location.href = '/static/webtanks/WIN.html'
+			$.ajax({
+					type: 'POST',
+					url: "win/",
+					error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+				});
+			//document.location.href = '/static/webtanks/WIN.html'
 		}
 		switch (evt.keyCode) {
 		case 37:
