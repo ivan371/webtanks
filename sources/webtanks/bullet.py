@@ -69,22 +69,22 @@ class bullet():
 		if(kind == 1):
 			for i in range(0, len(self.map.breakvertwall), 3):
 				#how far from the wall, how far from the begin, how far from the end
-				if(math.fabs(self.X - self.map.breakvertwall[i]) < 9 and self.map.breakvertwall[i + 1] <= self.Y and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Y):
+				if(math.fabs(self.X - self.map.breakvertwall[i]) < 9 and self.map.breakvertwall[i + 1] + 6 <= self.Y and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd + 6):
 					return (1, i)
 			return (5, 0)
 		if(kind == 2):
 			for i in range(0, len(self.map.breakvertwall), 3):
-				if(math.fabs(self.Xd - self.map.breakvertwall[i]) < 10 and self.map.breakvertwall[i + 1] <= self.Yd and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd):
+				if(math.fabs(self.Xd - self.map.breakvertwall[i]) < 10 and self.map.breakvertwall[i + 1] + 6 <= self.Y and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd + 6):
 					return (2, i)
 			return (5, 0)
 		if(kind == 3):
 			for i in range(0, len(self.map.breakhorwall), 3):
-				if(math.fabs(self.Yd - self.map.breakhorwall[i]) < 6 and self.map.breakhorwall[i + 1] <= self.Xd and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd):
+				if(math.fabs(self.Yd - self.map.breakhorwall[i]) < 6 and self.map.breakhorwall[i + 1] + 6 <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd + 6):
 					return (3, i)
 			return (5, 0)
 		if(kind == 4):
 			for i in range(0, len(self.map.breakhorwall), 3):
-				if(math.fabs(self.Y - self.map.breakhorwall[i]) < 10 and self.map.breakhorwall[i + 1] <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd):
+				if(math.fabs(self.Y - self.map.breakhorwall[i]) < 10 and self.map.breakhorwall[i + 1] + 6 <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd + 6):
 					return (4, i)
 			return (5, 0)
 
@@ -103,14 +103,12 @@ class bullet():
 				self.map.breakvertwall.append(self.map.breakvertwall[number])
 				self.map.breakvertwall.append(self.Yd + 12)
 				self.map.breakvertwall.append(self.map.breakvertwall[number + 1] + self.map.breakvertwall[number + 2] - self.Yd)
-				self.map.breakvertwall[number + 2] = self.Yd - self.map.breakvertwall[number + 1] + 7
-				print self.map.breakvertwall
+				self.map.breakvertwall[number + 2] = self.Yd - self.map.breakvertwall[number + 1] + 5
 			if (type == 3 or type == 4):
 				self.map.breakhorwall.append(self.map.breakhorwall[number])
 				self.map.breakhorwall.append(self.Xd - 11)
-				self.map.breakhorwall.append(self.map.breakhorwall[number + 1] + self.map.breakhorwall[number + 2] - self.Xd)
-				self.map.breakhorwall[number + 2] = self.Xd - self.map.breakhorwall[number + 1] + 7
-				print self.map.breakhorwall
+				self.map.breakhorwall.append(self.map.breakhorwall[number + 1] + self.map.breakhorwall[number + 2] - self.Xd + 24)
+				self.map.breakhorwall[number + 2] = self.Xd - self.map.breakhorwall[number + 1] + 5
 			arr[4] = 1	
 			arr[5] = self.kind		
 		elif (self.search_solid_walls(self.kind) == 1):
