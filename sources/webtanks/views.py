@@ -14,9 +14,9 @@ from .users import UserModel
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 try:
-    from django.utils.module_loading import import_string
+	from django.utils.module_loading import import_string
 except ImportError:
-    from .utils import import_string
+	from .utils import import_string
 
 #from .bot import bot
 from django.conf import settings
@@ -63,16 +63,16 @@ def sessions(request):
 				f.write(tmp)
 				f.write("</H1>")
 		f.write("<form action=""/webtanks/users/"" method=""post"">"
-  			  "<label for=""num"">input users_name: </label>"
-   			 "<input id=""num"" type=""text"" name=""num"">"
-   			 "<input type=""submit"" value=""OK"">"
+			"<label for=""num"">input users_name: </label>"
+			"<input id=""num"" type=""text"" name=""num"">"
+			"<input type=""submit"" value=""OK"">"
 			"</form>"
 			"</body>"
 			"</html>")
 		f.close
 		return (request, 'webtanks/users.html')
 	else:
-		return (request, 'webtanks/multitanks.html')	
+		return (request, 'webtanks/multitanks.html')
 
 @csrf_exempt
 def switchmod(request):
@@ -114,14 +114,14 @@ def shot(request):
 	c = {}
 	c.update(csrf(request))
 	return __main__.newfield.shot(request)	
-	
+
 @csrf_exempt
 def numbots(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST  
 	if request.method == 'POST':
-        	res = int(POST['num'])
+		res = int(POST['num'])
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
 		__main__.res = res

@@ -80,7 +80,7 @@ class tank(bullet):
 					arr[0] = 1
 					arr[1] = self.X
 					arr[2] = self.Y
-					return HttpResponse (json.dumps(arr), content_type="application/json")		
+					return HttpResponse (json.dumps(arr), content_type="application/json")
 				else:
 					return HttpResponse (json.dumps(arr), content_type="application/json")
 			if POST['name'] == '5':
@@ -105,7 +105,6 @@ class tank(bullet):
 				arr[6] = self.flag
 				newbullet = bullet(self.X + slideX, self.Y + slideY, self.flag, len(self.arrbullet), self.map)
 				self.arrbullet.append(newbullet)
-							
-			return HttpResponse (json.dumps(arr), content_type="application/json")		
+			return HttpResponse (json.dumps(arr), content_type="application/json")
 		else:
 			return HttpResponse (json.dumps(arr), content_type="application/json")
