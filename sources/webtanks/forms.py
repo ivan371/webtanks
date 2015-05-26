@@ -21,7 +21,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect("/webtanks/registration/logout")
+    return HttpResponseRedirect("/webtanks/registration/logout/")
 
 class RegistrationForm(UserCreationForm):
 
@@ -31,34 +31,3 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model  = UserModel()
         fields = ("username", "email")
-
-
-class RegistrationFormTermsOfService(RegistrationForm):
-
-    tos = forms.BooleanField(widget=forms.CheckboxInput,
-                             label=_('I have read and agree to the Terms of Service'),
-                             error_messages={'required': _("You must agree to the terms to register")})
-
-
-class RegistrationFormUniqueEmail(RegistrationForm):
-
-    def clean_email(self):
-
-        if UserModel().objects.filter(email__iexact=self.cleaned_data['email']):
-            raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
-        return self.cleaned_data['email']
-
-
-class RegistrationFormNoFreeEmail(RegistrationForm):
-
-    bad_domains = ['aim.com', 'aol.com', 'email.com', 'gmail.com',
-                   'googlemail.com', 'hotmail.com', 'hushmail.com',
-                   'msn.com', 'mail.ru', 'mailinator.com', 'live.com',
-                   'yahoo.com']
-
-    def clean_email(self):
-
-        email_domain = self.cleaned_data['email'].split('@')[1]
-        if email_domain in self.bad_domains:
-            raise forms.ValidationError(_("Registration using free email addresses is prohibited. Please supply a different email address."))
-        return self.cleaned_data['email']
