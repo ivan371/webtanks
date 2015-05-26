@@ -20,7 +20,7 @@ function bot(num, perc)
 	if(dbot[num] == 1)
 	{
 		botx[num].clearRect(0, 0, 1034, 730);
-		alert('bot died!');
+		//alert('bot died!');
 	}
 	else
 	{
