@@ -14,27 +14,28 @@ class bullet():
 		self.num = num
 		self.map = map
 
+	#tank is workind with solid walls
 	def search_solid_walls(self, kind):
 		#1 - left, 2 - right, 3 - down, 4 - up
 		if(kind == 1):
 			for i in range(0, len(self.map.vertwall), 3):
 				#how far from the wall, how far from the begin, how far from the end
-				if(math.fabs(self.X - self.map.vertwall[i]) < 11 and self.map.vertwall[i + 1] <= self.Y and self.map.vertwall[i + 1] + self.map.vertwall[i + 2] >= self.Y):
+				if(math.fabs(self.X - self.map.vertwall[i]) < 11 and self.map.vertwall[i + 1] - 25 < self.Y and self.map.vertwall[i + 1] + self.map.vertwall[i + 2] + 4 > self.Y):
 					return 0
 			return 1
 		if(kind == 2):
 			for i in range(0, len(self.map.vertwall), 3):
-				if(math.fabs(self.Xd - self.map.vertwall[i]) < 11 and self.map.vertwall[i + 1] <= self.Yd and self.map.vertwall[i + 1] + self.map.vertwall[i + 2] >= self.Yd):
+				if(math.fabs(self.Xd - self.map.vertwall[i]) < 11 and self.map.vertwall[i + 1] <= self.Yd and self.map.vertwall[i + 1] + self.map.vertwall[i + 2] + 25 >= self.Yd):
 					return 0
 			return 1
 		if(kind == 3):
 			for i in range(0, len(self.map.horwall), 3):
-				if(math.fabs(self.Yd - self.map.horwall[i]) < 11 and self.map.horwall[i + 1] <= self.Xd and self.map.horwall[i + 1] + self.map.horwall[i + 2] >= self.Xd):
+				if(math.fabs(self.Yd - self.map.horwall[i]) < 11 and self.map.horwall[i + 1] + 14 < self.Xd and self.map.horwall[i + 1] + self.map.horwall[i + 2] + 20 >= self.Xd):
 					return 0
 			return 1
 		if(kind == 4):
 			for i in range(0, len(self.map.horwall), 3):
-				if(math.fabs(self.Y - self.map.horwall[i]) < 11 and self.map.horwall[i + 1] <= self.X and self.map.horwall[i + 1] + self.map.horwall[i + 2] >= self.Xd):
+				if(math.fabs(self.Y - self.map.horwall[i]) < 11 and self.map.horwall[i + 1] < self.X + 10 and self.map.horwall[i + 1] + self.map.horwall[i + 2] >= self.Xd - 20):
 					return 0
 			return 1
 
