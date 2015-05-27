@@ -5,6 +5,13 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 		if(X - 15 <= Xt && X + 15 >= Xt && Y - 15 <= Yt && Y + 15 >= Yt)
 		{
 			//alert("YOU LOSE");
+			$./*ajax({
+					type: 'POST',
+					url: "lose/",
+					error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+				});*/
 			document.location.href = '/static/webtanks/LOSE.html'
 		}
 		if(hex != 808080)
@@ -12,7 +19,7 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 			if(hex == "BCF4FF")
 			{
 				dtx.clearRect(X-5, Y-5, 20, 20);
-				wtx.clearRect(X-10, Y-10, 40, 40);
+				wtx.clearRect(X-5, Y-5, 20, 20);
 			}			
 			else
 			{

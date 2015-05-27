@@ -46,7 +46,6 @@ def index(request):
 def sessions(request):
 	c = {}
 	c.update(csrf(request))
-	#if 1:	
 	if request.session[str(request.user)]  != 2:
 		f = open("webtanks/templates/webtanks/users.html", "w")
 		f.write("{% load staticfiles %}"
@@ -62,7 +61,7 @@ def sessions(request):
 				f.write("<H1>")
 				f.write(tmp)
 				f.write("</H1>")
-		f.write("<form action=""/webtanks/users/"" method=""post"">"
+		f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
 			"<label for=""num"">input users_name: </label>"
 			"<input id=""num"" type=""text"" name=""num"">"
 			"<input type=""submit"" value=""OK"">"
@@ -134,7 +133,7 @@ def win(request):
 	c = {}
 	c.update(csrf(request))
 	if request.method == 'POST':	
-		return redirect('webtanks/templates/	webtanks/WIN.html')
+		return redirect('webtanks/templates/webtanks/WIN.html')
 
 @csrf_exempt
 def lose(request):
@@ -152,3 +151,26 @@ def numbot(request):
 	if request.method == 'POST':
 		res = __main__.res
 		return HttpResponse (json.dumps(res), content_type="application/json")		
+
+@csrf_exempt
+def users(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		__main__.ses = str(POST['num'])
+		__main__.newfield = field()
+		__main__.newfield.createTank(120, 690)
+		return render(request, 'webtanks/multitanks.html')
+
+@csrf_exempt
+def getsess(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		arr = [0, 0]
+		arr[2] = str(request.user)
+		arr[1] = __main__.ses
+		return HttpResponse (json.dumps(arr), content_type="application/json")		
+

@@ -14,9 +14,9 @@ from .users import UserModel
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
 try:
-    from django.utils.module_loading import import_string
+	from django.utils.module_loading import import_string
 except ImportError:
-    from .utils import import_string
+	from .utils import import_string
 
 #from .bot import bot
 from django.conf import settings
@@ -46,29 +46,32 @@ def index(request):
 def sessions(request):
 	c = {}
 	c.update(csrf(request))
-	f = open("webtanks/templates/webtanks/users.html", "w")
-	f.write("{% load staticfiles %}"
-		"<html>"
-		"<body>")
-	dic = request.session.keys()
-	arr = []	
-	print(dic)
-	for i in dic:
-		tmp = str(i)
-		print(str(i))
-		if request.session[tmp] == 1:
-			f.write("<H1>")
-			f.write(tmp)
-			f.write("</H1>")
-	f.write("<form action=""/webtanks/users/"" method=""post"">"
-  		  "<label for=""num"">input users_name: </label>"
-   		 "<input id=""num"" type=""text"" name=""num"">"
-   		 "<input type=""submit"" value=""OK"">"
-		"</form>"
-		"</body>"
-		"</html>")
-	f.close
-	return request
+	if request.session[str(request.user)]  != 2:
+		f = open("webtanks/templates/webtanks/users.html", "w")
+		f.write("{% load staticfiles %}"
+			"<html>"
+			"<body>")
+		dic = request.session.keys()
+		arr = []	
+		print(dic)
+		for i in dic:
+			tmp = str(i)
+			print(str(i))
+			if request.session[tmp] == 1:
+				f.write("<H1>")
+				f.write(tmp)
+				f.write("</H1>")
+		f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
+			"<label for=""num"">input users_name: </label>"
+			"<input id=""num"" type=""text"" name=""num"">"
+			"<input type=""submit"" value=""OK"">"
+			"</form>"
+			"</body>"
+			"</html>")
+		f.close
+		return (request, 'webtanks/users.html')
+	else:
+		return (request, 'webtanks/multitanks.html')
 
 @csrf_exempt
 def switchmod(request):
@@ -77,13 +80,13 @@ def switchmod(request):
 	POST = request.POST  
 	if request.method == 'POST':
 		res = int(POST['num'])
-		#HttpResponse(request.POST['num']).set_cookies(request.user, 1)
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
+			print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
-			request =  sessions(request)
-			return render(request, 'webtanks/users.html')
+			(request, val) = (sessions(request))
+			return render(request, val)
 
 
 @csrf_exempt
@@ -110,14 +113,14 @@ def shot(request):
 	c = {}
 	c.update(csrf(request))
 	return __main__.newfield.shot(request)	
-	
+
 @csrf_exempt
 def numbots(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST  
 	if request.method == 'POST':
-        	res = int(POST['num'])
+		res = int(POST['num'])
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
 		__main__.res = res
@@ -130,8 +133,7 @@ def win(request):
 	c = {}
 	c.update(csrf(request))
 	if request.method == 'POST':	
-		render_to_response('webtanks/WIN.html')
-		return render(request, 'webtanks/WIN.html')
+		return redirect('webtanks/templates/webtanks/WIN.html')
 
 @csrf_exempt
 def lose(request):
@@ -139,8 +141,7 @@ def lose(request):
 	c.update(csrf(request))
 	res = 1	
 	if request.method == 'POST':
-		HttpResponseRedirect('webtanks/LOSE.html')
-		return HttpResponse (json.dumps(res), content_type="application/json")		
+		return redirect('webtanks/templates/webtanks/LOSE.html')	
 
 @csrf_exempt
 def numbot(request):
@@ -150,3 +151,26 @@ def numbot(request):
 	if request.method == 'POST':
 		res = __main__.res
 		return HttpResponse (json.dumps(res), content_type="application/json")		
+
+@csrf_exempt
+def users(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		__main__.ses = str(POST['num'])
+		__main__.newfield = field()
+		__main__.newfield.createTank(120, 690)
+		return render(request, 'webtanks/multitanks.html')
+
+@csrf_exempt
+def getsess(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		arr = [0, 0]
+		arr[2] = str(request.user)
+		arr[1] = __main__.ses
+		return HttpResponse (json.dumps(res), content_type="application/json")		
+

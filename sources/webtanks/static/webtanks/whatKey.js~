@@ -11,6 +11,8 @@ function send_for_pressing(keydata, numchange) {
  					YT = arr[2];
  					Xs[0] = arr[1];
  					Ys[0] = arr[2];
+ 					Xt = XT;
+					Yt = YT;
  					if(type==1)
  					{
  	   					ctx.fillStyle = '#FFC552';
@@ -56,7 +58,14 @@ function whatKey(evt) {
 		}
 		if(j == numbots)
 		{
-			document.location.href = '/static/webtanks/WIN.html'
+			/*$.ajax({
+					type: 'POST',
+					url: "win/",
+					error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+				});*/
+			document.location.href = '/templates/webtanks/WIN.html'
 		}
 		switch (evt.keyCode) {
 		case 37:

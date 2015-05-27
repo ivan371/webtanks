@@ -61,7 +61,20 @@
 	var t7 = '/static/webtanks/images/tank5.png';
 	var t8 = '/static/webtanks/images/tank8.png';
 	var numbots = 0;
+	var mainsess;
+	var opsess;
 	function game() {
+		$.ajax({
+			type: 'POST',
+			url: "getsess/",
+			success: function(arr){
+				mainsess = arr[0];
+				opsess = arr[1];
+			},
+			error: function(xhr, errmsg, err){
+				alert(xhr.status + ": " + xhr.responseText);
+			}	
+		});
             	example = document.getElementById('example');     	
 		//bott = document.getElementById('bott');
 		boll = document.getElementById('bull');

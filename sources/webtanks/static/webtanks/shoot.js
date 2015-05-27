@@ -5,14 +5,14 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 		if(X - 15 <= Xt && X + 15 >= Xt && Y - 15 <= Yt && Y + 15 >= Yt)
 		{
 			//alert("YOU LOSE");
-			$.ajax({
+			/*$.ajax({
 					type: 'POST',
 					url: "lose/",
 					error: function(xhr, errmsg, err){
 						alert(xhr.status + ": " + xhr.responseText);
 					}	
-				});
-			//document.location.href = '/static/webtanks/LOSE.html'
+				});*/
+			document.location.href = '/static/webtanks/LOSE.html'
 		}
 		if(hex != 808080)
 		{
