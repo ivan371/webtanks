@@ -151,6 +151,21 @@ def numbot(request):
 		res = __main__.res
 		return HttpResponse (json.dumps(res), content_type="application/json")		
 
+
+@csrf_exempt
+def choose(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST
+	  
+@csrf_exempt
+def con(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	res = 1
+	return HttpResponse (json.dumps(arr), content_type="application/json")	
+
 @csrf_exempt
 def users(request):
 	c = {}
@@ -164,7 +179,7 @@ def users(request):
 		__main__.Bigfield = f
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
-		return render(request, 'webtanks/multitanks.html')
+		return render(request, 'webtanks/connecting.html')
 
 @csrf_exempt
 def getsess(request):

@@ -151,6 +151,21 @@ def numbot(request):
 		res = __main__.res
 		return HttpResponse (json.dumps(res), content_type="application/json")		
 
+
+@csrf_exempt
+def choose(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST
+	  
+@csrf_exempt
+def con(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	res = 1
+	return HttpResponse (json.dumps(arr), content_type="application/json")	
+
 @csrf_exempt
 def users(request):
 	c = {}
@@ -158,19 +173,13 @@ def users(request):
 	POST = request.POST  
 	if request.method == 'POST':
 		u1 = int(time.mktime(time.gmtime()))
-		u2 = int(time.mktime(time.gmtime()))
-		u3 = int(time.mktime(time.gmtime()))
-		u4 = int(time.mktime(time.gmtime()))
-		u5 = int(time.mktime(time.gmtime()))
-		u6 = int(time.mktime(time.gmtime()))
-		u7 = int(time.mktime(time.gmtime()))
 		user = User.objects.get(username=str(POST['num']))
-		f = Field(field_id = u1, request11 = u2,request12 = u3,request13 = u4,request21 = u5,request22 = u6, request23 = u7, user1 = user)
+		f = Field(field_id = u1, user1 = user)
 		f.save()
 		__main__.Bigfield = f
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
-		return render(request, 'webtanks/multitanks.html')
+		return render(request, 'webtanks/connecting.html')
 
 @csrf_exempt
 def getsess(request):

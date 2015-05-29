@@ -139,13 +139,12 @@ class Rating(models.Model):
 	
 class Field(models.Model):
 	field_id = models.IntegerField(unique=True)
-	request11 = models.IntegerField(unique=True)
-	request12 = models.IntegerField(unique=True)
-	request13 = models.IntegerField(unique=True)
-	request21 = models.IntegerField(unique=True)
-	request22 = models.IntegerField(unique=True)
-	request23 = models.IntegerField(unique=True)
-	#state 0: only one login. 1: two login. 3: end game
+	request11 = models.IntegerField(default = 0)
+	request12 = models.IntegerField(default = 0)
+	request13 = models.IntegerField(default = 0)
+	request21 = models.IntegerField(default = 0)
+	request22 = models.IntegerField(default = 0)
+	request23 = models.IntegerField(default = 0)
 	state = models.IntegerField(default = 0)
 	user1 = models.ForeignKey(User, blank=True, null=True)
 	user2 = models.ForeignKey(User, blank=True, null=True, related_name = 'second')

@@ -1,0 +1,18 @@
+{% load staticfiles %}
+<html>
+<head>
+<form action="/webtanks/chmod/con/" method="post">
+<input type='hidden' name="redirect"></form>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src='{% static 'webtanks/choose_oponent.js' %}'></script>
+<script>
+var time = setInterval(function() {search_oponent()}, 300);
+</script>
+</head>
+<body>
+<h1>
+CONNECTING...
+</h1>
+</body>
+</html>
