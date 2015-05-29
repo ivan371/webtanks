@@ -1,11 +1,23 @@
 {% load staticfiles %}
 <html>
-<body>
+<style>
+   .b1 {
+    background: gray;
+    color: white;
+    font-size: 40pt;
+   }
+</style>
+<body style="background:#FE9A2E">
+<div style="display: table; margin: 0 auto; padding: 3em 0; text-align: center;">
 <form action="/webtanks/chmod/" method="post">
-    <label for="num">Change type of game: </label>
-    <input id="num" type="radio" value="1" checked> Single Player
-    <input id="num" type="radio" value="0"> Multi Player 
-    <input type="submit" value="OK">
+    <p><label for="num"><font size="10" color="black" face="Calibri">Choose a type of the game: </font></label></p>
+    <p><input id="num" type="radio" name="num" value="1" checked><font size="5" color="navy" face="Arial">Single player</font>
+    <input id="num" type="radio" name="num" value="0"><font size="5" color="navy" face="Arial">Multiplayer</font></p> 
+    <input type="submit" class="b1" value="OK">
 </form>
+</div>
+<div style="display: table; margin: 0 auto; padding: 28em 0">
+      <font size="5" color="navy" face="Calibri">DCAM 371</font>
+</div>
 </body>
 </html>

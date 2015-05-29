@@ -24,7 +24,6 @@ function bot(num, perc)
 	}
 	else
 	{
-	
 		var flag = Math.floor((Math.random() * 4) + 1);
 		switch(flag)
 		{

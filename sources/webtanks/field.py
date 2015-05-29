@@ -40,6 +40,14 @@ class field(map):
 		self.Xtanks.append(X)
 		self.Ytanks.append(Y)
 		self.num = self.num + 1
+		
+	def breakwall(self, request):
+		if request.method == 'POST':
+			POST = request.POST
+			X = int(POST['X'])
+			Y = int(POST['Y'])
+			kind = int(POST['kind'])
+			return self.map.breakwall(X, Y, kind)
 
 	def createBot(self, X, Y):
 		newbot = bot(X, Y, len(self.arrbots))

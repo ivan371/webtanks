@@ -51,7 +51,7 @@ function whatKey(evt) {
 		var j = 0;
 		for(var i = 0; i < numbots; i++)
 		{
-			if(dbot[num] == 1)
+			if(dbot[i] == 1)
 			{
 				j++;
 			}

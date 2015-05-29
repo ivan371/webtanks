@@ -51,11 +51,13 @@ function whatKey(evt) {
 		var j = 0;
 		for(var i = 0; i < numbots; i++)
 		{
-			if(dbot[num] == 1)
+			if(dbot[i] == 1)
 			{
 				j++;
 			}
 		}
+		//if (j == 1) 
+		alert(numbots);
 		if(j == numbots)
 		{
 			/*$.ajax({
@@ -65,7 +67,7 @@ function whatKey(evt) {
 						alert(xhr.status + ": " + xhr.responseText);
 					}	
 				});*/
-			document.location.href = '/templates/webtanks/WIN.html'
+			document.location.href = '/static/webtanks/WIN.html'
 		}
 		switch (evt.keyCode) {
 		case 37:

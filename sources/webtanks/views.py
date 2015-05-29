@@ -174,3 +174,8 @@ def getsess(request):
 		arr[1] = __main__.ses
 		return HttpResponse (json.dumps(arr), content_type="application/json")		
 
+@csrf_exempt
+def breakwall(request):
+	c = {}
+	c.update(csrf(request))	
+	return __main__.newfield.breakwall(request)

@@ -30,6 +30,7 @@ urlpatterns = [
 	url(r'^chmod/num/users/$', views.users),
 	url(r'^chmod/num/getsess/$', views.getsess),
 	url(r'^chmod/$', views.switchmod),
+	url(r'^chmod/num/breakwall/$', views.breakwall),
 	url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='auth_login'),
 	url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='auth_logout'),
 	url(r'^password/change/$', auth_views.password_change, {'post_change_redirect': reverse_lazy('auth_password_change_done')}, name='auth_password_change'),

@@ -18,8 +18,37 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 		{
 			if(hex == "BCF4FF")
 			{
-				dtx.clearRect(X-5, Y-5, 20, 20);
-				wtx.clearRect(X-5, Y-5, 20, 20);
+				if(flag == 1) 
+				{
+					dtx.clearRect(X, Y, 24, 24);
+					wtx.clearRect(X-10, Y-10, 24, 24);
+				}
+				if(flag == 2) 
+				{
+					dtx.clearRect(X-5, Y, 24, 24);
+					wtx.clearRect(X+5, Y-10, 24, 24);
+				}
+				if(flag == 3)
+				{
+					dtx.clearRect(X, Y-5, 24, 24);
+					wtx.clearRect(X-10, Y+1, 24, 24);
+				}
+				if(flag == 4) 
+				{
+					dtx.clearRect(X, Y, 24, 24);
+					wtx.clearRect(X-10, Y-5, 24, 24);
+				}
+				/*$.ajax({
+	  				type: 'POST',
+	  				url: "breakwall/",
+					data: {'X': X,
+						'Y': Y,
+						'kind': flag},
+					dataType: 'json',
+					error: function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+ 					}
+				});*/
 			}			
 			else
 			{

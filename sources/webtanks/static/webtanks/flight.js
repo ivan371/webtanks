@@ -1,7 +1,7 @@
 function isbot(X, Y)
 {
 	//alert(numbots);
-	for(var i = 0; i < numbots+1; i++)
+	for(var i = 0; i < numbots; i++)
 	{
 		if((X - 20 <= botX[i] && X + 20 >= botX[i] && Y - 20 <= botY[i] && Y + 20 >= botY[i]))
 		{

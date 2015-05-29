@@ -27,7 +27,7 @@ urlpatterns = [
 	url(r'^chmod/num/win/$', views.win),
 	url(r'^chmod/num/lose/$', views.lose),
 	url(r'^chmod/num/shot/$', views.shot),
-	url(r'^chmod/num/users/$', views.shot),
+	url(r'^chmod/num/users/$', views.users),
 	url(r'^chmod/num/getsess/$', views.getsess),
 	url(r'^chmod/$', views.switchmod),
 	url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='auth_login'),
