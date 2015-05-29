@@ -39,6 +39,6 @@ admin.site.register(Rating, RatingAdmin)
 from .models import Field
 
 class FieldAdmin(admin.ModelAdmin):
-	list_display = ('field_id', 'request11', 'request12','request13','request21','request22','request23','state1','state2','user1','user2')
+	list_display = ('field_id', 'request11', 'request12','request13','request21','request22','request23','state','user1','user2')
 	
 admin.site.register(Field, FieldAdmin)

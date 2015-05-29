@@ -27,6 +27,7 @@ from django.contrib.sites.models import Site
 from django.contrib import auth
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.decorators.csrf import csrf_protect
@@ -36,6 +37,7 @@ from django.shortcuts import render_to_response
 import __main__
 import random
 import json
+import time
 
 def index(request):
 	if not request.user.is_authenticated():
@@ -45,35 +47,30 @@ def index(request):
 
 
 @csrf_exempt
-def sessions(request):
+def list_users(request):
 	c = {}
 	c.update(csrf(request))
-	if request.session[str(request.user)]  != 2:
-		f = open("webtanks/templates/webtanks/users.html", "w")
-		f.write("{% load staticfiles %}"
+	f = open("webtanks/templates/webtanks/users.html", "w")
+	f.write("{% load staticfiles %}"
 			"<html>"
 			"<body>")
-		dic = request.session.keys()
-		arr = []	
-		print(dic)
-		for i in dic:
-			tmp = str(i)
-			print(str(i))
-			if request.session[tmp] == 1:
-				f.write("<H1>")
-				f.write(tmp)
-				f.write("</H1>")
-		f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
-			"<label for=""num"">input users_name: </label>"
-			"<input id=""num"" type=""text"" name=""num"">"
-			"<input type=""submit"" value=""OK"">"
-			"</form>"
-			"</body>"
-			"</html>")
-		f.close
-		return (request, 'webtanks/users.html')
-	else:
-		return (request, 'webtanks/multitanks.html')
+	t = Rating.objects.all()
+	for result in t:
+		f.write("<H1>")
+		f.write(str(result.who))
+		f.write(" ")
+		f.write(str(result.rating))
+		f.write("</H1>")
+
+	f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
+		"<label for=""num"">input users_name: </label>"
+		"<input id=""num"" type=""text"" name=""num"">"
+		"<input type=""submit"" value=""OK"">"
+		"</form>"
+		"</body>"
+		"</html>")
+	f.close
+	return (request, 'webtanks/users.html')
 
 @csrf_exempt
 def switchmod(request):
@@ -87,10 +84,7 @@ def switchmod(request):
 		else:
 			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
-			t = Rating.objects.all()
-			for i in t:
-				print t.i
-			(request, val) = (sessions(request))
+			(request, val) = (list_users(request))
 			return render(request, val)
 
 
@@ -163,7 +157,11 @@ def users(request):
 	c.update(csrf(request))
 	POST = request.POST  
 	if request.method == 'POST':
-		__main__.ses = str(POST['num'])
+		u1 = int(time.mktime(time.gmtime()))
+		user = User.objects.get(username=str(POST['num']))
+		f = Field(field_id = u1, user1 = user)
+		f.save()
+		__main__.Bigfield = f
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
 		return render(request, 'webtanks/multitanks.html')
