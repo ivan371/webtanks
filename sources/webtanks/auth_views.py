@@ -121,8 +121,8 @@ class RegistrationView(_RequestPassingFormView):
 			request=request,
 		)
 		signals.user_registered.send(sender=self.__class__, user=new_user, request=request)
-		us = Rating(name = str(request.user), rating = 0)
-		us.save
+		us = Rating(who = new_user, rating = 0)
+		us.save()
 		return new_user
 
 	def registration_allowed(self, request):
