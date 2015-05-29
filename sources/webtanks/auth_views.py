@@ -8,6 +8,7 @@ from .bullet import bullet
 
 from webtanks import signals
 from .models import RegistrationProfile
+from .models import Rating
 from .users import UserModel
 
 from django.shortcuts import redirect
@@ -120,6 +121,8 @@ class RegistrationView(_RequestPassingFormView):
 			request=request,
 		)
 		signals.user_registered.send(sender=self.__class__, user=new_user, request=request)
+		us = Rating(name = str(request.user), rating = 0)
+		us.save
 		return new_user
 
 	def registration_allowed(self, request):

@@ -9,6 +9,8 @@ from .bullet import bullet
 
 from webtanks import signals
 from .models import RegistrationProfile
+from .models import Rating
+from .models import Field
 from .users import UserModel
 
 from django.shortcuts import redirect
@@ -53,10 +55,10 @@ def sessions(request):
 			"<body>")
 		dic = request.session.keys()
 		arr = []	
-		print(dic)
+		#print(dic)
 		for i in dic:
 			tmp = str(i)
-			print(str(i))
+			#print(str(i))
 			if request.session[tmp] == 1:
 				f.write("<H1>")
 				f.write(tmp)
@@ -83,8 +85,11 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
-			print(request.session[str(request.user)])
+			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
+			t = Rating.objects.all()
+			for i in t:
+				print t.i
 			(request, val) = (sessions(request))
 			return render(request, val)
 
