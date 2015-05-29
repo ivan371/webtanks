@@ -46,25 +46,21 @@ class bullet():
 			for i in range(0, len(self.map.breakvertwall), 3):
 				#how far from the wall, how far from the begin, how far from the end
 				if(math.fabs(self.X - self.map.breakvertwall[i]) < 11 and self.map.breakvertwall[i + 1] <= self.Yd and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd):
-					print 'TANKleft', self.map.breakvertwall[i], self.map.breakvertwall[i+1], self.map.breakvertwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
 			return 1
 		if(kind == 2):
 			for i in range(0, len(self.map.breakvertwall), 3):
 				if(math.fabs(self.Xd - self.map.breakvertwall[i]) < 11 and self.map.breakvertwall[i + 1] <= self.Yd and self.map.breakvertwall[i + 1] + self.map.breakvertwall[i + 2] >= self.Yd):
-					print 'TANKright', self.map.breakvertwall[i], self.map.breakvertwall[i+1], self.map.breakvertwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
 			return 1
 		if(kind == 3):
 			for i in range(0, len(self.map.breakhorwall), 3):
 				if(math.fabs(self.Yd - self.map.breakhorwall[i]) < 11 and self.map.breakhorwall[i + 1] <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd):
-					print 'TANKdown', self.map.breakhorwall[i], self.map.breakhorwall[i+1], self.map.breakhorwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
 			return 1
 		if(kind == 4):
 			for i in range(0, len(self.map.breakhorwall), 3):
 				if(math.fabs(self.Y - self.map.breakhorwall[i]) < 11 and self.map.breakhorwall[i + 1] <= self.X and self.map.breakhorwall[i + 1] + self.map.breakhorwall[i + 2] >= self.Xd):
-					print 'TANKup', self.map.breakhorwall[i], self.map.breakhorwall[i+1], self.map.breakhorwall[i+2], '|', self.X, self.Y, '|', self.Xd, self.Yd
 					return 0
 			return 1
 
@@ -109,13 +105,11 @@ class bullet():
 				self.map.breakvertwall.append(self.Yd + 12)
 				self.map.breakvertwall.append(self.map.breakvertwall[number + 1] + self.map.breakvertwall[number + 2] - self.Yd)
 				self.map.breakvertwall[number + 2] = self.Yd - self.map.breakvertwall[number + 1] + 5
-				print "vert", self.map.breakvertwall
 			if (type == 3 or type == 4):
 				self.map.breakhorwall.append(self.map.breakhorwall[number])
 				self.map.breakhorwall.append(self.Xd - 11)
 				self.map.breakhorwall.append(self.map.breakhorwall[number + 1] + self.map.breakhorwall[number + 2] - self.Xd + 24)
 				self.map.breakhorwall[number + 2] = self.Xd - self.map.breakhorwall[number + 1] + 5
-				print "hor", self.map.breakhorwall
 			arr[4] = 1	
 			arr[5] = self.kind		
 		elif (self.search_solid_walls(self.kind) == 1):
