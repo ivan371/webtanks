@@ -136,3 +136,16 @@ class RegistrationProfile(models.Model):
 class Rating(models.Model):
 	who = models.ForeignKey(User)
 	rating = models.IntegerField(default=0)
+	
+class Field(models.Model):
+	field_id = models.IntegerField(default = 0)
+	request11 = models.IntegerField(default = 0)
+	request12 = models.IntegerField(default = 0)
+	request13 = models.IntegerField(default = 0)
+	request21 = models.IntegerField(default = 0)
+	request22 = models.IntegerField(default = 0)
+	request23 = models.IntegerField(default = 0)
+	state1 = models.IntegerField(default = 0)
+	state2 = models.IntegerField(default = 0)
+	user1 = models.ForeignKey(User, blank=True, null=True)
+	user2 = models.ForeignKey(User, blank=True, null=True, related_name = 'second')
