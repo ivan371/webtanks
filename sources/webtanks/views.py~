@@ -51,6 +51,9 @@ def is_in_game(request):
 			request.session['field'] = result.field_id
 			result.state = 1
 			result.save()
+			__main__.newfield = field()
+			__main__.newfield.createTank(120, 120)
+			__main__.newfield.createOpp(120, 690)
 			return 1
 	return 0
 
@@ -97,6 +100,31 @@ def switchmod(request):
 			(request, val) = (list_users(request))
 			return render(request, val)
 
+@csrf_exempt
+def tr1(request):
+	c = {}
+	c.update(csrf(request))
+	try:
+		__main__.newfield.num = 0
+	except:
+		__main__.newfield = field()
+		__main__.newfield.createTank(120, 690)
+		__main__.newfield.num = 0
+	t = Field.objects.filter(field_id = request.session['field'])
+	if request.method == 'POST':
+		POST = request.POST
+		for r in t:
+			if(r.user1 == User.objects.get(username=str(request.user))):
+				r.request11 = 1
+				r.request12 = POST['name']
+				r.save()
+			else:
+				r.request21 = 1
+				r.request22 = POST['name']
+				r.save()
+	#arr = [0, 0, 0, 0, 0]
+	#return HttpResponse (json.dumps(arr), content_type="application/json")
+	return __main__.newfield.treating(request)
 
 @csrf_exempt
 def treating(request):
@@ -104,6 +132,24 @@ def treating(request):
 	c.update(csrf(request))
 	__main__.newfield.num = 0
 	return __main__.newfield.treating(request)
+
+@csrf_exempt
+def fl(request):
+	c = {}
+	c.update(csrf(request))
+	r = Field.objects.get(field_id = request.session['field'])
+	if request.method == 'POST':
+		POST = request.POST
+		#for r in t:
+		if(r.user1 == User.objects.get(username=str(request.user))):
+			r.request11 = 1
+			r.request12 = POST['name']
+			r.save()
+		else:
+			r.request21 = 1
+			r.request22 = POST['name']
+			r.save()
+	return __main__.newfield.flight(request)
 
 @csrf_exempt
 def flight(request):
@@ -170,7 +216,10 @@ def choose(request):
 	t = Field.objects.exclude(field_id = request.session['field'])
 	for r in t:
 		if(r.state == 1):
-		res = 1
+			res = 1
+	#print(res)
+	#if(t.state == 1):
+	#	res = 1
 	return HttpResponse (json.dumps(res), content_type="application/json")
 	  
 @csrf_exempt
@@ -191,9 +240,9 @@ def users(request):
 		us = User.objects.get(username=str(request.user))
 		f = Field(field_id = u1, user1 = user, user2 = us)
 		f.save()
-		__main__.Bigfield = f
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
+		__main__.newfield.createOpp(120, 120)
 		request.session['field'] = u1
 		return render(request, 'webtanks/connecting.html')
 

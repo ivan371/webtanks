@@ -1,3 +1,14 @@
+function isbot(X, Y)
+{
+	//alert(numbots);
+	for(var i = 0; i < numbots; i++)
+	{
+		if((X - 20 <= botX[i] && X + 20 >= botX[i] && Y - 20 <= botY[i] && Y + 20 >= botY[i]))
+		{
+			dbot[i] = 1;
+		}
+	}
+}
 function flight(num, t, numtank, Xc, Yc)
 	{
 		var X = 0;
@@ -36,7 +47,7 @@ function flight(num, t, numtank, Xc, Yc)
 					kind = arr[0];
 					X = arr[1];
 					Y = arr[2];
-					//isbot(X, Y);					
+					isbot(X, Y);					
 					//num = arr[3];
 					if(kind==3)
 					{

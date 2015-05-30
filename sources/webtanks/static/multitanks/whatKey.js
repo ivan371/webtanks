@@ -2,7 +2,7 @@ function send_for_pressing(keydata, numchange) {
 			datakey = keydata,
  			$.ajax({
  	  			type: 'POST',
- 	  			url: "treating/",
+ 	  			url: "tr1/",
 	  			data: {'name': keydata,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -56,17 +56,6 @@ function whatKey(evt) {
 				j++;
 			}
 		}
-		if(j == numbots)
-		{
-			/*$.ajax({
-					type: 'POST',
-					url: "win/",
-					error: function(xhr, errmsg, err){
-						alert(xhr.status + ": " + xhr.responseText);
-					}	
-				});*/
-			//document.forms["win"].submit();
-		}
 		switch (evt.keyCode) {
 		case 37:
 			send_for_pressing(1, 1)
@@ -83,7 +72,7 @@ function whatKey(evt) {
  		case 32:
  			$.ajax({
  	  			type: 'POST',
- 	  			url: "treating/",
+ 	  			url: "tr1/",
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){

@@ -1,18 +1,11 @@
 {% load staticfiles %}
 <html>
 	<head>
-	<form action="/webtanks/chmod/num/win/" method="post" name="win">
-	<input type="hidden" name="redirect"></form>
-	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
-	<input type="hidden" name="redirect"></form>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script src='{% static 'webtanks/change.js' %}'></script>
-	<script src='{% static 'webtanks/whatKey.js' %}'></script>
-	<script src='{% static 'webtanks/flight.js' %}'></script>
-	<script src='{% static 'webtanks/bot.js' %}'></script>
-	<script src='{% static 'webtanks/botchange.js' %}'></script>
-	<script src='{% static 'webtanks/shoot.js' %}'></script>
+	<script src='{% static 'multitanks/change.js' %}'></script>
+	<script src='{% static 'multitanks/whatKey.js' %}'></script>
+	<script src='{% static 'multitanks/flight.js' %}'></script>
 	<script>
 	var tank = new Image();
  	var oldBack = new Image();
@@ -46,24 +39,24 @@
 	var dbot = [];
 	var botX = [];
 	var botY = [];
-	var b1 = '/static/webtanks/images/bot2.png';
-	var b2 = '/static/webtanks/images/bot3.png';
-	var b3 = '/static/webtanks/images/bot4.png';
-	var b4 = '/static/webtanks/images/bot1.png';
-	var b5 = '/static/webtanks/images/bot6.png';
-	var b6 = '/static/webtanks/images/bot7.png';
-	var b7 = '/static/webtanks/images/bot8.png';
-	var b8 = '/static/webtanks/images/bot5.png';
-	var bul1 = '/static/webtanks/images/bullet.png';
-	var bul2 = '/static/webtanks/images/bullet2.png';
-	var t1 = '/static/webtanks/images/tank2.png';
-	var t2 = '/static/webtanks/images/tank3.png';
-	var t3 = '/static/webtanks/images/tank1.png';
-	var t4 = '/static/webtanks/images/tank4.png';
-	var t5 = '/static/webtanks/images/tank6.png';
-	var t6 = '/static/webtanks/images/tank7.png';
-	var t7 = '/static/webtanks/images/tank5.png';
-	var t8 = '/static/webtanks/images/tank8.png';
+	var b1 = '/static/multitanks/images/bot2.png';
+	var b2 = '/static/multitanks/images/bot3.png';
+	var b3 = '/static/multitanks/images/bot4.png';
+	var b4 = '/static/multitanks/images/bot1.png';
+	var b5 = '/static/multitanks/images/bot6.png';
+	var b6 = '/static/multitanks/images/bot7.png';
+	var b7 = '/static/multitanks/images/bot8.png';
+	var b8 = '/static/multitanks/images/bot5.png';
+	var bul1 = '/static/multitanks/images/bullet.png';
+	var bul2 = '/static/multitanks/images/bullet2.png';
+	var t1 = '/static/multitanks/images/tank2.png';
+	var t2 = '/static/multitanks/images/tank3.png';
+	var t3 = '/static/multitanks/images/tank1.png';
+	var t4 = '/static/multitanks/images/tank4.png';
+	var t5 = '/static/multitanks/images/tank6.png';
+	var t6 = '/static/multitanks/images/tank7.png';
+	var t7 = '/static/multitanks/images/tank5.png';
+	var t8 = '/static/multitanks/images/tank8.png';
 	var numbots = 0;
 	var mainsess;
 	var opsess;
@@ -143,5 +136,9 @@
 		<canvas id='8' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
 		<canvas id='9' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
 		<canvas id='10' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
+		<form action="/webtanks/chmod/num/win/" method="post" name="win">
+		<input type="hidden" name="redirect"></form>
+		<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
+		<input type="hidden" name="redirect"></form>
     	</body>
 </html>
