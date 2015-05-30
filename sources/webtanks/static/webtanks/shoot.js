@@ -12,6 +12,7 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 						alert(xhr.status + ": " + xhr.responseText);
 					}	
 				});*/
+			document.forms["lose"].submit();
 			document.location.href = '/static/webtanks/LOSE.html'
 		}
 		if(hex != 808080)

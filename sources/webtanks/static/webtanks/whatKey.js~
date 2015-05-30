@@ -56,8 +56,6 @@ function whatKey(evt) {
 				j++;
 			}
 		}
-		//if (j == 1) 
-		alert(numbots);
 		if(j == numbots)
 		{
 			/*$.ajax({
@@ -67,6 +65,7 @@ function whatKey(evt) {
 						alert(xhr.status + ": " + xhr.responseText);
 					}	
 				});*/
+			document.forms["redirect"].submit();
 			document.location.href = '/static/webtanks/WIN.html'
 		}
 		switch (evt.keyCode) {

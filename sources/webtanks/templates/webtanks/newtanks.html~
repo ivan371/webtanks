@@ -1,6 +1,10 @@
 {% load staticfiles %}
 <html>
 	<head>
+	<form action="/webtanks/chmod/num/win/" method="post" name="redirect">
+	<input type="hidden" name="redirect"></form>
+	<form action="/webtanks/chmod/num/win/" method="post" name="redirect">
+	<input type="hidden" name="redirect"></form>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src='{% static 'webtanks/change.js' %}'></script>
@@ -154,9 +158,6 @@
 		<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">
       		<font size="7">WEBTANKS</font>
     	</div>
-    	<div style="display: table; margin: 0 auto; padding: 43em 0; text-align: center;">
-			<font size="5" color="navy" face="Calibri">DCAM 371</font>
-		</div>
     	<canvas id='example' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas>
 		<canvas id='walls' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
 		<canvas id='bull' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 

@@ -31,7 +31,7 @@ urlpatterns = [
 	url(r'^chmod/num/getsess/$', views.getsess),
 	url(r'^chmod/$', views.switchmod),
 	url(r'^chmod/num/users/choose/$', views.choose),
-	url(r'^chmod/num/users/con/$', views.con),
+	url(r'^chmod/con/$', views.con),
 	url(r'^chmod/num/breakwall/$', views.breakwall),
 	url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='auth_login'),
 	url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='auth_logout'),

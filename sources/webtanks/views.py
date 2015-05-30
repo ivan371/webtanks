@@ -138,7 +138,6 @@ def win(request):
 def lose(request):
 	c = {}
 	c.update(csrf(request))
-	res = 1	
 	if request.method == 'POST':
 		return redirect('webtanks/templates/webtanks/LOSE.html')	
 

@@ -157,6 +157,8 @@ def choose(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
+	res = 1
+	return HttpResponse (json.dumps(res), content_type="application/json")
 	  
 @csrf_exempt
 def con(request):
@@ -164,7 +166,7 @@ def con(request):
 	c.update(csrf(request))
 	POST = request.POST  
 	res = 1
-	return HttpResponse (json.dumps(arr), content_type="application/json")	
+	return HttpResponse (json.dumps(res), content_type="application/json")	
 
 @csrf_exempt
 def users(request):

@@ -15,9 +15,7 @@ function search_oponent()
   			if(res == 1)
 			{
 				clearInterval(time);
-				//document.location.href = '/static/webtanks/WIN.html';
-				//document.forms["redirect"] = 1;
-				document.forms[0].hidden();
+				document.forms["redirect"].submit();
 			}
 		},
 		error: function(xhr, errmsg, err){
@@ -26,7 +24,7 @@ function search_oponent()
 			});
 }
 </script>
-<form action="/webtanks/chmod/con/" method="post">
+<form action="/webtanks/chmod/con/" method="post" name="redirect">
 <input type="hidden" name="redirect"></form>
 </head>
 <body>
