@@ -48,6 +48,9 @@ def is_in_game(request):
 	t = Field.objects.all()
 	for result in t:
 		if(str(result.user1) == str(request.user)):
+			request.session['field'] = result.field_id
+			result.state = 1
+			result.save
 			return 1
 	return 0
 
@@ -163,7 +166,10 @@ def choose(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
-	res = 1
+	res = 0
+	t = Field.objects.exclude(field_id = request.session['field'])
+	if(t[0].state == 1):
+		res = 1
 	return HttpResponse (json.dumps(res), content_type="application/json")
 	  
 @csrf_exempt
@@ -187,6 +193,7 @@ def users(request):
 		__main__.Bigfield = f
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
+		request.session['field'] = u1
 		return render(request, 'webtanks/connecting.html')
 
 @csrf_exempt

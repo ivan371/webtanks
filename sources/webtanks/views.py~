@@ -44,10 +44,13 @@ def index(request):
 		return HttpResponseRedirect("/webtanks/login/")
 	else:
 		return render(request, 'webtanks/switch_mod.html')
-def is_in_game():
+def is_in_game(request):
 	t = Field.objects.all()
 	for result in t:
 		if(str(result.user1) == str(request.user)):
+			request.session['field'] = result.field_id
+			result.state = 1
+			t.save
 			return 1
 	return 0
 
@@ -55,7 +58,7 @@ def is_in_game():
 def list_users(request):
 	c = {}
 	c.update(csrf(request))
-	if(is_in_game()):
+	if(is_in_game(request)):
 		return (request, 'webtanks/multitanks.html') 
 	f = open("webtanks/templates/webtanks/users.html", "w")
 	f.write("{% load staticfiles %}"
@@ -163,7 +166,10 @@ def choose(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
-	res = 1
+	res = 0
+	t = Field.objects.exclude(field_id = request.session['field'])
+	if(t[0].state == 1):
+		res = 1
 	return HttpResponse (json.dumps(res), content_type="application/json")
 	  
 @csrf_exempt
@@ -187,6 +193,7 @@ def users(request):
 		__main__.Bigfield = f
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
+		request.session['field'] = u1
 		return render(request, 'webtanks/connecting.html')
 
 @csrf_exempt
