@@ -44,13 +44,19 @@ def index(request):
 		return HttpResponseRedirect("/webtanks/login/")
 	else:
 		return render(request, 'webtanks/switch_mod.html')
-
+def is_in_game(request):
+	t = Field.objects.all()
+	for result in t:
+		if(str(result.user1) == str(request.user)):
+			return 1
+	return 0
 
 @csrf_exempt
 def list_users(request):
 	c = {}
 	c.update(csrf(request))
-	#if(is_in_)
+	if(is_in_game(request)):
+		return (request, 'webtanks/multitanks.html') 
 	f = open("webtanks/templates/webtanks/users.html", "w")
 	f.write("{% load staticfiles %}"
 			"<html>"
@@ -175,7 +181,8 @@ def users(request):
 	if request.method == 'POST':
 		u1 = int(time.mktime(time.gmtime()))
 		user = User.objects.get(username=str(POST['num']))
-		f = Field(field_id = u1, user1 = user)
+		us = User.objects.get(username=str(request.user))
+		f = Field(field_id = u1, user1 = user, user2 = us)
 		f.save()
 		__main__.Bigfield = f
 		__main__.newfield = field()

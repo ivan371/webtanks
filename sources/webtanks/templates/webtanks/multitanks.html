@@ -1,6 +1,10 @@
 {% load staticfiles %}
 <html>
 	<head>
+	<form action="/webtanks/chmod/num/win/" method="post" name="win">
+	<input type="hidden" name="redirect"></form>
+	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
+	<input type="hidden" name="redirect"></form>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src='{% static 'webtanks/change.js' %}'></script>
@@ -64,7 +68,7 @@
 	var mainsess;
 	var opsess;
 	function game() {
-		$.ajax({
+		/*$.ajax({
 			type: 'POST',
 			url: "getsess/",
 			success: function(arr){
@@ -74,7 +78,7 @@
 			error: function(xhr, errmsg, err){
 				alert(xhr.status + ": " + xhr.responseText);
 			}	
-		});
+		});*/
             	example = document.getElementById('example');     	
 		//bott = document.getElementById('bott');
 		boll = document.getElementById('bull');
@@ -105,51 +109,7 @@
 		var i = 0;
 		var Xr = 0;
 		var Yr = 0;
-		$.ajax({
-  			type: 'POST',
-  			url: "numbot/",
-			dataType: 'json',
-  			success: function(res){
-				for (i = 0; i < res; i++)
-				{
-					bots[i] = document.getElementById(String(i + 1));
-					botx[i] = bots[numbots].getContext('2d');
-					dbot[i] = 0;
-					bnum[i] = 0;
-					//bot(i);
-					botX[i] = Math.floor((Math.random() * 900) + 100);
-					botY[i] = Math.floor((Math.random() * 600) + 100)
-					bot(i, 0);
-				}
-				numbots = res - 1;
-				/*for (i = 0; i < res; i++)
-				{
-					setTimeout(function(){bot(i, Math.floor((Math.random() * 924) + 100), Math.floor((Math.random() * 620) + 100))}, 5);
-				}*/
-  			},
-			error: function(xhr, errmsg, err){
-					alert(xhr.status + ": " + xhr.responseText);
-				}					
-			});
-		/*for (i = 0; i < res; i++)
-		{
-			bots[numbots] = document.getElementById(String(i + 1));
-			botx[numbots] = bots[numbots].getContext('2d');
-			dbot[numbots] = 0;
-			numbots++;
-			bot(i);
-		}*/
-		//bots[numbots] = document.getElementById('bott1');
-		//botx[numbots] = bots[numbots].getContext('2d');
-		//dbot[numbots] = 0;
-		//numbots++;
-		//bots[numbots] = document.getElementById('bott2');
-		//botx[numbots] = bots[numbots].getContext('2d');
-		//dbot[numbots] = 0;		
-		//numbots++;	
-		//makeTank();
-		//bot(0);
-		//bot(1);
+		
 		window.addEventListener('keydown', whatKey, true);
 		//setInterval(function() {change(nums, XT, YT)}, 1);
 		
