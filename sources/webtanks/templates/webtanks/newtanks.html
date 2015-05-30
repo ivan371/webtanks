@@ -1,12 +1,12 @@
 {% load staticfiles %}
 <html>
 	<head>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<form action="/webtanks/chmod/num/win/" method="post" name="win">
 	<input type="hidden" name="redirect"></form>
 	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
 	<input type="hidden" name="redirect"></form>
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src='{% static 'webtanks/change.js' %}'></script>
 	<script src='{% static 'webtanks/whatKey.js' %}'></script>
 	<script src='{% static 'webtanks/flight.js' %}'></script>

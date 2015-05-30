@@ -66,7 +66,6 @@ function whatKey(evt) {
 					}	
 				});*/
 			document.forms["win"].submit();
-			document.location.href = '/static/webtanks/WIN.html'
 		}
 		switch (evt.keyCode) {
 		case 37:

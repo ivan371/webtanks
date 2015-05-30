@@ -50,6 +50,7 @@ def index(request):
 def list_users(request):
 	c = {}
 	c.update(csrf(request))
+	#if(is_in_)
 	f = open("webtanks/templates/webtanks/users.html", "w")
 	f.write("{% load staticfiles %}"
 			"<html>"
@@ -132,15 +133,14 @@ def win(request):
 	c = {}
 	c.update(csrf(request))
 	if request.method == 'POST':	
-		return redirect('webtanks/templates/webtanks/WIN.html')
+		return render(request,'webtanks/templates/webtanks/WIN.html')
 
 @csrf_exempt
 def lose(request):
 	c = {}
 	c.update(csrf(request))
-	res = 1	
 	if request.method == 'POST':
-		return redirect('webtanks/templates/webtanks/LOSE.html')	
+		return render(request,'webtanks/templates/webtanks/LOSE.html')	
 
 @csrf_exempt
 def numbot(request):
@@ -165,8 +165,7 @@ def con(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST  
-	res = 1
-	return HttpResponse (json.dumps(res), content_type="application/json")	
+	return render(request, 'webtanks/multitanks.html')
 
 @csrf_exempt
 def users(request):

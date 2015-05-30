@@ -8,6 +8,7 @@ function search_oponent()
   			if(res == 1)
 			{
 				clearInterval(time);
+				document.location.href = '/static/webtanks/WIN.html';
 				document.form["redirect"].submit();
 			}
 		}
