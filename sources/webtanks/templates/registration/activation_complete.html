@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Аккаунт успешно активирован." %}{% endblock %}
+{% block title %}Аккаунт успешно активирован.{% endblock %}
 
 {% block content %}
 <p>
-    {% trans "Ваш аккаунт был успешно активирован." %}
+    Ваш аккаунт был успешно активирован.
     {% if not user.is_authenticated %}
-    {% trans "Теперь вы можете <a href="{% url 'auth_login' %}">войти</a>, используя его." %}
+    Теперь вы можете <a href="{% url 'auth_login' %}">войти</a>, используя его.
     {% endif %}
 </p>
 {% endblock %}
