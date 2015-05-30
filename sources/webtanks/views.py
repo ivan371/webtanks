@@ -50,7 +50,7 @@ def is_in_game(request):
 		if(str(result.user1) == str(request.user)):
 			request.session['field'] = result.field_id
 			result.state = 1
-			result.save
+			result.save()
 			return 1
 	return 0
 
@@ -168,8 +168,9 @@ def choose(request):
 	POST = request.POST
 	res = 0
 	t = Field.objects.exclude(field_id = request.session['field'])
-	if(t[0].state == 1):
-		res = 1
+	for r in t:
+		if(r.state == 1):
+			res = 1
 	return HttpResponse (json.dumps(res), content_type="application/json")
 	  
 @csrf_exempt
