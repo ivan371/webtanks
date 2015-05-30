@@ -1,17 +1,23 @@
 {% extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
 {% block content %}
-<h1>Регистрация</h1>
+<div id="login">
+<h2><span class="fontawesome-user"></span>Регистрация</h2>
 <form method="post" action="">
 {% csrf_token %}
-<dl class="register">
+<fieldset>
 {% for field in form %}
-    <dt>{{ field.label_tag }}</dt>
-    <dd class="clearfix">{{ field }}
-    {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
-    {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}
-    </dd>
+    <p>{{ field.label_tag }}
+    {{ field }}
+    {% if field.help_text %}{{ field.help_text }}{% endif %}
+    {% if field.errors %}{{ field.errors }}{% endif %}
+    </p>
 {% endfor %}
-</dl>
-<input type="submit" value="Зарегистрироваться" / class="clearfix">
+<input type="submit" value="Зарегистрироваться">
+</fieldset>
 </form>
+<h2 class = "bottom2">
+<span class="fontawesome-question-sign"></span> Забыли пароль? <a href="{% url 'auth_password_reset' %}">Восстановите его!</a>
+</h2>
+</div>
 {% endblock %}

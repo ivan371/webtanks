@@ -9,16 +9,25 @@
 <body>
     <div class="vladmaxi-top">
         <a href="/webtanks/" target="_blank">Главная</a>
+		<p align="center"> <img src="{% static "registration/images/13.png" %}" height="40" vspace="0" hspace="0">
+		<span class="right">
+		{% if user.is_authenticated %}
+		<a href="{% url 'auth_logout' %}">Выйти</a>
+		{% else %}
+		<a href="{% url 'auth_login' %}">Войти</a>
+		{% endif %}
+		</span>
+		</p>
         <div class="clr"></div>
     </div>
 <br>
 <br>
 <p align = "center">
     {% block content %}{% endblock %}
+</p>
     {% block footer %}
     <hr>
-    <p>Играйте с нами!</p>
+    <p align = "center">Играйте с нами!</p>
     {% endblock %}
-</p>
 </body>
 </html>

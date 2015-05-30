@@ -30,7 +30,7 @@ input {
 /* ---------- LOGIN ---------- */
 
 #login {
-	margin: 120px auto;
+	margin: 20px auto;
 	width: 400px;
 }
 
@@ -48,11 +48,47 @@ input {
 	margin-right: 14px;
 }
 
-#login fieldset {
-	background-color: #fff;
+#login .bottom1 {
+	background-color: #ff9640;
+	-webkit-border-radius: 0 0 0 0;
+	-moz-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 26px;
+}
+
+
+#login .bottom1 span[class*="fontawesome-"] {
+	font-size: 26px;
+	margin-right: 14px;
+}
+
+#login .bottom2 {
+	background-color: #ff9640;
 	-webkit-border-radius: 0 0 20px 20px;
 	-moz-border-radius: 0 0 20px 20px;
 	border-radius: 0 0 20px 20px;
+	color: #fff;
+	font-size: 14px;
+	padding: 10px 26px;
+}
+
+
+#login .bottom2 span[class*="fontawesome-"] {
+	font-size: 26px;
+	margin-right: 14px;
+}
+
+#login .errorlist {
+	color: #f95252;
+}
+
+#login fieldset {
+	background-color: #fff;
+	-webkit-border-radius: 0 0 0 0;
+	-moz-border-radius: 0 0 0 0;
+	border-radius: 0 0 0 0;
 	padding: 20px 26px;
 }
 
@@ -71,7 +107,7 @@ input {
 	border-radius: 3px;
 }
 
-#login fieldset input[type="email"], #login fieldset input[type="password"] {
+#login fieldset input[type="text"], #login fieldset input[type="password"], #login fieldset input[type="email"] {
 	background-color: #eee;
 	color: #777;
 	padding: 4px 10px;
@@ -84,7 +120,7 @@ input {
 	display: block;
 	margin: 0 auto;
 	padding: 4px 0;
-	width: 100px;
+	width: 175px;
 	cursor:pointer;
 }
 
@@ -93,22 +129,24 @@ input {
 }
 
 .vladmaxi-top{
-	line-height: 24px;
-	font-size: 11px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 13px;
 	background: rgba(0, 0, 0, 0.08);
 	text-transform: uppercase;
 	z-index: 9999;
 	position: fixed;
+	overflow: hidden;
 	top:0;
 	left:0;
 	width:100%;
 	font-family: calibri;
-	font-size: 13px;
+	font-size: 16px;
 	box-shadow: 1px 0px 2px rgba(0,0,0,0.2);
 	-webkit-animation: slideOut 0.5s ease-in-out 0.3s backwards;
 }
 @-webkit-keyframes slideOut{
-	0%{top:-30px; opacity: 0;}
+	0%{top:-60px; opacity: 0;}
 	100%{top:0px; opacity: 1;}
 }
 
@@ -124,6 +162,11 @@ input {
 .vladmaxi-top a:hover{
 	background: #fff;
 }
+
+.vladmaxi-top img{
+	padding: 5px 0px 0px 0px;;
+}
+
 .vladmaxi-top span.right{
 	float: right;
 }
