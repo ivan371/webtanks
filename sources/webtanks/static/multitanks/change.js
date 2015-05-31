@@ -43,10 +43,10 @@ function change(type, X, Y)
 				img.src = b2;
 				break;
 			case 3:
-				img.src = b3;
+				img.src = b4;
 				break;
 			case 4:
-				img.src = b4;
+				img.src = b3;
 				break;
 			case 5:
 				img.src = b5;
@@ -55,10 +55,10 @@ function change(type, X, Y)
 				img.src = b6;
 				break;
 			case 7:
-				img.src = b7;
+				img.src = b8;
 				break;
 			case 8:
-				img.src = b8;
+				img.src = b7;
 				break;
 			}
 			otx.clearRect(X-10, Y-10, 40, 40);
