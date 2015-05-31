@@ -130,13 +130,14 @@ def tr2(request):
 	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
+		t = Field.objects.get(field_id = request.session['field'])
+		if(t.user2 == User.objects.get(username=str(request.user))):
+			return __main__.newfield.Optreating(request)
+		else:
+			return __main__.oldfield.Optreating(request)
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
-	try:
-		return __main__.newfield.Optreating(request)
-	except:
-		return __main__.oldfield.Optreating(request)
-
+	
 @csrf_exempt
 def tr1(request):
 	c = {}

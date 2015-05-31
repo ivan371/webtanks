@@ -97,6 +97,8 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
+			
+			
 			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
 			(request, val) = (list_users(request))
