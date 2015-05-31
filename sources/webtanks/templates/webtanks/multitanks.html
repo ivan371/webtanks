@@ -60,6 +60,7 @@
 	var numbots = 0;
 	var mainsess;
 	var opsess;
+	var optime;
 	function game() {
 		/*$.ajax({
 			type: 'POST',
@@ -104,7 +105,7 @@
 		var Yr = 0;
 		
 		window.addEventListener('keydown', whatKey, true);
-		//setInterval(function() {change(nums, XT, YT)}, 1);
+		optime = setInterval(function() {opponent()}, 1000);
 		
 	}
 

@@ -107,21 +107,20 @@ def tr1(request):
 	try:
 		__main__.newfield.num = 0
 	except:
-		__main__.newfield = field()
-		__main__.newfield.createTank(120, 690)
+		#__main__.newfield = field()
+		#__main__.newfield.createTank(120, 690)
 		__main__.newfield.num = 0
-	t = Field.objects.filter(field_id = request.session['field'])
+	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		for r in t:
-			if(r.user1 == User.objects.get(username=str(request.user))):
-				r.request11 = 1
-				r.request12 = POST['name']
-				r.save()
-			else:
-				r.request21 = 1
-				r.request22 = POST['name']
-				r.save()
+		if(t.user1 == User.objects.get(username=str(request.user))):
+			t.request11 = 1
+			t.request12 = POST['name']
+			t.save()
+		else:
+			t.request21 = 1
+			t.request22 = POST['name']
+			t.save()
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
 	return __main__.newfield.treating(request)
@@ -137,18 +136,17 @@ def treating(request):
 def fl(request):
 	c = {}
 	c.update(csrf(request))
-	t = Field.objects.filter(field_id = request.session['field'])
+	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		for r in t:
-			if(r.user1 == User.objects.get(username=str(request.user))):
-				r.request11 = 1
-				r.request12 = POST['name']
-				r.save()
-			else:
-				r.request21 = 1
-				r.request22 = POST['name']
-				r.save()
+		if(t.user1 == User.objects.get(username=str(request.user))):
+			t.request11 = 1
+			t.request12 = POST['name']
+			t.save()
+		else:
+			t.request21 = 1
+			t.request22 = POST['name']
+			t.save()
 	return __main__.newfield.flight(request)
 
 @csrf_exempt
@@ -213,7 +211,7 @@ def choose(request):
 	c.update(csrf(request))
 	POST = request.POST
 	res = 0
-	t = Field.objects.exclude(field_id = request.session['field'])
+	t = Field.objects.filter(field_id = request.session['field'])
 	for r in t:
 		if(r.state == 1):
 			res = 1
