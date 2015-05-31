@@ -5,8 +5,10 @@
     <title>{% block title %}{% endblock %}</title>
 	<link rel="stylesheet" href="{% static "registration/css/style.css" %}" media="screen" type="text/css" />
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+	{% block header %}{% endblock %}
 </head>
 <body>
+<div class="page-wrapper">
     <div class="vladmaxi-top">
         <a href="/webtanks/" target="_blank">Главная</a>
 		<p align="center"> <img src="{% static "registration/images/13.png" %}" height="40" vspace="0" hspace="0">
@@ -22,12 +24,15 @@
     </div>
 <br>
 <br>
-<p align = "center">
+<br>
     {% block content %}{% endblock %}
-</p>
+<div class="page-buffer"></div>
+</div>
+<div class="page-footer">
     {% block footer %}
     <hr>
     <p align = "center">Играйте с нами!</p>
     {% endblock %}
+</div>
 </body>
 </html>
