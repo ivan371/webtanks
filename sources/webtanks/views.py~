@@ -51,9 +51,6 @@ def is_in_game(request):
 			request.session['field'] = result.field_id
 			result.state = 1
 			result.save()
-			__main__.newfield = field()
-			__main__.newfield.createTank(120, 690)
-			__main__.newfield.createOpp(120, 120)
 			return 1
 	return 0
 
@@ -62,28 +59,33 @@ def list_users(request):
 	c = {}
 	c.update(csrf(request))
 	if(is_in_game(request)):
+		__main__.oldfield = field()
+		__main__.oldfield.createTank(120, 690)
+		__main__.oldfield.createOpp(120, 120)
+		__main__.oldfield.num = 0
 		return (request, 'webtanks/multitanks.html') 
-	f = open("webtanks/templates/webtanks/users.html", "w")
-	f.write("{% load staticfiles %}"
+	else:
+		f = open("webtanks/templates/webtanks/users.html", "w")
+		f.write("{% load staticfiles %}"
 			"<html>"
 			"<body>")
-	t = Rating.objects.all()
-	for result in t:
-		f.write("<H1>")
-		f.write(str(result.who))
-		f.write(" ")
-		f.write(str(result.rating))
-		f.write("</H1>")
+		t = Rating.objects.all()
+		for result in t:
+			f.write("<H1>")
+			f.write(str(result.who))
+			f.write(" ")
+			f.write(str(result.rating))
+			f.write("</H1>")
 
-	f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
-		"<label for=""num"">input users_name: </label>"
-		"<input id=""num"" type=""text"" name=""num"">"
-		"<input type=""submit"" value=""OK"">"
-		"</form>"
-		"</body>"
-		"</html>")
-	f.close
-	return (request, 'webtanks/users.html')
+		f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
+			"<label for=""num"">input users_name: </label>"
+			"<input id=""num"" type=""text"" name=""num"">"
+			"<input type=""submit"" value=""OK"">"
+			"</form>"
+			"</body>"
+			"</html>")
+		f.close
+		return (request, 'webtanks/users.html')
 
 @csrf_exempt
 def switchmod(request):
@@ -106,7 +108,7 @@ def getkey(request):
 	c.update(csrf(request))
 	arr = [2, 0]
 	t = Field.objects.get(field_id = request.session['field'])
-	if(t.user2 == User.objects.get(username=str(request.user))):
+	if(t.user1 == User.objects.get(username=str(request.user))):
 		if(t.request11 == 1):
 			arr[0] = 1
 			arr[1] = t.request12
@@ -125,41 +127,41 @@ def getkey(request):
 def tr2(request):
 	c = {}
 	c.update(csrf(request))
-	try:
-		__main__.newfield.num = 0
-	except:
-		__main__.newfield.num = 0
 	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
-	return __main__.newfield.Optreating(request)
+	try:
+		return __main__.newfield.Optreating(request)
+	except:
+		return __main__.oldfield.Optreating(request)
 
 @csrf_exempt
 def tr1(request):
 	c = {}
 	c.update(csrf(request))
-	try:
-		__main__.newfield.num = 0
-	except:
+	#try:
+	#	__main__.newfield.num = 0
+	#except:
 		#__main__.newfield = field()
 		#__main__.newfield.createTank(120, 690)
-		__main__.newfield.num = 0
+	#	__main__.newfield.num = 0
 	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		if(t.user1 == User.objects.get(username=str(request.user))):
+		if(t.user2 == User.objects.get(username=str(request.user))):
 			t.request11 = 1
 			t.request12 = POST['name']
 			t.save()
+			return __main__.newfield.treating(request)
 		else:
 			t.request21 = 1
 			t.request22 = POST['name']
 			t.save()
+			return __main__.oldfield.treating(request)
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
-	return __main__.newfield.treating(request)
 
 @csrf_exempt
 def treating(request):
@@ -275,8 +277,9 @@ def users(request):
 		f = Field(field_id = u1, user1 = user, user2 = us)
 		f.save()
 		__main__.newfield = field()
-		__main__.newfield.createTank(120, 690)
-		__main__.newfield.createOpp(120, 120)
+		__main__.newfield.createTank(120, 120)
+		__main__.newfield.createOpp(120, 690)
+		__main__.newfield.num = 0
 		request.session['field'] = u1
 		return render(request, 'webtanks/connecting.html')
 
