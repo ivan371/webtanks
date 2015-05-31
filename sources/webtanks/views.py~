@@ -101,14 +101,50 @@ def switchmod(request):
 			return render(request, val)
 
 @csrf_exempt
+def getkey(request):
+	c = {}
+	c.update(csrf(request))
+	arr = [2, 0]
+	t = Field.objects.get(field_id = request.session['field'])
+	if(t.user1 == User.objects.get(username=str(request.user))):
+		if(t.request11 == 1):
+			arr[0] = 1
+			arr[1] = t.request12
+			t.request11 = 0
+			t.save()
+	else:
+		if(t.request21 == 1):
+			arr[0] = 1
+			arr[1] = t.request22
+			t.request21 = 0
+			t.save()
+	print(arr[0])
+	return HttpResponse (json.dumps(arr), content_type="application/json")
+
+@csrf_exempt
+def tr2(request):
+	c = {}
+	c.update(csrf(request))
+	try:
+		__main__.newfield.num = 0
+	except:
+		__main__.newfield.num = 0
+	t = Field.objects.get(field_id = request.session['field'])
+	if request.method == 'POST':
+		POST = request.POST
+	#arr = [0, 0, 0, 0, 0]
+	#return HttpResponse (json.dumps(arr), content_type="application/json")
+	return __main__.newfield.treating(request)
+
+@csrf_exempt
 def tr1(request):
 	c = {}
 	c.update(csrf(request))
 	try:
 		__main__.newfield.num = 0
 	except:
-		__main__.newfield = field()
-		__main__.newfield.createTank(120, 690)
+		#__main__.newfield = field()
+		#__main__.newfield.createTank(120, 690)
 		__main__.newfield.num = 0
 	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
