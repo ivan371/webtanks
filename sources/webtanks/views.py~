@@ -52,8 +52,8 @@ def is_in_game(request):
 			result.state = 1
 			result.save()
 			__main__.newfield = field()
-			__main__.newfield.createTank(120, 120)
-			__main__.newfield.createOpp(120, 690)
+			__main__.newfield.createTank(120, 690)
+			__main__.newfield.createOpp(120, 120)
 			return 1
 	return 0
 
@@ -106,7 +106,7 @@ def getkey(request):
 	c.update(csrf(request))
 	arr = [2, 0]
 	t = Field.objects.get(field_id = request.session['field'])
-	if(t.user1 == User.objects.get(username=str(request.user))):
+	if(t.user2 == User.objects.get(username=str(request.user))):
 		if(t.request11 == 1):
 			arr[0] = 1
 			arr[1] = t.request12
@@ -134,7 +134,7 @@ def tr2(request):
 		POST = request.POST
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
-	return __main__.newfield.treating(request)
+	return __main__.newfield.Optreating(request)
 
 @csrf_exempt
 def tr1(request):

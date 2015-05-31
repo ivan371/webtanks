@@ -134,7 +134,7 @@ def tr2(request):
 		POST = request.POST
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
-	return __main__.newfield.treating(request)
+	return __main__.newfield.Optreating(request)
 
 @csrf_exempt
 def tr1(request):
