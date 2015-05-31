@@ -6,7 +6,7 @@ from .field import field
 from .tank import tank
 from .bot import bot
 from .bullet import bullet
-
+import threading
 from webtanks import signals
 from .models import RegistrationProfile
 from .models import Rating
@@ -44,6 +44,7 @@ def index(request):
 		return HttpResponseRedirect("/webtanks/login/")
 	else:
 		return render(request, 'webtanks/switch_mod.html')
+		
 def is_in_game(request):
 	t = Field.objects.all()
 	for result in t:
@@ -97,6 +98,15 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
+			t1 = threading.Thread(target=tr1, args=(request))
+			t2 = threading.Thread(target=tr2, args=(request))
+			t3 = threading.Thread(target=getkey, args=(request))
+			t1.start()
+			t2.start()
+			t3.start()
+			t1.join()
+			t2.join()
+			t3.join()
 			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
 			(request, val) = (list_users(request))
@@ -258,7 +268,7 @@ def choose(request):
 	#if(t.state == 1):
 	#	res = 1
 	return HttpResponse (json.dumps(res), content_type="application/json")
-	  
+	
 @csrf_exempt
 def con(request):
 	c = {}
@@ -299,4 +309,23 @@ def getsess(request):
 def breakwall(request):
 	c = {}
 	c.update(csrf(request))	
+	return __main__.newfield.breakwall(request)
+	
+@csrf_exempt
+def oppbreakwall(request):
+	c = {}
+	c.update(csrf(request))
+	t = Field.objects.get(field_id = request.session['field'])
+	if request.method == 'POST':
+		POST = request.POST
+		if(t.user2 == User.objects.get(username=str(request.user))):
+			t.request11 = 1
+			t.request12 = POST['name']
+			t.save()
+			return __main__.newfield.treating(request)
+		else:
+			t.request21 = 1
+			t.request22 = POST['name']
+			t.save()
+			return __main__.oldfield.treating(request)
 	return __main__.newfield.breakwall(request)

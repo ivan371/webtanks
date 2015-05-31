@@ -1,14 +1,23 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<html>
-	<head>
+
+{% block title %}Синглплеер{% endblock %}
+
+{% block header %}
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<form action="/webtanks/chmod/num/win/" method="post" name="win">
+	<input type="hidden" name="redirect"></form>
+	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
+	<input type="hidden" name="redirect"></form>
 	<script src='{% static 'webtanks/change.js' %}'></script>
 	<script src='{% static 'webtanks/whatKey.js' %}'></script>
 	<script src='{% static 'webtanks/flight.js' %}'></script>
 	<script src='{% static 'webtanks/bot.js' %}'></script>
 	<script src='{% static 'webtanks/botchange.js' %}'></script>
 	<script src='{% static 'webtanks/shoot.js' %}'></script>
+	<script src='{% static 'webtanks/tank.js' %}'></script>
+	<script src='{% static 'webtanks/tankshoot.js' %}'></script>
 	<script>
 	var tank = new Image();
  	var oldBack = new Image();
@@ -141,31 +150,21 @@
 		//setInterval(function() {change(nums, XT, YT)}, 1);
 		
 	}
-
+	window.onload = game;
         </script>
-	</head>
-	<style>
-   	html, body {
-    	overflow-y: hidden;
-   	}
-  	</style>
-	<body onload="game()">
-	<body style="background:#FE9A2E">
-		<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">
-      		<font size="7">WEBTANKS</font>
-    	</div>
-    	<canvas id='example' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas>
-		<canvas id='walls' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='bull' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='1' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='2' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='3' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='4' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='5' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='6' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='7' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='8' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='9' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-		<canvas id='10' width="1034" height="730" style="position: fixed; left: 270; top: 10;"></canvas> 
-    	</body>
-</html>
+{% endblock %}
+{% block content %}
+    	<canvas id='example' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='walls' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='bull' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='1' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='2' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='3' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas> 
+		<canvas id='4' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='5' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='6' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='7' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='8' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='9' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+		<canvas id='10' width="1034" height="730" style="position: fixed; left: 270; top: 0;"></canvas>
+{% endblock %}

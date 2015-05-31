@@ -1,23 +1,21 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<html>
-<style>
-   .b1 {
-    background: gray;
-    color: white;
-    font-size: 40pt;
-   }
-</style>
-<body style="background:#FE9A2E">
+
+{% block title %}Режим игры{% endblock %}
+
+{% block content %}
 <div style="display: table; margin: 0 auto; padding: 3em 0; text-align: center;">
 <form action="/webtanks/chmod/" method="post">
-    <p><label for="num"><font size="10" color="black" face="Calibri">Choose a type of the game: </font></label></p>
-    <p><input id="num" type="radio" name="num" value="1" checked><font size="5" color="navy" face="Arial">Single player</font>
-    <input id="num" type="radio" name="num" value="0"><font size="5" color="navy" face="Arial">Multiplayer</font></p> 
-    <input type="submit" class="b1" value="OK">
+    <p><label for="num"><font size="8" color="black" face="Calibri">Выберите режим игры: </font></label></p>
+    <p>
+    <div style="display: table; margin: 0 auto; padding: 2em 0; text-align: center;">
+	<input type="radio" class="radio" id="radio1" name="num" value="1" checked>
+	<label for="radio1"><font size="5" color="black" face="Ariel">Одиночная игра </font></label>
+    <input type="radio" class="radio" id="radio2" name="num" value="0">
+	<label for="radio2"><font size="5" color="black" face="Ariel">Мультиплеер</font></label>
+	</p> 
+	</div>
+    <input type="submit" value="OK">
 </form>
 </div>
-<div style="display: table; margin: 0 auto; padding: 28em 0">
-      <font size="5" color="navy" face="Calibri">DCAM 371</font>
-</div>
-</body>
-</html>
+{% endblock %}

@@ -1,27 +1,16 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<html>
-<style>
-   .b1 {
-    background: gray;
-    color: white;
-    font-size: 40pt;
-   }
-</style>
-<style>
-   	html, body {
-    	overflow-y: hidden;
-   	}
- </style>
-<body style="background:#FE9A2E">
+
+{% block title %}Количество ботов{% endblock %}
+
+{% block content %}
 <div style="display: table; margin: 0 auto; padding: 3em 0; text-align: center;">
 <form action="/webtanks/chmod/num/" method="post">
-    <p><label for="num"><font size="10" color="black" face="Calibri">Choose a number of bots: </font></label></p>
+    <p><label for="num"><font size="8" color="black" face="Calibri">Выберите количество ботов: </font></label></p>
+    <div style="display: table; margin: 0 auto; padding: 2em 0; text-align: center;">
     <p><input id="num" type="number" name="num" min="0" max="10" value="2" size="4"></p>
+    </div>
     <input type="submit" class="b1" value="OK">
 </form>
 </div>
-<div style="display: table; margin: 0 auto; padding: 28.15em; text-align: center;">
-	<font size="5" color="navy" face="Calibri">DCAM 371</font>
-</div>
-</body>
-</html>
+{% endblock %}

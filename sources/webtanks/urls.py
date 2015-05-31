@@ -40,6 +40,8 @@ urlpatterns = [
 	url(r'^chmod/fl/$', views.fl),
 	url(r'^chmod/con/getkey/$', views.getkey),
 	url(r'^chmod/getkey/$', views.getkey),
+	url(r'^chmod/con/breakwall/$', views.oppbreakwall),
+	url(r'^chmod/breakwall/$', views.oppbreakwall),
 	url(r'^chmod/num/breakwall/$', views.breakwall),
 	url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='auth_login'),
 	url(r'^logout/$', auth_views.logout, {'template_name': 'registration/logout.html'}, name='auth_logout'),

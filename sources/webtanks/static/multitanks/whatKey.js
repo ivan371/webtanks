@@ -11,8 +11,6 @@ function send_for_pressing(keydata, numchange) {
  					YT = arr[2];
  					Xs[0] = arr[1];
  					Ys[0] = arr[2];
- 					Xt = XT;
-					Yt = YT;
  					if(type==1)
  					{
  	   					ctx.fillStyle = '#FFC552';
@@ -53,8 +51,6 @@ function send_for_pressing_op(keydata, numchange) {
  					YT = arr[2];
  					Xs[0] = arr[1];
  					Ys[0] = arr[2];
- 					Xt = XT;
-					Yt = YT;
  					if(type==1)
  					{
  	   					ctx.fillStyle = '#FFC552';
@@ -101,15 +97,19 @@ function KeyOpp(evt)
 		who = 0;
 		switch (evt) {
 		case 37:
+			button = 1;
 			send_for_pressing_op(1, 1)
 		break;
 	    case 39:
+	    	button = 2;
 			send_for_pressing_op(2, 2)
 		break;
 	    case 40:
+	    	button = 3;
 			send_for_pressing_op(3, 4)
         break;
       	case 38:
+      		button = 4;
 			send_for_pressing_op(4, 3)
         break;
  		case 32:
@@ -119,6 +119,7 @@ function KeyOpp(evt)
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){
+ 	  				var flag = button;
  					type = arr[0];
  					fX = arr[1];
  					fY = arr[2];
@@ -135,9 +136,29 @@ function KeyOpp(evt)
  						//}
  						
  						//window.preventDefault();
- 						t = timeid;
+ 						/*t = timeid;
  						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
- 						timeid++;
+ 						timeid++;*/
+ 						switch(flag)
+ 						{
+ 							case 1:
+ 								X = XT + 5;
+ 								Y = YT + 11;
+ 								break;
+ 							case 2:
+ 								X = XT - 5;
+ 								Y = YT + 11;
+ 								break;
+ 							case 3:
+ 								X = XT + 11;
+ 								Y = YT - 5;
+ 								break;
+ 							case 4:
+ 								X = XT + 11;
+ 								Y = YT + 5;
+ 								break;
+ 						}
+ 						shoot(flag, X, Y, 0);
  					}
  					else
  					{
@@ -176,15 +197,19 @@ function whatKey(evt) {
 		who = 1;
 		switch (evt.keyCode) {
 		case 37:
+			button = 1;
 			send_for_pressing(1, 1)
 		break;
 	    case 39:
+	    	button = 2;
 			send_for_pressing(2, 2)
 		break;
 	    case 40:
+	    	button = 3;
 			send_for_pressing(3, 4)
         break;
       	case 38:
+      		button = 4;
 			send_for_pressing(4, 3)
         break;
  		case 32:
@@ -194,6 +219,7 @@ function whatKey(evt) {
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){
+ 	  				var flag = button;
  					type = arr[0];
  					fX = arr[1];
  					fY = arr[2];
@@ -210,9 +236,29 @@ function whatKey(evt) {
  						//}
  						
  						//window.preventDefault();
- 						t = timeid;
+ 						/*t = timeid;
  						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
- 						timeid++;
+ 						timeid++;*/
+ 						switch(flag)
+ 						{
+ 							case 1:
+ 								X = XT + 5;
+ 								Y = YT + 9;
+ 								break;
+ 							case 2:
+ 								X = XT - 5;
+ 								Y = YT + 7;
+ 								break;
+ 							case 3:
+ 								X = XT + 7;
+ 								Y = YT - 5;
+ 								break;
+ 							case 4:
+ 								X = XT + 7;
+ 								Y = YT + 5;
+ 								break;
+ 						}
+ 						shoot(flag, X, Y, 0);
  					}
  					else
  					{

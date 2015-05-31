@@ -1,0 +1,136 @@
+function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
+{
+		//alert(Xt);
+		//alert(X);
+		if(X - 15 <= Xt && X + 15 >= Xt && Y - 15 <= Yt && Y + 15 >= Yt)
+		{
+			//alert("YOU LOSE");
+			/*$.ajax({
+					type: 'POST',
+					url: "lose/",
+					error: function(xhr, errmsg, err){
+						alert(xhr.status + ": " + xhr.responseText);
+					}	
+				});*/
+			document.forms["lose"].submit();
+			document.location.href = '/static/webtanks/LOSE.html'
+		}
+		if(hex != 808080)
+		{
+			if(hex == "BCF4FF")
+			{
+				if(flag == 1) 
+				{
+					dtx.clearRect(X, Y, 24, 24);
+					wtx.clearRect(X-10, Y-10, 24, 24);
+					$.ajax({
+	  				type: 'POST',
+	  				url: "breakwall/",
+					data: {'X': X,
+						'Y': Y,
+						'kind': flag},
+					dataType: 'json',
+					error: function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+ 					}
+				});
+				}
+				if(flag == 2) 
+				{
+					dtx.clearRect(X-5, Y, 24, 24);
+					wtx.clearRect(X+5, Y-10, 24, 24);
+					$.ajax({
+	  				type: 'POST',
+	  				url: "breakwall/",
+					data: {'X': X,
+						'Y': Y,
+						'kind': flag},
+					dataType: 'json',
+					error: function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+ 					}
+				});
+				}
+				if(flag == 3)
+				{
+					dtx.clearRect(X, Y-5, 24, 24);
+					wtx.clearRect(X-10, Y+1, 24, 24);
+					$.ajax({
+	  				type: 'POST',
+	  				url: "breakwall/",
+					data: {'X': X+2,
+						'Y': Y+6,
+						'kind': flag},
+					dataType: 'json',
+					error: function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+ 					}
+				});
+				}
+				if(flag == 4) 
+				{
+					dtx.clearRect(X, Y, 24, 24);
+					wtx.clearRect(X-1, Y-5, 24, 24);
+					$.ajax({
+	  				type: 'POST',
+	  				url: "breakwall/",
+					data: {'X': X+7,
+						'Y': Y,
+						'kind': flag},
+					dataType: 'json',
+					error: function(xhr, errmsg, err){
+ 						alert(xhr.status + ": " + xhr.responseText);
+ 					}
+				});
+				}
+			}			
+			else
+			{
+				var img_data = wtx.getImageData(X + XImageData, Y + YImageData, 1, 1).data;
+    				var R = img_data[0];
+    				var G = img_data[1];
+    				var B = img_data[2];  
+    				var rgb = R + ',' + G + ',' + B;
+    				// конвертируем из RGB в HEX
+    				var hex = rgbToHex(R,G,B);
+				dtx.clearRect(X-5, Y-5, 20, 20); 
+				if(bulnum == 0)
+				{	   					
+					newimg.src = bul1;
+					bulnum = 1;
+				}      			
+				else
+				{
+					newimg.src = bul2;
+					bulnum = 0;
+				}				
+				newimg.onload = function(){
+					dtx.drawImage(newimg, 0, 0, 280, 280, X, Y, 5, 5);
+				}
+				setTimeout(function(){shoot(flag, X + XTimeout, Y + YTimeout, hex)}, 20);
+			}
+		}
+		else
+		{
+			dtx.clearRect(X-5, Y-5, 20, 20);
+		}
+}
+
+function shoot(flag, X, Y, hex)
+{
+	switch(flag)
+	{
+		case 1:
+			shootcase(0, 0, - 5, 0, 1, X, Y, hex)
+			break;
+		case 2:
+			shootcase(24, 0, 5, 0, 2, X, Y, hex)
+			break;
+		case 3:
+			shootcase(0, 24, 0, 5, 3, X, Y, hex)
+			break;
+		case 4:
+			shootcase(0, 0, 0, -5, 4, X, Y, hex)
+			break;
+	}		
+}
