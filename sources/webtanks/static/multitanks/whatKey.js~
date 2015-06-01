@@ -252,7 +252,7 @@ function whatKey(evt) {
  								break;
  							case 3:
  								X = XT + 7;
- 								Y = YT - 5;
+ 								Y = YT + 5;
  								break;
  							case 4:
  								X = XT + 7;

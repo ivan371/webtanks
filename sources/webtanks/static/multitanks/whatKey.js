@@ -247,12 +247,12 @@ function whatKey(evt) {
  								Y = YT + 9;
  								break;
  							case 2:
- 								X = XT - 5;
+ 								X = XT + 5;
  								Y = YT + 7;
  								break;
  							case 3:
  								X = XT + 7;
- 								Y = YT - 5;
+ 								Y = YT + 5;
  								break;
  							case 4:
  								X = XT + 7;
