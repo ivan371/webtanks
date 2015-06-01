@@ -13,9 +13,9 @@ function send_for_pressing(keydata, numchange) {
  					Ys[0] = arr[2];
  					if(type==1)
  					{
- 	   					ctx.fillStyle = '#FFC552';
-        						ctx.rect(XT, YT, 24, 24);
-         					ctx.fill();
+ 	   					//ctx.fillStyle = '#FFC552';
+        					//	ctx.rect(XT, YT, 24, 24);
+         					//ctx.fill();
 						if (nums != numchange)
  						{
 							change(numchange, XT, YT);
@@ -53,9 +53,9 @@ function send_for_pressing_op(keydata, numchange) {
  					Ys[0] = arr[2];
  					if(type==1)
  					{
- 	   					ctx.fillStyle = '#FFC552';
-        						ctx.rect(XT, YT, 24, 24);
-         					ctx.fill();
+ 	   					//ctx.fillStyle = '#FFC552';
+        					//	ctx.rect(XT, YT, 24, 24);
+         					//ctx.fill();
 						if (nums != numchange)
  						{
 							change(numchange, XT, YT);
