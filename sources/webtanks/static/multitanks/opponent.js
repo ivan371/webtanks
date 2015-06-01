@@ -57,7 +57,8 @@ function opponentf()
 			}
 			if(type == 0)
 			{
-				clearInterval(opptime);			
+				clearInterval(opptime);
+				document.forms["lose"].submit();			
 			}
 			//alert(type);
 		},

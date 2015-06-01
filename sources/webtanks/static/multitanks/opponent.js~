@@ -30,6 +30,11 @@ function opponentf()
 					//alert(77);
 					KeyOpp(38);
 				}
+				if(key == 5)
+				{
+					//alert(77);
+					KeyOpp(32);
+				}
 				/*else
 				{
 				switch(key)
@@ -52,6 +57,7 @@ function opponentf()
 			}
 			if(type == 0)
 			{
+				lose();
 				clearInterval(opptime);			
 			}
 			//alert(type);

@@ -1,8 +1,8 @@
-function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
+function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex, kind)
 {
 		//alert(Xt);
 		//alert(X);
-		if(X - 15 <= Xt && X + 15 >= Xt && Y - 15 <= Yt && Y + 15 >= Yt)
+		/*if(X - 15 <= Xt && X + 15 >= Xt && Y - 15 <= Yt && Y + 15 >= Yt)
 		{
 			//alert("YOU LOSE");
 			/*$.ajax({
@@ -12,9 +12,10 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 						alert(xhr.status + ": " + xhr.responseText);
 					}	
 				});*/
-			document.forms["lose"].submit();
+		/*	document.forms["lose"].submit();
 			document.location.href = '/static/webtanks/LOSE.html'
-		}
+		}*/
+		win(X, Y, );
 		if(hex != 808080)
 		{
 			if(hex == "BCF4FF")
@@ -70,11 +71,11 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 				if(flag == 4) 
 				{
 					dtx.clearRect(X, Y, 24, 24);
-					wtx.clearRect(X-1, Y-5, 24, 24);
+					wtx.clearRect(X-10, Y-5, 24, 24);
 					$.ajax({
 	  				type: 'POST',
 	  				url: "breakwall/",
-					data: {'X': X+7,
+					data: {'X': X,
 						'Y': Y,
 						'kind': flag},
 					dataType: 'json',
@@ -107,7 +108,7 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 				newimg.onload = function(){
 					dtx.drawImage(newimg, 0, 0, 280, 280, X, Y, 5, 5);
 				}
-				setTimeout(function(){shoot(flag, X + XTimeout, Y + YTimeout, hex)}, 20);
+				setTimeout(function(){shoot(flag, X + XTimeout, Y + YTimeout, hex, kind)}, 20);
 			}
 		}
 		else
@@ -116,21 +117,21 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex)
 		}
 }
 
-function shoot(flag, X, Y, hex)
+function shoot(flag, X, Y, hex, kind)
 {
 	switch(flag)
 	{
 		case 1:
-			shootcase(0, 0, - 5, 0, 1, X, Y, hex)
+			shootcase(0, 0, - 5, 0, 1, X, Y, hex, kind)
 			break;
 		case 2:
-			shootcase(24, 0, 5, 0, 2, X, Y, hex)
+			shootcase(24, 0, 5, 0, 2, X, Y, hex, kind)
 			break;
 		case 3:
-			shootcase(0, 24, 0, 5, 3, X, Y, hex)
+			shootcase(0, 24, 0, 5, 3, X, Y, hex, kind)
 			break;
 		case 4:
-			shootcase(0, 0, 0, -5, 4, X, Y, hex)
+			shootcase(0, 0, 0, -5, 4, X, Y, hex, kind)
 			break;
 	}		
 }

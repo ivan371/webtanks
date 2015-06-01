@@ -34,6 +34,8 @@ urlpatterns = [
 	url(r'^chmod/con/$', views.con),
 	url(r'^chmod/con/tr1/$', views.tr1),
 	url(r'^chmod/tr1/$', views.tr1),
+	url(r'^chmod/con/isend/$', views.isend),
+	url(r'^chmod/isend/$', views.isend),
 	url(r'^chmod/con/tr2/$', views.tr2),
 	url(r'^chmod/tr2/$', views.tr2),
 	url(r'^chmod/con/fl/$', views.fl),

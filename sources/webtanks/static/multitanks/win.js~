@@ -1,0 +1,36 @@
+function win(X, Y, kind)
+{
+	/*var res;
+	$.ajax({
+	  	type: 'POST',
+	  	url: "isend/",
+		dataType: 'json',
+		success: function(tmp){res = tmp;},
+		error: function(xhr, errmsg, err){
+ 			alert(xhr.status + ": " + xhr.responseText);
+ 		}
+	});
+	if(res == 1)
+	{
+		clearInterval(opptime);
+		document.forms["lose"].submit();			
+	}
+	else
+	{*/
+		if (kind == 0)
+		{
+			if(X - 15 <= XT && X + 15 >= XT && Y - 15 <= YT && Y + 15 >= YT)
+			{
+				document.forms["lose"].submit();
+			}
+		}
+		else
+		{
+			if(X - 15 <= XO && X + 15 >= XO && Y - 15 <= YO && Y + 15 >= YO)
+			{
+				document.forms["win"].submit();
+			}
+		}
+	//}
+}
+

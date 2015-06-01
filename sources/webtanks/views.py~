@@ -64,6 +64,7 @@ def list_users(request):
 		__main__.request12 = 0
 		__main__.request21 = 0
 		__main__.request22 = 0
+		__main__.live = 1
 		__main__.oldfield = field()
 		__main__.oldfield.createTank(120, 690)
 		__main__.oldfield.createOpp(120, 120)
@@ -239,9 +240,22 @@ def numbots(request):
 		return render(request, 'webtanks/newtanks.html')
 
 @csrf_exempt
+def isend(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		if(__main__.live = 1):
+			res = 0
+		else:
+			res = 1
+		return HttpResponse (json.dumps(res), content_type="application/json")		
+
+@csrf_exempt
 def win(request):
 	c = {}
 	c.update(csrf(request))
+	__main__.live = 0
 	if request.method == 'POST':	
 		return render(request,'webtanks//WIN.html')
 

@@ -13,9 +13,9 @@ function send_for_pressing(keydata, numchange) {
  					Ys[0] = arr[2];
  					if(type==1)
  					{
- 	   					ctx.fillStyle = '#FFC552';
-        						ctx.rect(XT, YT, 24, 24);
-         					ctx.fill();
+ 	   					//ctx.fillStyle = '#FFC552';
+        					//	ctx.rect(XT, YT, 24, 24);
+         					//ctx.fill();
 						if (nums != numchange)
  						{
 							change(numchange, XT, YT);
@@ -47,8 +47,8 @@ function send_for_pressing_op(keydata, numchange) {
  				dataType: 'json',
  	  			success: function(arr){
  					type = arr[0];
- 					XT = arr[1];
- 					YT = arr[2];
+ 					XO = arr[1];
+ 					YO = arr[2];
  					Xs[0] = arr[1];
  					Ys[0] = arr[2];
  					if(type==1)
@@ -58,12 +58,12 @@ function send_for_pressing_op(keydata, numchange) {
          					//ctx.fill();
 						if (nums != numchange)
  						{
-							change(numchange, XT, YT);
+							change(numchange, XO, YO);
 							nums = numchange;
  						}
  						else
  						{
-							change(numchange + 4, XT, YT);
+							change(numchange + 4, XO, YO);
 							nums = numchange + 4;
  						}
  					}
@@ -125,8 +125,8 @@ function KeyOpp(evt)
  					fX = arr[1];
  					fY = arr[2];
  					num = arr[3];
- 					XT = arr[4];
- 					YT = arr[5];
+ 					XO = arr[4];
+ 					YO = arr[5];
  					Xs[0] = arr[4];
  					Ys[0] = arr[5];
  					if(type==2)
@@ -143,23 +143,23 @@ function KeyOpp(evt)
  						switch(flag)
  						{
  							case 1:
- 								X = XT + 5;
- 								Y = YT + 11;
+ 								X = XO + 5;
+ 								Y = YO + 11;
  								break;
  							case 2:
- 								X = XT - 5;
- 								Y = YT + 11;
+ 								X = XO - 5;
+ 								Y = YO + 11;
  								break;
  							case 3:
- 								X = XT + 11;
- 								Y = YT - 5;
+ 								X = XO + 11;
+ 								Y = YO - 5;
  								break;
  							case 4:
- 								X = XT + 11;
- 								Y = YT + 5;
+ 								X = XO + 11;
+ 								Y = YO + 5;
  								break;
  						}
- 						shoot(flag, X, Y, 0);
+ 						shoot(flag, X, Y, 0, 1);
  					}
  					else
  					{
@@ -259,7 +259,7 @@ function whatKey(evt) {
  								Y = YT + 5;
  								break;
  						}
- 						shoot(flag, X, Y, 0);
+ 						shoot(flag, X, Y, 0, 0);
  					}
  					else
  					{
