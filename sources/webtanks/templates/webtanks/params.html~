@@ -7,7 +7,7 @@
 <div style="display: table; margin: 0 auto; padding: 3em 0; text-align: center;">
 <form action="/webtanks/chmod/num/" method="post">
     <p><label for="num"><font size="8" color="black" face="Calibri">Выберите количество ботов: </font></label></p>
-    <div style="display: table; margin: 0 auto; padding: 2em 0; text-align: center;">
+    <div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">
     <p><input id="num" type="number" name="num" min="0" max="10" value="2" size="4"></p>
     </div>
     <input type="submit" class="b1" value="OK">

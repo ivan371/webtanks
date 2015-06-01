@@ -134,7 +134,7 @@ class RegistrationProfile(models.Model):
 		email_message.send()
 
 class Rating(models.Model):
-	who = models.ForeignKey(User)
+	who = models.ForeignKey(User, blank=True, null=True)
 	rating = models.IntegerField(default=0)
 	
 class Field(models.Model):
