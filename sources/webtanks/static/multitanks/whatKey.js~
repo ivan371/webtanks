@@ -1,8 +1,16 @@
 function send_for_pressing(keydata, numchange) {
-			datakey = keydata,
+			datakey = keydata;
+			if(whois == 1)
+			{
+				var str = "tr1/";
+			}
+			else
+			{
+				var str = "tr3/";
+			}
  			$.ajax({
  	  			type: 'POST',
- 	  			url: "tr1/",
+ 	  			url: str,
 	  			data: {'name': keydata,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -39,10 +47,18 @@ function send_for_pressing(keydata, numchange) {
 }
 
 function send_for_pressing_op(keydata, numchange) {
-			datakey = keydata,
+			datakey = keydata;
+			if(whois == 1)
+			{
+				var str = "tr2/";
+			}
+			else
+			{
+				var str = "tr4/";
+			}
  			$.ajax({
  	  			type: 'POST',
- 	  			url: "tr2/",
+ 	  			url: str,
 	  			data: {'name': keydata,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -79,6 +95,14 @@ function send_for_pressing_op(keydata, numchange) {
 }
 function KeyOpp(evt)
 {
+		if(whois == 1)
+		{
+			var str = "tr2/";
+		}
+		else
+		{
+			var str = "tr4/";
+		}
 		//alert(66);
         oldBack = back;
 		var type = 0;
@@ -116,7 +140,7 @@ function KeyOpp(evt)
  		case 32:
  			$.ajax({
  	  			type: 'POST',
- 	  			url: "tr2/",
+ 	  			url: str,
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -159,7 +183,7 @@ function KeyOpp(evt)
  								Y = YO + 5;
  								break;
  						}
- 						shoot(flag, X, Y, 0, 1);
+ 						shoot(flag, X, Y, 0, 0);
  					}
  					else
  					{
@@ -180,6 +204,14 @@ function KeyOpp(evt)
 }
 
 function whatKey(evt) {
+		if(whois == 1)
+		{
+			var str = "tr1/";
+		}
+		else
+		{
+			var str = "tr3/";
+		}
         oldBack = back;
 		var type = 0;
 		var fX = 0;
@@ -216,7 +248,7 @@ function whatKey(evt) {
  		case 32:
  			$.ajax({
  	  			type: 'POST',
- 	  			url: "tr1/",
+ 	  			url: str,
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -247,7 +279,7 @@ function whatKey(evt) {
  								Y = YT + 9;
  								break;
  							case 2:
- 								X = XT - 5;
+ 								X = XT + 5;
  								Y = YT + 7;
  								break;
  							case 3:
@@ -259,7 +291,7 @@ function whatKey(evt) {
  								Y = YT + 5;
  								break;
  						}
- 						shoot(flag, X, Y, 0, 0);
+ 						shoot(flag, X, Y, 0, 1);
  					}
  					else
  					{

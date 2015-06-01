@@ -51,6 +51,9 @@ def index(request):
 		except:
 			__main__.numthread = 0
 			__main__.t = []
+			#__main__.t[__main__.numthread].append(threading.Thread(target=switchmod, args=(request)))
+			#__main__.t[__main__.numthread].start()
+			#	__main__.t[__main__.numthread].join()
 		__main__.numthread = __main__.numthread + 1
 		return render(request, 'webtanks/switch_mod.html')
 		
@@ -135,18 +138,22 @@ def getkey(request):
 	arr = [2, 0]
 	#t = Field.objects.get(field_id = request.session['field'])
 	if(__main__.user1 == str(request.user)):
+		while(__main__.request11 == 0):
+			a = 0		
 		if(__main__.request11 == 1):
 			arr[0] = 1
 			arr[1] = __main__.request12
 			__main__.request11 = 0
 			#t.save()
 	else:
+		while(__main__.request21 == 0):
+			a = 0
 		if(__main__.request21 == 1):
 			arr[0] = 1
 			arr[1] = __main__.request22
 			__main__.request21 = 0
 			#t.save()
-	print(arr[0])
+	print threading.activeCount()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
@@ -261,12 +268,21 @@ def isend(request):
 		return HttpResponse (json.dumps(res), content_type="application/json")		
 
 @csrf_exempt
-def win(request):
+def multiwin(request):
 	c = {}
 	c.update(csrf(request))
 	__main__.live = 0
+	t = Field.objects.filter(field_id = request.session['field'])
+	t.delete()
 	if request.method == 'POST':	
-		return render(request,'webtanks//WIN.html')
+		return render(request,'webtanks/WIN.html')
+
+@csrf_exempt
+def win(request):
+	c = {}
+	c.update(csrf(request))
+	if request.method == 'POST':	
+		return render(request,'webtanks/WIN.html')
 
 @csrf_exempt
 def lose(request):
@@ -282,6 +298,20 @@ def numbot(request):
 	POST = request.POST  
 	if request.method == 'POST':
 		res = __main__.res
+		return HttpResponse (json.dumps(res), content_type="application/json")		
+
+
+
+@csrf_exempt
+def who(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		if(__main__.user1 == str(request.user)):
+			res = 0
+		else:
+			res = 1
 		return HttpResponse (json.dumps(res), content_type="application/json")		
 
 

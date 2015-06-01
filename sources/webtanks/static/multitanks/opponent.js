@@ -54,11 +54,12 @@ function opponentf()
 						break;
 				}
 				}*/
+				opponentf();
 			}
 			if(type == 0)
 			{
-				clearInterval(opptime);
-				document.forms["lose"].submit();			
+				return;
+				clearInterval(opptime);			
 			}
 			//alert(type);
 		},

@@ -57,7 +57,6 @@ function opponentf()
 			}
 			if(type == 0)
 			{
-				lose();
 				clearInterval(opptime);			
 			}
 			//alert(type);
