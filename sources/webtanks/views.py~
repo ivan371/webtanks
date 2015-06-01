@@ -96,7 +96,7 @@ def list_users(request):
 			"</div>")
 		t = Rating.objects.all()
 		for result in t:
-			f.write('<div style="display: table; margin: 0 auto; padding: 5 px; text-align: center;"><font size="5" color="navy" face="Arial">')
+			f.write('<div style="display: table; margin: 0 auto; padding: 5px; text-align: center;"><font size="5" color="navy" face="Arial">')
 			f.write(str(result.who))
 			f.write(" - ")
 			f.write(str(result.rating))
@@ -145,12 +145,16 @@ def getkey(request):
 	arr = [2, 0]
 	#t = Field.objects.get(field_id = request.session['field'])
 	if(__main__.user1 == str(request.user)):
+		while(__main__.request11 == 0):
+			a = 0		
 		if(__main__.request11 == 1):
 			arr[0] = 1
 			arr[1] = __main__.request12
 			__main__.request11 = 0
 			#t.save()
 	else:
+		while(__main__.request21 == 0):
+			a = 0
 		if(__main__.request21 == 1):
 			arr[0] = 1
 			arr[1] = __main__.request22
@@ -377,6 +381,16 @@ def breakwall(request):
 	c.update(csrf(request))	
 	return __main__.newfield.breakwall(request)
 	
+@csrf_exempt
+def gettank(request):
+	c = {}
+	c.update(csrf(request))	
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.newfield.Xtanks[0]
+		arr[1] = __main__.newfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")	
+		
 @csrf_exempt
 def oppbreakwall(request):
 	c = {}
