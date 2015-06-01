@@ -14,6 +14,7 @@
 	<script src='{% static 'multitanks/whatKey.js' %}'></script>
 	<script src='{% static 'multitanks/flight.js' %}'></script>
 	<script src='{% static 'multitanks/opponent.js' %}'></script>
+	<script src='{% static 'multitanks/chop.js' %}'></script>
 	<script src='{% static 'multitanks/shoot.js' %}'></script>
 	<script src='{% static 'multitanks/bot.js' %}'></script>
 	<script src='{% static 'multitanks/win.js' %}'></script>
@@ -140,7 +141,7 @@
  			});
 		window.addEventListener('keydown', whatKey, true);
 		//optime = setInterval(function() {putdraw()}, 50);
-		optime = setInterval(function() {opponentf()}, 500);
+		optime = setInterval(function() {opponentf()}, 20);
 	}
 	window.onload = game;
     	</script>

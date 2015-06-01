@@ -145,7 +145,6 @@ def getkey(request):
 	c.update(csrf(request))
 	arr = [2, 0, 2, 0, 0, 0]
 	#t = Field.objects.get(field_id = request.session['field'])
-<<<<<<< HEAD
 	#if(__main__.user1 == str(request.user)):
 		#while(__main__.request11 == 0):
 		#	a = 0		
@@ -154,8 +153,8 @@ def getkey(request):
 		arr[1] = __main__.request12
 		arr[2] = __main__.name
 		arr[3] = str(request.user)
-		arr[4] = __main__.newfield.Xtanks[0]
-		arr[5] = __main__.newfield.Ytanks[0]
+		arr[4] = __main__.oldfield.Xtanks[0]
+		arr[5] = __main__.oldfield.Ytanks[0]
 		print(__main__.newfield.Xtanks[0], __main__.newfield.Ytanks[0])
 		__main__.request11 = 0
 			#t.save()
@@ -173,26 +172,9 @@ def gotkey(request):
 		arr[1] = __main__.request22
 		arr[2] = __main__.name
 		arr[3] = str(request.user)
-		arr[4] = __main__.oldfield.Xtanks[0]
-		arr[5] = __main__.oldfield.Ytanks[0]
+		arr[4] = __main__.newfield.Xtanks[0]
+		arr[5] = __main__.newfield.Ytanks[0]
 		__main__.request21 = 0
-=======
-	if(__main__.user1 == str(request.user)):
-		while(__main__.request11 == 0):
-			a = 0		
-		if(__main__.request11 == 1):
-			arr[0] = 1
-			arr[1] = __main__.request12
-			__main__.request11 = 0
-			#t.save()
-	else:
-		while(__main__.request21 == 0):
-			a = 0
-		if(__main__.request21 == 1):
-			arr[0] = 1
-			arr[1] = __main__.request22
-			__main__.request21 = 0
->>>>>>> c144bb5d5b321f0e4b9f215267d4ffd5e0aabd92
 			#t.save()
 	#print threading.activeCount()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
@@ -455,6 +437,7 @@ def breakwall(request):
 def gettank(request):
 	c = {}
 	c.update(csrf(request))	
+	arr = [0, 0]
 	POST = request.POST  
 	if request.method == 'POST':
 		arr[0] = __main__.newfield.Xtanks[0]

@@ -1,0 +1,38 @@
+function chop(type, X, Y)
+{
+	switch (type){	//1 - up; //2 - down //3 - right // 4 - left
+			case 1:
+				newimg.src = b1;
+				break;
+			case 2:
+				newimg.src = b2;
+				break;
+			case 3:
+				newimg.src = b4;
+				break;
+			case 4:
+				newimg.src = b3;
+				break;
+			case 5:
+				newimg.src = b5;
+				break;
+			case 6:
+				newimg.src = b6;
+				break;
+			case 7:
+				newimg.src = b8;
+				break;
+			case 8:
+				newimg.src = b7;
+				break;
+			}
+			//ctx.clearRect(X-30, Y-30, 80, 80);
+			otx.clearRect(X-10, Y-10, 40, 40);
+			//alert(type);
+			//alert(X);
+			//alert(Y);
+			newimg.src = b2;
+			newimg.onload = function(){	
+				otx.drawImage(newimg, 100, 100, 800, 800, X, Y, 20, 20);
+			}
+}

@@ -19,7 +19,6 @@ function opponentf()
 				else{
 				if (nums != key)
  				{
- 					alert(1);
 					change(key, arr[4], arr[5]);
 					nums = key;
  				}
