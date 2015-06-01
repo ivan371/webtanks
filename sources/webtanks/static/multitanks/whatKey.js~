@@ -1,16 +1,8 @@
 function send_for_pressing(keydata, numchange) {
-			datakey = keydata;
-			if(whois == 1)
-			{
-				var str = "tr1/";
-			}
-			else
-			{
-				var str = "tr3/";
-			}
+			datakey = keydata,
  			$.ajax({
  	  			type: 'POST',
- 	  			url: str,
+ 	  			url: "tr1/",
 	  			data: {'name': keydata,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -47,18 +39,10 @@ function send_for_pressing(keydata, numchange) {
 }
 
 function send_for_pressing_op(keydata, numchange) {
-			datakey = keydata;
-			if(whois == 1)
-			{
-				var str = "tr2/";
-			}
-			else
-			{
-				var str = "tr4/";
-			}
+			datakey = keydata,
  			$.ajax({
  	  			type: 'POST',
- 	  			url: str,
+ 	  			url: "tr2/",
 	  			data: {'name': keydata,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -95,14 +79,6 @@ function send_for_pressing_op(keydata, numchange) {
 }
 function KeyOpp(evt)
 {
-		if(whois == 1)
-		{
-			var str = "tr2/";
-		}
-		else
-		{
-			var str = "tr4/";
-		}
 		//alert(66);
         oldBack = back;
 		var type = 0;
@@ -140,7 +116,7 @@ function KeyOpp(evt)
  		case 32:
  			$.ajax({
  	  			type: 'POST',
- 	  			url: str,
+ 	  			url: "tr2/",
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){
@@ -204,14 +180,6 @@ function KeyOpp(evt)
 }
 
 function whatKey(evt) {
-		if(whois == 1)
-		{
-			var str = "tr1/";
-		}
-		else
-		{
-			var str = "tr3/";
-		}
         oldBack = back;
 		var type = 0;
 		var fX = 0;
@@ -248,7 +216,7 @@ function whatKey(evt) {
  		case 32:
  			$.ajax({
  	  			type: 'POST',
- 	  			url: str,
+ 	  			url: "tr1/",
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){

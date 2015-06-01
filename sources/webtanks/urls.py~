@@ -29,22 +29,21 @@ urlpatterns = [
 	url(r'^chmod/num/lose/$', views.lose),
 	url(r'^chmod/num/shot/$', views.shot),
 	url(r'^chmod/num/users/$', views.users),
-	url(r'^chmod/num/getsess/$', views.getsess),
 	url(r'^chmod/$', views.switchmod),
 	url(r'^chmod/num/users/choose/$', views.choose),
 	url(r'^chmod/con/$', views.con),
-	url(r'^chmod/con/tr1/$', views.tr1),
-	url(r'^chmod/tr1/$', views.tr1),
+	url(r'^chmod/con/tr1/$', views.tr1), #us1
+	url(r'^chmod/tr1/$', views.tr), #us2
 	url(r'^chmod/con/who/$', views.who),
 	url(r'^chmod/who/$', views.who),
 	url(r'^chmod/con/isend/$', views.isend),
 	url(r'^chmod/isend/$', views.isend),
 	url(r'^chmod/con/tr2/$', views.tr2),
-	url(r'^chmod/tr2/$', views.tr2),
+	url(r'^chmod/tr2/$', views.tr2), 
 	url(r'^chmod/con/fl/$', views.fl),
 	url(r'^chmod/fl/$', views.fl),
-	url(r'^chmod/con/getkey/$', views.getkey),
-	url(r'^chmod/gotkey/$', views.getkey),
+	url(r'^chmod/con/getkey/$', views.gotkey), #us1
+	url(r'^chmod/getkey/$', views.getkey), #us2
 	url(r'^chmod/con/breakwall/$', views.oppbreakwall),
 	url(r'^chmod/breakwall/$', views.oppbreakwall),
 	url(r'^chmod/num/breakwall/$', views.breakwall),

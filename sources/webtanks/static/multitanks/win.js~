@@ -1,36 +1,29 @@
 function win(X, Y, kind)
 {
-	/*var res;
-	$.ajax({
-	  	type: 'POST',
-	  	url: "isend/",
-		dataType: 'json',
-		success: function(tmp){res = tmp;},
-		error: function(xhr, errmsg, err){
- 			alert(xhr.status + ": " + xhr.responseText);
- 		}
-	});
-	if(res == 1)
+	if (kind == 0)
 	{
-		clearInterval(opptime);
-		document.forms["lose"].submit();			
+		if(X - 15 <= XT && X + 15 >= XT && Y - 15 <= YT && Y + 15 >= YT)
+		{
+			document.forms["lose"].submit();
+		}
 	}
 	else
-	{*/
-		if (kind == 0)
+	{
+		if(X - 15 <= XO && X + 15 >= XO && Y - 15 <= YO && Y + 15 >= YO)
 		{
-			if(X - 15 <= XT && X + 15 >= XT && Y - 15 <= YT && Y + 15 >= YT)
-			{
-				document.forms["lose"].submit();
-			}
+			document.forms["win"].submit();
 		}
-		else
-		{
-			if(X - 15 <= XO && X + 15 >= XO && Y - 15 <= YO && Y + 15 >= YO)
-			{
-				document.forms["win"].submit();
-			}
-		}
-	//}
+	}
 }
 
+function putdraw()
+{
+	ctx.clearRect(0, 0, 1024, 690);
+	img.onload = function(){		
+		ctx.drawImage(img, 100, 100, 800, 800, XT, YT, 20, 20);
+	}
+	otx.clearRect(0, 0, 1024, 690);
+	back.onload = function(){	
+		otx.drawImage(back, 100, 100, 800, 800, XO, YO, 20, 20);
+	}
+}

@@ -28,6 +28,7 @@ function change(type, X, Y)
 				img.src = t8;
 				break;
 			}
+			//otx.clearRect(X-30, Y-30, 80, 80);
 			ctx.clearRect(X-10, Y-10, 40, 40);
       		img.onload = function(){		
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
@@ -37,33 +38,37 @@ function change(type, X, Y)
 		{
 			switch (type){	//1 - up; //2 - down //3 - right // 4 - left
 			case 1:
-				back.src = b1;
+				newimg.src = b1;
 				break;
 			case 2:
-				back.src = b2;
+				newimg.src = b2;
 				break;
 			case 3:
-				back.src = b4;
+				newimg.src = b4;
 				break;
 			case 4:
-				back.src = b3;
+				newimg.src = b3;
 				break;
 			case 5:
-				back.src = b5;
+				newimg.src = b5;
 				break;
 			case 6:
-				back.src = b6;
+				newimg.src = b6;
 				break;
 			case 7:
-				back.src = b8;
+				newimg.src = b8;
 				break;
 			case 8:
-				back.src = b7;
+				newimg.src = b7;
 				break;
 			}
+			//ctx.clearRect(X-30, Y-30, 80, 80);
 			otx.clearRect(X-10, Y-10, 40, 40);
-			back.onload = function(){	
-				otx.drawImage(back, 100, 100, 800, 800, X, Y, 20, 20);
+			alert(type);
+			alert(X);
+			alert(Y);
+			newimg.onload = function(){	
+				otx.drawImage(newimg, 100, 100, 800, 800, X, Y, 20, 20);
 			}
 		}
 	}

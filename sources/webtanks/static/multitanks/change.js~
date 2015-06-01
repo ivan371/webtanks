@@ -28,7 +28,8 @@ function change(type, X, Y)
 				img.src = t8;
 				break;
 			}
-			//ctx.clearRect(X-10, Y-10, 40, 40);
+			//otx.clearRect(X-30, Y-30, 80, 80);
+			ctx.clearRect(X-10, Y-10, 40, 40);
       		img.onload = function(){		
 				ctx.drawImage(img, 100, 100, 800, 800, X, Y, 20, 20);
 			}
@@ -61,7 +62,11 @@ function change(type, X, Y)
 				back.src = b7;
 				break;
 			}
+			//ctx.clearRect(X-30, Y-30, 80, 80);
 			otx.clearRect(X-10, Y-10, 40, 40);
+			alert(type);
+			alert(X);
+			alert(Y);
 			back.onload = function(){	
 				otx.drawImage(back, 100, 100, 800, 800, X, Y, 20, 20);
 			}

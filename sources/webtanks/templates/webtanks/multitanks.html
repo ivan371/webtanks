@@ -6,7 +6,7 @@
 {% block header %}
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<form action="/webtanks/chmod/num/win/" method="post" name="win">
+	<form action="/webtanks/chmod/num/multiwin/" method="post" name="win">
 	<input type="hidden" name="redirect"></form>
 	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
 	<input type="hidden" name="redirect"></form>
@@ -77,7 +77,9 @@
 	var optime;
 	var who = 1;
 	var button = 1;
+	var buttonOp = 1;
 	var whois = 0;
+	var login;
 	function game() {
 		/*$.ajax({
 			type: 'POST',
@@ -128,16 +130,17 @@
  	  			type: 'POST',
  	  			url: "who/",
  				dataType: 'json',
- 	  			success: function(res){
- 					whois = res;
+ 	  			success: function(arr){
+ 					whois = arr[0];
+ 					login = arr[1];
  	  			},
  				error: function(xhr, errmsg, err){
  						alert(xhr.status + ": " + xhr.responseText);
  					}
  			});
 		window.addEventListener('keydown', whatKey, true);
-		//optime = setInterval(function() {opponentf()}, 20);
-		opponentf();
+		//optime = setInterval(function() {putdraw()}, 50);
+		optime = setInterval(function() {opponentf()}, 500);
 	}
 	window.onload = game;
     	</script>

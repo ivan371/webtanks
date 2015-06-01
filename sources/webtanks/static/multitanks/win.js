@@ -16,3 +16,14 @@ function win(X, Y, kind)
 	}
 }
 
+function putdraw()
+{
+	ctx.clearRect(0, 0, 690, 1024);
+	img.onload = function(){		
+		ctx.drawImage(img, 100, 100, 800, 800, XT, YT, 20, 20);
+	}
+	otx.clearRect(0, 0, 1024, 690);
+	back.onload = function(){	
+		otx.drawImage(back, 100, 100, 800, 800, XO, YO, 20, 20);
+	}
+}
