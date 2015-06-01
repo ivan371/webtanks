@@ -96,7 +96,7 @@ def list_users(request):
 			'<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">'
 			'<label for=""num""><font size="6" color="black" face="Calibri">Список пользователей и их рейтинг: </font></label>'
 			"</div>")
-		t = Rating.objects.all()
+		t = Rating.objects.order_by("-rating")
 		for result in t:
 			f.write('<div style="display: table; margin: 0 auto; padding: 5px; text-align: center;"><font size="5" color="navy" face="Arial">')
 			f.write(str(result.who))
@@ -344,18 +344,29 @@ def multiwin(request):
 		Field.objects.get(field_id = request.session['field']).delete()
 	except:
 		a = 0
-	if request.method == 'POST':	
+	if request.method == 'POST':
+		f = Rating.objects.get(who = User.objects.get(username=str(request.user)))
+		f.rating = f.rating + 100
+		f.save()
 		return render(request,'webtanks/WIN.html')
 
 @csrf_exempt
 def win(request):
 	c = {}
 	c.update(csrf(request))
+<<<<<<< HEAD
 	try:
 		Field.objects.get(field_id = request.session['field']).delete()
 	except:
 		a = 0
 	if request.method == 'POST':	
+=======
+	if request.method == 'POST':
+		f = Rating.objects.filter(who = User.objects.get(username=str(request.user)))
+		for t in f:
+			t.rating = t.rating + 100
+			t.save()
+>>>>>>> 4bf811db277da925326c83c80be5e94244910b6e
 		return render(request,'webtanks/WIN.html')
 
 @csrf_exempt
@@ -382,8 +393,6 @@ def numbot(request):
 	if request.method == 'POST':
 		res = __main__.res
 		return HttpResponse (json.dumps(res), content_type="application/json")		
-
-
 
 @csrf_exempt
 def who(request):
