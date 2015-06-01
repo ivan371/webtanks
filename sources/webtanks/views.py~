@@ -145,6 +145,7 @@ def getkey(request):
 	c.update(csrf(request))
 	arr = [2, 0, 2, 0, 0, 0]
 	#t = Field.objects.get(field_id = request.session['field'])
+<<<<<<< HEAD
 	#if(__main__.user1 == str(request.user)):
 		#while(__main__.request11 == 0):
 		#	a = 0		
@@ -175,6 +176,23 @@ def gotkey(request):
 		arr[4] = __main__.oldfield.Xtanks[0]
 		arr[5] = __main__.oldfield.Ytanks[0]
 		__main__.request21 = 0
+=======
+	if(__main__.user1 == str(request.user)):
+		while(__main__.request11 == 0):
+			a = 0		
+		if(__main__.request11 == 1):
+			arr[0] = 1
+			arr[1] = __main__.request12
+			__main__.request11 = 0
+			#t.save()
+	else:
+		while(__main__.request21 == 0):
+			a = 0
+		if(__main__.request21 == 1):
+			arr[0] = 1
+			arr[1] = __main__.request22
+			__main__.request21 = 0
+>>>>>>> c144bb5d5b321f0e4b9f215267d4ffd5e0aabd92
 			#t.save()
 	#print threading.activeCount()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
@@ -433,6 +451,16 @@ def breakwall(request):
 	c.update(csrf(request))	
 	return __main__.newfield.breakwall(request)
 	
+@csrf_exempt
+def gettank(request):
+	c = {}
+	c.update(csrf(request))	
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.newfield.Xtanks[0]
+		arr[1] = __main__.newfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")	
+		
 @csrf_exempt
 def oppbreakwall(request):
 	c = {}

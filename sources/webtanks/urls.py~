@@ -42,9 +42,15 @@ urlpatterns = [
 	url(r'^chmod/tr2/$', views.tr2), 
 	url(r'^chmod/con/fl/$', views.fl),
 	url(r'^chmod/fl/$', views.fl),
+<<<<<<< HEAD
 	url(r'^chmod/con/getkey/$', views.gotkey), #us1
 	url(r'^chmod/getkey/$', views.getkey), #us2
+=======
+	url(r'^chmod/con/getkey/$', views.getkey),
+	url(r'^chmod/getkey/$', views.getkey),
+>>>>>>> c144bb5d5b321f0e4b9f215267d4ffd5e0aabd92
 	url(r'^chmod/con/breakwall/$', views.oppbreakwall),
+	url(r'^chmod/gettank/$', views.gettank),
 	url(r'^chmod/breakwall/$', views.oppbreakwall),
 	url(r'^chmod/num/breakwall/$', views.breakwall),
 	url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='auth_login'),

@@ -45,6 +45,7 @@ urlpatterns = [
 	url(r'^chmod/con/getkey/$', views.getkey), #us1
 	url(r'^chmod/getkey/$', views.gotkey), #us2
 	url(r'^chmod/con/breakwall/$', views.oppbreakwall),
+	url(r'^chmod/num/gettank/$', views.gettank),
 	url(r'^chmod/breakwall/$', views.oppbreakwall),
 	url(r'^chmod/num/breakwall/$', views.breakwall),
 	url(r'^login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='auth_login'),
