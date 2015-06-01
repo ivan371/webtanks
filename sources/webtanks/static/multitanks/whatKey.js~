@@ -79,6 +79,7 @@ function send_for_pressing_op(keydata, numchange) {
 }
 function KeyOpp(evt)
 {
+		alert(66);
         oldBack = back;
 		var type = 0;
 		var fX = 0;
@@ -247,7 +248,7 @@ function whatKey(evt) {
  								break;
  							case 2:
  								X = XT - 5;
- 								Y = YT + 9;
+ 								Y = YT + 7;
  								break;
  							case 3:
  								X = XT + 7;

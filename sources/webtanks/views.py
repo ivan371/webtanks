@@ -60,10 +60,16 @@ def list_users(request):
 	c = {}
 	c.update(csrf(request))
 	if(is_in_game(request)):
+		__main__.request11 = 0
+		__main__.request12 = 0
+		__main__.request21 = 0
+		__main__.request22 = 0
 		__main__.oldfield = field()
 		__main__.oldfield.createTank(120, 690)
 		__main__.oldfield.createOpp(120, 120)
 		__main__.oldfield.num = 0
+		#__main__.user1 = "1"
+		#__main__.user2 = "1"
 		return (request, 'webtanks/multitanks.html') 
 	else:
 		f = open("webtanks/templates/webtanks/users.html", "w")
@@ -98,15 +104,15 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
-			t1 = threading.Thread(target=tr1, args=(request))
-			t2 = threading.Thread(target=tr2, args=(request))
-			t3 = threading.Thread(target=getkey, args=(request))
-			t1.start()
-			t2.start()
-			t3.start()
-			t1.join()
-			t2.join()
-			t3.join()
+			#t1 = threading.Thread(target=tr1, args=(request))
+			#t2 = threading.Thread(target=tr2, args=(request))
+			#t3 = threading.Thread(target=getkey, args=(request))
+			#t1.start()
+			#t2.start()
+			#t3.start()
+			#t1.join()
+			#t2.join()
+			#t3.join()
 			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
 			(request, val) = (list_users(request))
@@ -117,19 +123,19 @@ def getkey(request):
 	c = {}
 	c.update(csrf(request))
 	arr = [2, 0]
-	t = Field.objects.get(field_id = request.session['field'])
-	if(t.user1 == User.objects.get(username=str(request.user))):
-		if(t.request11 == 1):
+	#t = Field.objects.get(field_id = request.session['field'])
+	if(__main__.user1 == str(request.user)):
+		if(__main__.request11 == 1):
 			arr[0] = 1
-			arr[1] = t.request12
-			t.request11 = 0
-			t.save()
+			arr[1] = __main__.request12
+			__main__.request11 = 0
+			#t.save()
 	else:
-		if(t.request21 == 1):
+		if(__main__.request21 == 1):
 			arr[0] = 1
-			arr[1] = t.request22
-			t.request21 = 0
-			t.save()
+			arr[1] = __main__.request22
+			__main__.request21 = 0
+			#t.save()
 	print(arr[0])
 	return HttpResponse (json.dumps(arr), content_type="application/json")
 
@@ -137,11 +143,12 @@ def getkey(request):
 def tr2(request):
 	c = {}
 	c.update(csrf(request))
-	t = Field.objects.get(field_id = request.session['field'])
+	#t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		t = Field.objects.get(field_id = request.session['field'])
-		if(t.user2 == User.objects.get(username=str(request.user))):
+		#t = Field.objects.get(field_id = request.session['field'])
+		if(__main__.user2 == str(request.user)):
+		#if(t.user2 == User.objects.get(username=str(request.user))):
 			return __main__.newfield.Optreating(request)
 		else:
 			return __main__.oldfield.Optreating(request)
@@ -158,18 +165,19 @@ def tr1(request):
 		#__main__.newfield = field()
 		#__main__.newfield.createTank(120, 690)
 	#	__main__.newfield.num = 0
-	t = Field.objects.get(field_id = request.session['field'])
+	#t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		if(t.user2 == User.objects.get(username=str(request.user))):
-			t.request11 = 1
-			t.request12 = POST['name']
-			t.save()
+		if(__main__.user2 == str(request.user)):
+		#if(t.user2 == User.objects.get(username=str(request.user))):
+			__main__.request11 = 1
+			__main__.request12 = POST['name']
+			#t.save()
 			return __main__.newfield.treating(request)
 		else:
-			t.request21 = 1
-			t.request22 = POST['name']
-			t.save()
+			__main__.request21 = 1
+			__main__.request22 = POST['name']
+			#t.save()
 			return __main__.oldfield.treating(request)
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
@@ -188,7 +196,7 @@ def fl(request):
 	t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		if(t.user1 == User.objects.get(username=str(request.user))):
+		if(t.user1 == str(request.user)):
 			t.request11 = 1
 			t.request12 = POST['name']
 			t.save()
@@ -287,6 +295,8 @@ def users(request):
 		us = User.objects.get(username=str(request.user))
 		f = Field(field_id = u1, user1 = user, user2 = us)
 		f.save()
+		__main__.user1 = str(POST['num'])
+		__main__.user2 = str(request.user)
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 120)
 		__main__.newfield.createOpp(120, 690)
@@ -315,10 +325,10 @@ def breakwall(request):
 def oppbreakwall(request):
 	c = {}
 	c.update(csrf(request))
-	t = Field.objects.get(field_id = request.session['field'])
+	#t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
-		if(t.user2 == User.objects.get(username=str(request.user))):
+		if(__main__.user2 == str(request.user)):
 			return __main__.newfield.breakwall(request)
 		else:
 			return __main__.oldfield.breakwall(request)

@@ -79,6 +79,7 @@ function send_for_pressing_op(keydata, numchange) {
 }
 function KeyOpp(evt)
 {
+		//alert(66);
         oldBack = back;
 		var type = 0;
 		var fX = 0;
