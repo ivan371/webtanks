@@ -17,16 +17,7 @@ function opponentf()
 					KeyOpp(32);
 				}
 				else{
-				if (nums != key)
- 				{
-					chop(key, arr[4], arr[5]);
-					nums = key;
- 				}
- 				else
- 				{
-					chop(key + 4, arr[4], arr[5]);
-					nums = key + 4;
- 				}
+				chop(key, arr[4], arr[5]);
  			}
 				/*else
 				{

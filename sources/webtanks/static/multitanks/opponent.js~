@@ -19,12 +19,12 @@ function opponentf()
 				else{
 				if (nums != key)
  				{
-					change(key, arr[4], arr[5]);
+					chop(key, arr[4], arr[5]);
 					nums = key;
  				}
  				else
  				{
-					change(key + 4, arr[4], arr[5]);
+					chop(key + 4, arr[4], arr[5]);
 					nums = key + 4;
  				}
  			}

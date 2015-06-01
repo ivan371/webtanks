@@ -81,6 +81,7 @@
 	var buttonOp = 1;
 	var whois = 0;
 	var login;
+	var Optype = 1;
 	function game() {
 		/*$.ajax({
 			type: 'POST',
@@ -141,7 +142,7 @@
  			});
 		window.addEventListener('keydown', whatKey, true);
 		//optime = setInterval(function() {putdraw()}, 50);
-		optime = setInterval(function() {opponentf()}, 20);
+		optime = setInterval(function() {opponentf()}, 10);
 	}
 	window.onload = game;
     	</script>
