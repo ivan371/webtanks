@@ -15,7 +15,7 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex, 
 		/*	document.forms["lose"].submit();
 			document.location.href = '/static/webtanks/LOSE.html'
 		}*/
-		win(X, Y, );
+		//win(X, Y, kind);
 		if(hex != 808080)
 		{
 			if(hex == "BCF4FF")

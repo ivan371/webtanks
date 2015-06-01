@@ -1,0 +1,19 @@
+function shootOp(flag, X, Y, hex, kind)
+{
+	if(flag == 1)
+	{
+		shootcase(0, 0, - 5, 0, 1, X, Y, hex, kind);
+	}
+	if(flag == 2)
+	{
+		shootcase(24, 0, 5, 0, 2, X, Y, hex, kind);
+	}
+	if(flag == 3)
+	{
+		shootcase(0, 24, 0, 5, 3, X, Y, hex, kind);
+	}
+	if(flag == 4)
+	{
+		shootcase(0, 0, 0, -5, 4, X, Y, hex, kind);
+	}
+}

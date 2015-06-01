@@ -8,7 +8,7 @@
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<form action="/webtanks/chmod/num/multiwin/" method="post" name="win">
 	<input type="hidden" name="redirect"></form>
-	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
+	<form action="/webtanks/chmod/num/multilose/" method="post" name="lose">
 	<input type="hidden" name="redirect"></form>
 	<script src='{% static 'multitanks/change.js' %}'></script>
 	<script src='{% static 'multitanks/whatKey.js' %}'></script>
@@ -19,6 +19,7 @@
 	<script src='{% static 'multitanks/bot.js' %}'></script>
 	<script src='{% static 'multitanks/win.js' %}'></script>
 	<script src='{% static 'multitanks/lose.js' %}'></script>
+	<script src='{% static 'multitanks/shootOp.js' %}'></script>
 	<script>
 	var tank = new Image();
  	var oldBack = new Image();
@@ -82,6 +83,7 @@
 	var whois = 0;
 	var login;
 	var Optype = 1;
+	var Opflag = 0;
 	function game() {
 		/*$.ajax({
 			type: 'POST',

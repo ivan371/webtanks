@@ -27,6 +27,7 @@ urlpatterns = [
 	url(r'^chmod/num/win/$', views.win),
 	url(r'^chmod/num/multiwin/$', views.multiwin),
 	url(r'^chmod/num/lose/$', views.lose),
+	url(r'^chmod/num/multilose/$', views.multilose),
 	url(r'^chmod/num/shot/$', views.shot),
 	url(r'^chmod/num/users/$', views.users),
 	url(r'^chmod/$', views.switchmod),
