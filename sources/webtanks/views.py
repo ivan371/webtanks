@@ -38,11 +38,20 @@ import __main__
 import random
 import json
 import time
+import threading
 
 def index(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/webtanks/login/")
 	else:
+		try:
+			__main__.t[__main__.numthread].append(threading.Thread(target=switchmod, args=(request)))
+			__main__.t[__main__.numthread].start()
+			__main__.t[__main__.numthread].join()
+		except:
+			__main__.numthread = 0
+			__main__.t = []
+		__main__.numthread = __main__.numthread + 1
 		return render(request, 'webtanks/switch_mod.html')
 		
 def is_in_game(request):

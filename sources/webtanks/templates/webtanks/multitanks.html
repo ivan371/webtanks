@@ -6,6 +6,10 @@
 {% block header %}
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<form action="/webtanks/chmod/num/win/" method="post" name="win">
+	<input type="hidden" name="redirect"></form>
+	<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
+	<input type="hidden" name="redirect"></form>
 	<script src='{% static 'multitanks/change.js' %}'></script>
 	<script src='{% static 'multitanks/whatKey.js' %}'></script>
 	<script src='{% static 'multitanks/flight.js' %}'></script>
@@ -120,13 +124,10 @@
 		optime = setInterval(function() {opponentf()}, 20);
 		
 	}
-
-        </script>
+	window.onload = game;
+    	</script>
 {% endblock %}
-
 {% block content %}
-	<body onload="game()">
-	<body style="background:#FFC552">
 		<canvas id='canvas' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas>
     	<canvas id='example' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas>
     	<canvas id='opponent' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas>
@@ -142,9 +143,4 @@
 		<canvas id='8' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
 		<canvas id='9' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
 		<canvas id='10' width="1034" height="730" style="position: fixed; left: 0; top: 0;"></canvas> 
-		<form action="/webtanks/chmod/num/win/" method="post" name="win">
-		<input type="hidden" name="redirect"></form>
-		<form action="/webtanks/chmod/num/lose/" method="post" name="lose">
-		<input type="hidden" name="redirect"></form>
-    	</body>
 {% endblock %}
