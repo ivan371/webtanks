@@ -35,6 +35,8 @@ urlpatterns = [
 	url(r'^chmod/con/$', views.con),
 	url(r'^chmod/con/tr1/$', views.tr1), #us1
 	url(r'^chmod/tr1/$', views.tr), #us2
+	url(r'^chmod/con/gettank/$', views.gettank),
+	url(r'^chmod/gettank/$', views.gottank),
 	url(r'^chmod/con/who/$', views.who),
 	url(r'^chmod/who/$', views.who),
 	url(r'^chmod/con/getkey/$', views.getkey), #us1
