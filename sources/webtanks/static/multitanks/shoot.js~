@@ -123,8 +123,6 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex, 
 
 function shoot(flag, X, Y, hex, kind)
 {
-		alert(X);
-		alert(Y);
 		if(flag == 1)
 		{
 			shootcase(0, 0, - 5, 0, 1, X, Y, hex, kind);

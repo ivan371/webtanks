@@ -13,9 +13,6 @@ function send_for_pressing(keydata, numchange) {
  					Ys[0] = arr[2];
  					if(type==1)
  					{
- 	   					//ctx.fillStyle = '#FFC552';
-        					//	ctx.rect(XT, YT, 24, 24);
-         					//ctx.fill();
 						if (nums != numchange)
  						{
 							change(numchange, XT, YT);
@@ -53,17 +50,14 @@ function send_for_pressing_op(keydata, numchange) {
  					Ys[0] = arr[2];
  					if(type==1)
  					{
- 	   					//ctx.fillStyle = '#FFC552';
-        					//	ctx.rect(XT, YT, 24, 24);
-         					//ctx.fill();
 						if (nums != numchange)
  						{
-							change(numchange, XO, YO);
+							change(numchange, arr[1], arr[2]);
 							nums = numchange;
  						}
  						else
  						{
-							change(numchange + 4, XO, YO);
+							change(numchange + 4, arr[1],arr[2]);
 							nums = numchange + 4;
  						}
  					}
@@ -131,15 +125,6 @@ function KeyOpp(evt)
  					Ys[0] = arr[5];
  					if(type==2)
  					{
- 	   					//newimg.src = '/static/webtanks/images/bullet.png';
-       						//newimg.onload = function(){
- 						//	btx.drawImage(newimg, 0, 0, 280, 280, fX, fY, 5, 5);
- 						//}
- 						
- 						//window.preventDefault();
- 						/*t = timeid;
- 						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
- 						timeid++;*/
  						switch(flag)
  						{
  							case 1:
@@ -161,21 +146,13 @@ function KeyOpp(evt)
  						}
  						shoot(flag, X, Y, 0, 0);
  					}
- 					else
- 					{
-						//alert('Oops!')
- 					}
  	  			},
  				error: function(xhr, errmsg, err){
  						alert(xhr.status + ": " + xhr.responseText);
  					}		
  			});
  			break;
- 		//case 49:
- 		//	bot()
- 			//break;
         		 default:
-         		  //alert("Please only use the arrow keys.");
  		}
 }
 
@@ -233,15 +210,6 @@ function whatKey(evt) {
  					Ys[0] = arr[5];
  					if(type==2)
  					{
- 	   					//newimg.src = '/static/webtanks/images/bullet.png';
-       						//newimg.onload = function(){
- 						//	btx.drawImage(newimg, 0, 0, 280, 280, fX, fY, 5, 5);
- 						//}
- 						
- 						//window.preventDefault();
- 						/*t = timeid;
- 						time[t] = setInterval(function() {flight(num, t, 0)}, 20);
- 						timeid++;*/
  						switch(flag)
  						{
  							case 1:
@@ -273,10 +241,5 @@ function whatKey(evt) {
  					}		
  			});
  			break;
- 		//case 49:
- 		//	bot()
- 			//break;
-        		 default:
-         		  //alert("Please only use the arrow keys.");
  		}
 }

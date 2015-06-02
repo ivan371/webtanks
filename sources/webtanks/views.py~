@@ -52,9 +52,6 @@ def index(request):
 		except:
 			__main__.numthread = 0
 			__main__.t = []
-			#__main__.t[__main__.numthread].append(threading.Thread(target=switchmod, args=(request)))
-			#__main__.t[__main__.numthread].start()
-			#	__main__.t[__main__.numthread].join()
 		__main__.numthread = __main__.numthread + 1
 		return render(request, 'webtanks/switch_mod.html')
 		
@@ -84,8 +81,6 @@ def list_users(request):
 		__main__.oldfield.createTank(120, 690)
 		__main__.oldfield.createOpp(900, 120)
 		__main__.oldfield.num = 0
-		#__main__.user1 = "1"
-		#__main__.user2 = "1"
 		return (request, 'webtanks/multitanks.html') 
 	else:
 		f = open("webtanks/templates/webtanks/users.html", "w")
@@ -116,17 +111,6 @@ def list_users(request):
 		f.close
 		return (request, 'webtanks/users.html')
 
-
-@csrf_exempt
-def iswin(request):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST  
-	if request.method == 'POST':
-		res = __main__.life
-		return HttpResponse (json.dumps(res), content_type="application/json")
-
-
 @csrf_exempt
 def switchmod(request):
 	c = {}
@@ -137,16 +121,6 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
-			#t1 = threading.Thread(target=tr1, args=(request))
-			#t2 = threading.Thread(target=tr2, args=(request))
-			#t3 = threading.Thread(target=getkey, args=(request))
-			#t1.start()
-			#t2.start()
-			#t3.start()
-			#t1.join()
-			#t2.join()
-			#t3.join()
-			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
 			(request, val) = (list_users(request))
 			return render(request, val)
@@ -156,10 +130,6 @@ def getkey(request):
 	c = {}
 	c.update(csrf(request))
 	arr = [2, 0, 2, 0, 0, 0, 0]
-	#t = Field.objects.get(field_id = request.session['field'])
-	#if(__main__.user1 == str(request.user)):
-		#while(__main__.request11 == 0):
-		#	a = 0		
 	if(__main__.request11 == 1):
 		arr[0] = 1
 		arr[1] = __main__.request12
@@ -170,7 +140,6 @@ def getkey(request):
 		arr[6] = __main__.life
 		print(__main__.newfield.Xtanks[0], __main__.newfield.Ytanks[0])
 		__main__.request11 = 0
-			#t.save()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
@@ -178,8 +147,6 @@ def gotkey(request):
 	c = {}
 	c.update(csrf(request))
 	arr = [2, 0, 2, 0, 0, 0, 0]
-			#while(__main__.request21 == 0):
-		#	a = 0
 	if(__main__.request21 == 1):
 		arr[0] = 1
 		arr[1] = __main__.request22
@@ -189,8 +156,6 @@ def gotkey(request):
 		arr[5] = __main__.newfield.Ytanks[0]
 		arr[6] = __main__.life
 		__main__.request21 = 0
-			#t.save()
-	#print threading.activeCount()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
@@ -209,47 +174,6 @@ def tr2(request):
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
 
-@csrf_exempt
-def tr3(request, event_for_wait, event_for_set):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST
-	#try:
-	#	__main__.newfield.num = 0
-	#except:
-		#__main__.newfield = field()
-		#__main__.newfield.createTank(120, 690)
-	#	__main__.newfield.num = 0
-	#t = Field.objects.get(field_id = request.session['field'])
-	event_for_wait.wait()
-	event_for_wait.clear()
-	__main__.request11 = 1
-	__main__.request12 = POST['name']
-	__main__.name = 0
-	#t.save()
-	event_for_set.set()
-	return __main__.newfield.treating(request)
-	
-@csrf_exempt
-def tr4(request, event_for_wait, event_for_set):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST
-	#try:
-	#	__main__.newfield.num = 0
-	#except:
-		#__main__.newfield = field()
-		#__main__.newfield.createTank(120, 690)
-	#	__main__.newfield.num = 0
-	#t = Field.objects.get(field_id = request.session['field'])
-	event_for_wait.wait()
-	event_for_wait.clear()
-	__main__.request21 = 1
-	__main__.request22 = POST['name']
-	__main__.name = 1
-	#t.save()
-	event_for_set.set()
-	return __main__.newfield.treating(request)
 		
 @csrf_exempt
 def tr(request):
@@ -260,9 +184,7 @@ def tr(request):
 		__main__.request11 = 1
 		__main__.request12 = POST['name']
 		__main__.name = 0
-		#t.save()
 		return __main__.oldfield.treating(request)
-	#return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
 def tr1(request):
@@ -285,23 +207,6 @@ def treating(request):
 	c.update(csrf(request))
 	__main__.newfield.num = 0
 	return __main__.newfield.treating(request)
-
-@csrf_exempt
-def fl(request):
-	c = {}
-	c.update(csrf(request))
-	t = Field.objects.get(field_id = request.session['field'])
-	if request.method == 'POST':
-		POST = request.POST
-		if(t.user1 == str(request.user)):
-			t.request11 = 1
-			t.request12 = POST['name']
-			t.save()
-		else:
-			t.request21 = 1
-			t.request22 = POST['name']
-			t.save()
-	return __main__.newfield.flight(request)
 
 @csrf_exempt
 def flight(request):

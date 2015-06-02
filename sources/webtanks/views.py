@@ -52,9 +52,6 @@ def index(request):
 		except:
 			__main__.numthread = 0
 			__main__.t = []
-			#__main__.t[__main__.numthread].append(threading.Thread(target=switchmod, args=(request)))
-			#__main__.t[__main__.numthread].start()
-			#	__main__.t[__main__.numthread].join()
 		__main__.numthread = __main__.numthread + 1
 		return render(request, 'webtanks/switch_mod.html')
 		
@@ -84,8 +81,6 @@ def list_users(request):
 		__main__.oldfield.createTank(120, 690)
 		__main__.oldfield.createOpp(900, 120)
 		__main__.oldfield.num = 0
-		#__main__.user1 = "1"
-		#__main__.user2 = "1"
 		return (request, 'webtanks/multitanks.html') 
 	else:
 		f = open("webtanks/templates/webtanks/users.html", "w")
@@ -116,17 +111,6 @@ def list_users(request):
 		f.close
 		return (request, 'webtanks/users.html')
 
-
-@csrf_exempt
-def iswin(request):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST  
-	if request.method == 'POST':
-		res = __main__.life
-		return HttpResponse (json.dumps(res), content_type="application/json")
-
-
 @csrf_exempt
 def switchmod(request):
 	c = {}
@@ -146,10 +130,6 @@ def getkey(request):
 	c = {}
 	c.update(csrf(request))
 	arr = [2, 0, 2, 0, 0, 0, 0]
-	#t = Field.objects.get(field_id = request.session['field'])
-	#if(__main__.user1 == str(request.user)):
-		#while(__main__.request11 == 0):
-		#	a = 0		
 	if(__main__.request11 == 1):
 		arr[0] = 1
 		arr[1] = __main__.request12
@@ -160,7 +140,6 @@ def getkey(request):
 		arr[6] = __main__.life
 		print(__main__.newfield.Xtanks[0], __main__.newfield.Ytanks[0])
 		__main__.request11 = 0
-			#t.save()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
@@ -168,8 +147,6 @@ def gotkey(request):
 	c = {}
 	c.update(csrf(request))
 	arr = [2, 0, 2, 0, 0, 0, 0]
-			#while(__main__.request21 == 0):
-		#	a = 0
 	if(__main__.request21 == 1):
 		arr[0] = 1
 		arr[1] = __main__.request22
@@ -179,27 +156,8 @@ def gotkey(request):
 		arr[5] = __main__.newfield.Ytanks[0]
 		arr[6] = __main__.life
 		__main__.request21 = 0
-			#t.save()
-	#print threading.activeCount()
 	return HttpResponse (json.dumps(arr), content_type="application/json")
-
-@csrf_exempt
-def tr2(request):
-	c = {}
-	c.update(csrf(request))
-	#t = Field.objects.get(field_id = request.session['field'])
-	if request.method == 'POST':
-		POST = request.POST
-		#t = Field.objects.get(field_id = request.session['field'])
-		if(__main__.user2 == str(request.user)):
-		#if(t.user2 == User.objects.get(username=str(request.user))):
-			return __main__.newfield.Optreating(request)
-		else:
-			return __main__.oldfield.Optreating(request)
-	#arr = [0, 0, 0, 0, 0]
-	#return HttpResponse (json.dumps(arr), content_type="application/json")
-
-		
+	
 @csrf_exempt
 def tr(request):
 	c = {}
@@ -209,9 +167,7 @@ def tr(request):
 		__main__.request11 = 1
 		__main__.request12 = POST['name']
 		__main__.name = 0
-		#t.save()
 		return __main__.oldfield.treating(request)
-	#return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
 def tr1(request):
@@ -222,11 +178,7 @@ def tr1(request):
 		__main__.request21 = 1
 		__main__.request22 = POST['name']
 		__main__.name = 1
-		#t.save()
 		return __main__.newfield.treating(request)
-	#arr
-	#arr = [0, 0, 0, 0, 0]
-	#return HttpResponse (json.dumps(arr), content_type="application/json")
 
 @csrf_exempt
 def treating(request):
@@ -263,21 +215,7 @@ def numbots(request):
 		__main__.newfield = field()
 		__main__.newfield.createTank(120, 690)
 		__main__.res = res
-		#for i in range (res):
-		#	__main__.newfield.createBot(random.randint(100, 1000), random.randint(100, 700))
-		return render(request, 'webtanks/newtanks.html')
-
-@csrf_exempt
-def isend(request):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST  
-	if request.method == 'POST':
-		if(__main__.live == 1):
-			res = 0
-		else:
-			res = 1
-		return HttpResponse (json.dumps(res), content_type="application/json")		
+		return render(request, 'webtanks/newtanks.html')	
 
 @csrf_exempt
 def multiwin(request):
@@ -327,7 +265,6 @@ def multilose(request):
 	if request.method == 'POST':
 		return render(request,'webtanks/LOSE.html')	
 
-
 @csrf_exempt
 def numbot(request):
 	c = {}
@@ -351,7 +288,6 @@ def who(request):
 		arr[1] = str(request.user)
 		return HttpResponse (json.dumps(arr), content_type="application/json")		
 
-
 @csrf_exempt
 def choose(request):
 	c = {}
@@ -362,9 +298,6 @@ def choose(request):
 	for r in t:
 		if(r.state == 1):
 			res = 1
-	#print(res)
-	#if(t.state == 1):
-	#	res = 1
 	return HttpResponse (json.dumps(res), content_type="application/json")
 	
 @csrf_exempt
@@ -415,7 +348,6 @@ def gettank(request):
 def oppbreakwall(request):
 	c = {}
 	c.update(csrf(request))
-	#t = Field.objects.get(field_id = request.session['field'])
 	if request.method == 'POST':
 		POST = request.POST
 		if(__main__.user2 == str(request.user)):

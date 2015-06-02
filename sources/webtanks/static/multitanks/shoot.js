@@ -1,24 +1,5 @@
 function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex, kind)
 {
-		//alert(Xt);
-		//alert(X);
-		/*if(X - 15 <= Xt && X + 15 >= Xt && Y - 15 <= Yt && Y + 15 >= Yt)
-		{
-			//alert("YOU LOSE");
-			/*$.ajax({
-					type: 'POST',
-					url: "lose/",
-					error: function(xhr, errmsg, err){
-						alert(xhr.status + ": " + xhr.responseText);
-					}	
-				});*/
-		/*	document.forms["lose"].submit();
-			document.location.href = '/static/webtanks/LOSE.html'
-		}*/
-		//alert(X);
-		//alert(XO);
-		//alert(Y);
-		//alert(YO);
 		win(X, Y, kind);
 		if(hex != 808080)
 		{

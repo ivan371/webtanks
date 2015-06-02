@@ -44,7 +44,7 @@ function chop(type, X, Y)
 			}
 			//ctx.clearRect(X-30, Y-30, 80, 80);
 			otx.clearRect(X-10, Y-10, 40, 40);
-			alert(type);
+			//alert(type);
 			//alert(X);
 			//alert(Y);
 			//newimg.src = b2;

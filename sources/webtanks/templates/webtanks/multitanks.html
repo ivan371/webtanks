@@ -28,7 +28,6 @@
 	var type = 1;
 	var nums = 0;
 	var bulnum = 0;
-	//var oldBack = new Image();
 	var oldtankX = 120;
 	var oldtankY = 690;
 	var datakey = 1;
@@ -85,21 +84,9 @@
 	var Optype = 1;
 	var Opflag = 0;
 	function game() {
-		/*$.ajax({
-			type: 'POST',
-			url: "getsess/",
-			success: function(arr){
-				mainsess = arr[0];
-				opsess = arr[1];
-			},
-			error: function(xhr, errmsg, err){
-				alert(xhr.status + ": " + xhr.responseText);
-			}	
-		});*/
 		can = document.getElementById('canvas');
         example = document.getElementById('example');     	
         opponent = document.getElementById('opponent');
-		//bott = document.getElementById('bott');
 		boll = document.getElementById('bull');
 		ctx     = example.getContext('2d');
 		otx     = opponent.getContext('2d');
@@ -143,24 +130,7 @@
  					}
  			});
 		window.addEventListener('keydown', whatKey, true);
-		//optime = setInterval(function() {putdraw()}, 50);
 		optime = setInterval(function() {opponentf()}, 10);
-		/*optimew = setInterval(function() {$.ajax({
-											type: 'POST',
-											url: "iswin/",
-											success: function(res){
-														if(res == 2)
-														{	
-															clearInterval(optime);
-															clearInterval(optimew);
-															//document.forms["win"].submit();
-														}
-											},
-											error: function(xhr, errmsg, err){
-												alert(xhr.status + ": " + xhr.responseText);
-											}	
-											});
-											}, 30);*/
 	}
 	window.onload = game;
     	</script>

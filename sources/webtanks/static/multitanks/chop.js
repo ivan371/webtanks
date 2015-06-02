@@ -42,12 +42,7 @@ function chop(type, X, Y)
 			{
 				newimg.src = b8;
 			}
-			//ctx.clearRect(X-30, Y-30, 80, 80);
 			otx.clearRect(X-10, Y-10, 40, 40);
-			//alert(type);
-			//alert(X);
-			//alert(Y);
-			//newimg.src = b2;
 			newimg.onload = function(){	
 				otx.drawImage(newimg, 100, 100, 800, 800, X, Y, 20, 20);
 			}

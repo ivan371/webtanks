@@ -10,10 +10,6 @@ function win(X, Y, kind)
 	}
 	else
 	{
-		//alert(X);
-		//alert(Y);
-		//alert(XO);
-		//alert(YO);
 		if(X - 15 <= XO && X + 15 >= XO && Y - 15 <= YO && Y + 15 >= YO)
 		{
 			clearInterval(optime);
