@@ -313,6 +313,8 @@ def gettank(request):
 	if request.method == 'POST':
 		arr[0] = __main__.newfield.Xtanks[0]
 		arr[1] = __main__.newfield.Ytanks[0]
+		arr[2] = __main__.oldfield.Xtanks[0]
+		arr[3] = __main__.oldfield.Ytanks[0]
 		return HttpResponse (json.dumps(arr), content_type="application/json")	
 		
 @csrf_exempt
