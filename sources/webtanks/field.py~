@@ -35,6 +35,10 @@ class field(map):
 		self.Ytanks[self.num] = self.arrtank[self.num].Y
 		return self.arrtank[self.num].treating(request)
 
+	def Optreating(self, request):
+		return self.newopp.treating(request)
+
+
 	def createTank(self, X, Y):
 		newtank = tank(X, Y, self.map)
 		self.arrtank.append(newtank)
@@ -43,7 +47,7 @@ class field(map):
 		self.num = self.num + 1
 		
 	def createOpp(self, X, Y):
-		newopp = opp(X, Y, self.map)
+		self.newopp = opp(X, Y, self.map)
 		
 	def breakwall(self, request):
 		if request.method == 'POST':

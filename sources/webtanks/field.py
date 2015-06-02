@@ -1,6 +1,5 @@
 from .tank import tank
 from .bot import bot
-from .opp import opp
 from django.http import HttpResponse
 from .map import map
 
@@ -35,9 +34,6 @@ class field(map):
 		self.Ytanks[self.num] = self.arrtank[self.num].Y
 		return self.arrtank[self.num].treating(request)
 
-	def Optreating(self, request):
-		return self.newopp.treating(request)
-
 
 	def createTank(self, X, Y):
 		newtank = tank(X, Y, self.map)
@@ -45,9 +41,6 @@ class field(map):
 		self.Xtanks.append(X)
 		self.Ytanks.append(Y)
 		self.num = self.num + 1
-		
-	def createOpp(self, X, Y):
-		self.newopp = opp(X, Y, self.map)
 		
 	def breakwall(self, request):
 		if request.method == 'POST':

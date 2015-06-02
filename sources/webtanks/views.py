@@ -71,7 +71,6 @@ def list_users(request):
 		__main__.name = 0
 		__main__.oldfield = field()
 		__main__.oldfield.createTank(120, 690)
-		__main__.oldfield.createOpp(900, 120)
 		__main__.oldfield.num = 0
 		return (request, 'webtanks/multitanks.html') 
 	else:
@@ -271,7 +270,6 @@ def users(request):
 	__main__.user2 = str(request.user)
 	__main__.newfield = field()
 	__main__.newfield.createTank(900, 120)
-	__main__.newfield.createOpp(120, 690)
 	__main__.newfield.num = 0
 	request.session['field'] = u1
 	return render(request, 'webtanks/connecting.html')
