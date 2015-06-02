@@ -260,6 +260,8 @@ def users(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
+	if str(POST['num']) == str(request.user):
+		return render(request, 'webtanks/error.html')
 	u1 = int(time.mktime(time.gmtime()))
 	user = User.objects.get(username=str(POST['num']))
 	us = User.objects.get(username=str(request.user))

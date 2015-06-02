@@ -71,7 +71,6 @@ def list_users(request):
 		__main__.name = 0
 		__main__.oldfield = field()
 		__main__.oldfield.createTank(120, 690)
-		__main__.oldfield.createOpp(900, 120)
 		__main__.oldfield.num = 0
 		return (request, 'webtanks/multitanks.html') 
 	else:
@@ -261,6 +260,8 @@ def users(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
+	if str(POST['num']) == str(request.user):
+		return users(request)
 	u1 = int(time.mktime(time.gmtime()))
 	user = User.objects.get(username=str(POST['num']))
 	us = User.objects.get(username=str(request.user))
@@ -271,7 +272,6 @@ def users(request):
 	__main__.user2 = str(request.user)
 	__main__.newfield = field()
 	__main__.newfield.createTank(900, 120)
-	__main__.newfield.createOpp(120, 690)
 	__main__.newfield.num = 0
 	request.session['field'] = u1
 	return render(request, 'webtanks/connecting.html')
@@ -281,17 +281,6 @@ def breakwall(request):
 	c = {}
 	c.update(csrf(request))	
 	return __main__.newfield.breakwall(request)
-	
-@csrf_exempt
-def gettank(request):
-	c = {}
-	c.update(csrf(request))	
-	arr = [0, 0]
-	POST = request.POST  
-	if request.method == 'POST':
-		arr[0] = __main__.newfield.Xtanks[0]
-		arr[1] = __main__.newfield.Ytanks[0]
-		return HttpResponse (json.dumps(arr), content_type="application/json")	
 		
 @csrf_exempt
 def oppbreakwall(request):
@@ -303,3 +292,29 @@ def oppbreakwall(request):
 			return __main__.newfield.breakwall(request)
 		else:
 			return __main__.oldfield.breakwall(request)
+			
+@csrf_exempt
+def gettank(request):
+	c = {}
+	c.update(csrf(request))	
+	arr = [0, 0, 0, 0]
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.newfield.Xtanks[0]
+		arr[1] = __main__.newfield.Ytanks[0]
+		arr[2] = __main__.oldfield.Xtanks[0]
+		arr[3] = __main__.oldfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")	
+		
+@csrf_exempt
+def gottank(request):
+	c = {}
+	c.update(csrf(request))	
+	arr = [0, 0, 0, 0]
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.oldfield.Xtanks[0]
+		arr[1] = __main__.oldfield.Ytanks[0]
+		arr[2] = __main__.newfield.Xtanks[0]
+		arr[3] = __main__.newfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")
