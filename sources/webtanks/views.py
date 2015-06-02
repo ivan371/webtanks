@@ -112,6 +112,32 @@ def list_users(request):
 		return (request, 'webtanks/users.html')
 
 @csrf_exempt
+def rat(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	f = open("webtanks/templates/webtanks/rating.html", "w")
+	f.write('{% extends "base.html" %}'
+			"{% load staticfiles %}"
+			"{% block title %}Рейтинг{% endblock %}"
+			"{% block content %}"
+			'<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">'
+			'<label for=""num""><font size="6" color="black" face="Calibri">')	
+	f.write(str(request.user))
+	f.write(', ваш рейтинг:</font></label>'
+			"</div>")
+	r = Rating.objects.filter(who = User.objects.get(username=str(request.user)))
+	for result in r:
+		f.write('<div style="display: table; margin: 0 auto; padding: 5px; text-align: center;"><font size="5" color="navy" face="Arial">')
+		f.write(str(result.rating))
+		f.write('</font>')
+		f.write('</div>')
+	f.write("</div>"
+			"{% endblock %}")
+	f.close
+	return (request, 'webtanks/rating.html')
+
+@csrf_exempt
 def switchmod(request):
 	c = {}
 	c.update(csrf(request))
@@ -120,6 +146,9 @@ def switchmod(request):
 		res = int(POST['num'])
 		if res == 1:
 			return render(request, 'webtanks/params.html')
+		elif res == 2:
+			(request, val) = rat(request)
+			return render(request, val)
 		else:
 			request.session[str(request.user)] = 1
 			(request, val) = (list_users(request))
