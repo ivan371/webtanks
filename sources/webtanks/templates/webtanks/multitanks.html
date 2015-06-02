@@ -118,6 +118,30 @@
 		var Xr = 0;
 		var Yr = 0;
 		$.ajax({
+  			type: 'POST',
+  			url: "gettank/",
+			dataType: 'json',
+  			success: function(arr){
+  				var XT = arr[0]
+  				var YT = arr[1]
+  				var XO = arr[2]
+  				var YO = arr[3]
+				img.src = t8;
+				newimg.src = b4;
+				newimg.onload = function(){
+					otx.restore();			
+					otx.drawImage(newimg, 100, 100, 800, 800, XO, YO, 20, 20);
+				}
+				img.onload = function(){
+					ctx.restore();			
+					ctx.drawImage(img, 100, 100, 800, 800, XT, YT, 20, 20);
+				}
+  			},
+			error: function(xhr, errmsg, err){
+					alert(xhr.status + ": " + xhr.responseText);
+				}					
+		});
+		$.ajax({
  	  			type: 'POST',
  	  			url: "who/",
  				dataType: 'json',

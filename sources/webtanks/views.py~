@@ -247,7 +247,6 @@ def choose(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
-	res = 0
 	return __main__.newview.chooose(request)
 	
 @csrf_exempt

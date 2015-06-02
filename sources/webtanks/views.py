@@ -281,17 +281,6 @@ def breakwall(request):
 	c = {}
 	c.update(csrf(request))	
 	return __main__.newfield.breakwall(request)
-	
-@csrf_exempt
-def gettank(request):
-	c = {}
-	c.update(csrf(request))	
-	arr = [0, 0]
-	POST = request.POST  
-	if request.method == 'POST':
-		arr[0] = __main__.newfield.Xtanks[0]
-		arr[1] = __main__.newfield.Ytanks[0]
-		return HttpResponse (json.dumps(arr), content_type="application/json")	
 		
 @csrf_exempt
 def oppbreakwall(request):
@@ -303,3 +292,29 @@ def oppbreakwall(request):
 			return __main__.newfield.breakwall(request)
 		else:
 			return __main__.oldfield.breakwall(request)
+			
+@csrf_exempt
+def gettank(request):
+	c = {}
+	c.update(csrf(request))	
+	arr = [0, 0, 0, 0]
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.newfield.Xtanks[0]
+		arr[1] = __main__.newfield.Ytanks[0]
+		arr[2] = __main__.oldfield.Xtanks[0]
+		arr[3] = __main__.oldfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")	
+		
+@csrf_exempt
+def gottank(request):
+	c = {}
+	c.update(csrf(request))	
+	arr = [0, 0, 0, 0]
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.oldfield.Xtanks[0]
+		arr[1] = __main__.oldfield.Ytanks[0]
+		arr[2] = __main__.newfield.Xtanks[0]
+		arr[3] = __main__.newfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")
