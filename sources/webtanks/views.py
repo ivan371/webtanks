@@ -294,6 +294,17 @@ def oppbreakwall(request):
 			return __main__.oldfield.breakwall(request)
 			
 @csrf_exempt
+def gettank1(request):
+	c = {}
+	c.update(csrf(request))	
+	arr = [0, 0]
+	POST = request.POST  
+	if request.method == 'POST':
+		arr[0] = __main__.newfield.Xtanks[0]
+		arr[1] = __main__.newfield.Ytanks[0]
+		return HttpResponse (json.dumps(arr), content_type="application/json")	
+			
+@csrf_exempt
 def gettank(request):
 	c = {}
 	c.update(csrf(request))	
