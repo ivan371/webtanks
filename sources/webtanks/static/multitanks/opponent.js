@@ -5,16 +5,14 @@ function opponentf()
 		url: "getkey/",
 		success: function(arr){
 			var type = arr[0];
-			var key = arr[1];
-			var str = arr[3];
-			XO = arr[4];
-			YO = arr[5];
-			if(arr[6] == 2)
-			{
-				document.forms["win"].submit();
-			}
 			if(type == 1)
 			{
+				var key = arr[1];
+				var str = arr[3];
+				var X = 0;
+				var Y = 0;
+				XO = arr[4];
+				YO = arr[5];
 				//alert(key);
 				if(key == 5)
 				{
@@ -39,8 +37,6 @@ function opponentf()
  						Y = YO + 5;
 					}
 					var flag = Opflag;
-					X = XO;
-					Y = YO;
  					shootOp(flag, X, Y, 0, 0);
 				who = 0;
 				}

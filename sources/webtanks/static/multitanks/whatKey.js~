@@ -98,19 +98,19 @@ function KeyOpp(evt)
 		who = 0;
 		switch (evt) {
 		case 37:
-			button = 1;
+			buttonOp = 1;
 			send_for_pressing_op(1, 1)
 		break;
 	    case 39:
-	    	button = 2;
+	    	buttonOp = 2;
 			send_for_pressing_op(2, 2)
 		break;
 	    case 40:
-	    	button = 3;
+	    	buttonOp = 3;
 			send_for_pressing_op(3, 4)
         break;
       	case 38:
-      		button = 4;
+      		buttonOp = 4;
 			send_for_pressing_op(4, 3)
         break;
  		case 32:
@@ -120,7 +120,7 @@ function KeyOpp(evt)
  	  			data: {'name': 5,},
  				dataType: 'json',
  	  			success: function(arr){
- 	  				var flag = button;
+ 	  				var flag = buttonOp;
  					type = arr[0];
  					fX = arr[1];
  					fY = arr[2];
@@ -188,6 +188,8 @@ function whatKey(evt) {
 		var numer = 0;
 		var t = 0;
 		var j = 0;
+		var X = 0;
+		var Y = 0;
 		for(var i = 0; i < numbots; i++)
 		{
 			if(dbot[i] == 1)

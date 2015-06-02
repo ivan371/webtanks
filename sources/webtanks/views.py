@@ -116,6 +116,17 @@ def list_users(request):
 		f.close
 		return (request, 'webtanks/users.html')
 
+
+@csrf_exempt
+def iswin(request):
+	c = {}
+	c.update(csrf(request))
+	POST = request.POST  
+	if request.method == 'POST':
+		res = __main__.life
+		return HttpResponse (json.dumps(res), content_type="application/json")
+
+
 @csrf_exempt
 def switchmod(request):
 	c = {}
@@ -126,16 +137,6 @@ def switchmod(request):
 		if res == 1:
 			return render(request, 'webtanks/params.html')
 		else:
-			#t1 = threading.Thread(target=tr1, args=(request))
-			#t2 = threading.Thread(target=tr2, args=(request))
-			#t3 = threading.Thread(target=getkey, args=(request))
-			#t1.start()
-			#t2.start()
-			#t3.start()
-			#t1.join()
-			#t2.join()
-			#t3.join()
-			#print(request.session[str(request.user)])
 			request.session[str(request.user)] = 1
 			(request, val) = (list_users(request))
 			return render(request, val)
@@ -198,47 +199,6 @@ def tr2(request):
 	#arr = [0, 0, 0, 0, 0]
 	#return HttpResponse (json.dumps(arr), content_type="application/json")
 
-@csrf_exempt
-def tr3(request, event_for_wait, event_for_set):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST
-	#try:
-	#	__main__.newfield.num = 0
-	#except:
-		#__main__.newfield = field()
-		#__main__.newfield.createTank(120, 690)
-	#	__main__.newfield.num = 0
-	#t = Field.objects.get(field_id = request.session['field'])
-	event_for_wait.wait()
-	event_for_wait.clear()
-	__main__.request11 = 1
-	__main__.request12 = POST['name']
-	__main__.name = 0
-	#t.save()
-	event_for_set.set()
-	return __main__.newfield.treating(request)
-	
-@csrf_exempt
-def tr4(request, event_for_wait, event_for_set):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST
-	#try:
-	#	__main__.newfield.num = 0
-	#except:
-		#__main__.newfield = field()
-		#__main__.newfield.createTank(120, 690)
-	#	__main__.newfield.num = 0
-	#t = Field.objects.get(field_id = request.session['field'])
-	event_for_wait.wait()
-	event_for_wait.clear()
-	__main__.request21 = 1
-	__main__.request22 = POST['name']
-	__main__.name = 1
-	#t.save()
-	event_for_set.set()
-	return __main__.newfield.treating(request)
 		
 @csrf_exempt
 def tr(request):
@@ -274,23 +234,6 @@ def treating(request):
 	c.update(csrf(request))
 	__main__.newfield.num = 0
 	return __main__.newfield.treating(request)
-
-@csrf_exempt
-def fl(request):
-	c = {}
-	c.update(csrf(request))
-	t = Field.objects.get(field_id = request.session['field'])
-	if request.method == 'POST':
-		POST = request.POST
-		if(t.user1 == str(request.user)):
-			t.request11 = 1
-			t.request12 = POST['name']
-			t.save()
-		else:
-			t.request21 = 1
-			t.request22 = POST['name']
-			t.save()
-	return __main__.newfield.flight(request)
 
 @csrf_exempt
 def flight(request):
@@ -354,19 +297,15 @@ def multiwin(request):
 def win(request):
 	c = {}
 	c.update(csrf(request))
-<<<<<<< HEAD
 	try:
 		Field.objects.get(field_id = request.session['field']).delete()
 	except:
 		a = 0
-	if request.method == 'POST':	
-=======
 	if request.method == 'POST':
 		f = Rating.objects.filter(who = User.objects.get(username=str(request.user)))
 		for t in f:
 			t.rating = t.rating + 100
 			t.save()
->>>>>>> 4bf811db277da925326c83c80be5e94244910b6e
 		return render(request,'webtanks/WIN.html')
 
 @csrf_exempt
@@ -380,6 +319,10 @@ def lose(request):
 def multilose(request):
 	c = {}
 	c.update(csrf(request))
+	try:
+		Field.objects.get(field_id = request.session['field']).delete()
+	except:
+		a = 0
 	__main__.life = 2
 	if request.method == 'POST':
 		return render(request,'webtanks/LOSE.html')	

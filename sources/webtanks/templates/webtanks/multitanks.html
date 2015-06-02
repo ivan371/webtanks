@@ -145,6 +145,22 @@
 		window.addEventListener('keydown', whatKey, true);
 		//optime = setInterval(function() {putdraw()}, 50);
 		optime = setInterval(function() {opponentf()}, 10);
+		/*optimew = setInterval(function() {$.ajax({
+											type: 'POST',
+											url: "iswin/",
+											success: function(res){
+														if(res == 2)
+														{	
+															clearInterval(optime);
+															clearInterval(optimew);
+															//document.forms["win"].submit();
+														}
+											},
+											error: function(xhr, errmsg, err){
+												alert(xhr.status + ": " + xhr.responseText);
+											}	
+											});
+											}, 30);*/
 	}
 	window.onload = game;
     	</script>

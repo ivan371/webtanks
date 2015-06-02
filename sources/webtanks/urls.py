@@ -35,14 +35,14 @@ urlpatterns = [
 	url(r'^chmod/con/$', views.con),
 	url(r'^chmod/con/tr1/$', views.tr1), #us1
 	url(r'^chmod/tr1/$', views.tr), #us2
+	url(r'^chmod/con/iswin/$', views.iswin), #us1
+	url(r'^chmod/iswin/$', views.iswin), #us2
 	url(r'^chmod/con/who/$', views.who),
 	url(r'^chmod/who/$', views.who),
 	url(r'^chmod/con/isend/$', views.isend),
 	url(r'^chmod/isend/$', views.isend),
 	url(r'^chmod/con/tr2/$', views.tr2),
 	url(r'^chmod/tr2/$', views.tr2), 
-	url(r'^chmod/con/fl/$', views.fl),
-	url(r'^chmod/fl/$', views.fl),
 	url(r'^chmod/con/getkey/$', views.getkey), #us1
 	url(r'^chmod/getkey/$', views.gotkey), #us2
 	url(r'^chmod/con/breakwall/$', views.oppbreakwall),

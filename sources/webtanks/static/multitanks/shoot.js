@@ -15,6 +15,10 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex, 
 		/*	document.forms["lose"].submit();
 			document.location.href = '/static/webtanks/LOSE.html'
 		}*/
+		//alert(X);
+		//alert(XO);
+		//alert(Y);
+		//alert(YO);
 		win(X, Y, kind);
 		if(hex != 808080)
 		{
@@ -119,19 +123,20 @@ function shootcase(XImageData, YImageData, XTimeout, YTimeout, flag, X, Y, hex, 
 
 function shoot(flag, X, Y, hex, kind)
 {
-	switch(flag)
-	{
-		case 1:
-			shootcase(0, 0, - 5, 0, 1, X, Y, hex, kind)
-			break;
-		case 2:
-			shootcase(24, 0, 5, 0, 2, X, Y, hex, kind)
-			break;
-		case 3:
-			shootcase(0, 24, 0, 5, 3, X, Y, hex, kind)
-			break;
-		case 4:
+		if(flag == 1)
+		{
+			shootcase(0, 0, - 5, 0, 1, X, Y, hex, kind);
+		}	
+		if(flag == 2)
+		{
+			shootcase(24, 0, 5, 0, 2, X, Y, hex, kind);
+		}	
+		if(flag == 3)
+		{
+			shootcase(0, 24, 0, 5, 3, X, Y, hex, kind);
+		}	
+		if(flag == 4)
+		{
 			shootcase(0, 0, 0, -5, 4, X, Y, hex, kind)
-			break;
-	}		
+		}	
 }

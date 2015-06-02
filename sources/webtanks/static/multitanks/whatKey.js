@@ -58,12 +58,12 @@ function send_for_pressing_op(keydata, numchange) {
          					//ctx.fill();
 						if (nums != numchange)
  						{
-							change(numchange, XO, YO);
+							change(numchange, arr[1], arr[2]);
 							nums = numchange;
  						}
  						else
  						{
-							change(numchange + 4, XO, YO);
+							change(numchange + 4, arr[1],arr[2]);
 							nums = numchange + 4;
  						}
  					}
@@ -188,6 +188,8 @@ function whatKey(evt) {
 		var numer = 0;
 		var t = 0;
 		var j = 0;
+		var X = 0;
+		var Y = 0;
 		for(var i = 0; i < numbots; i++)
 		{
 			if(dbot[i] == 1)
