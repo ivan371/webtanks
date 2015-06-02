@@ -9,6 +9,7 @@ from .field import field
 from .tank import tank
 from .bot import bot
 from .bullet import bullet
+from .views_db import views_db
 import threading
 from webtanks import signals
 from .models import RegistrationProfile
@@ -44,6 +45,7 @@ def index(request):
 	if not request.user.is_authenticated():
 		return HttpResponseRedirect("/webtanks/login/")
 	else:
+		__main__.newview = views_db()
 		try:
 			__main__.t[__main__.numthread].append(threading.Thread(target=switchmod, args=(request)))
 			__main__.t[__main__.numthread].start()
@@ -54,22 +56,12 @@ def index(request):
 			__main__.t = []
 		__main__.numthread = __main__.numthread + 1
 		return render(request, 'webtanks/switch_mod.html')
-		
-def is_in_game(request):
-	t = Field.objects.all()
-	for result in t:
-		if(str(result.user1) == str(request.user)):
-			request.session['field'] = result.field_id
-			result.state = 1
-			result.save()
-			return 1
-	return 0
 
 @csrf_exempt
 def list_users(request):
 	c = {}
 	c.update(csrf(request))
-	if(is_in_game(request)):
+	if(__main__.newview.is_in_game(request)):
 		__main__.request11 = 0
 		__main__.request12 = 0
 		__main__.request21 = 0
@@ -83,58 +75,11 @@ def list_users(request):
 		__main__.oldfield.num = 0
 		return (request, 'webtanks/multitanks.html') 
 	else:
-		f = open("webtanks/templates/webtanks/users.html", "w")
-		f.write('{% extends "base.html" %}'
-			"{% load staticfiles %}"
-			"{% block title %}Выбор противника{% endblock %}"
-			"{% block content %}"
-			'<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">'
-			'<label for=""num""><font size="6" color="black" face="Calibri">Список пользователей и их рейтинг: </font></label>'
-			"</div>")
-		t = Rating.objects.order_by("-rating")
-		for result in t:
-			f.write('<div style="display: table; margin: 0 auto; padding: 5px; text-align: center;"><font size="5" color="navy" face="Arial">')
-			f.write(str(result.who))
-			f.write(" - ")
-			f.write(str(result.rating))
-			f.write('</font>')
-			f.write('</div>')
-
-		f.write("<form action=""/webtanks/chmod/num/users/"" method=""post"">"
-			'<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">'
-			'<label for=""num""><font size="6" color="black" face="Calibri">Введите имя противника: </font></label>'
-			"<input id=""num"" type=""text"" name=""num"">"
-			"<input type=""submit"" value=""OK"">"
-			"</form>"
-			"</div>"
-			"{% endblock %}")
-		f.close
+		__main__.newview.create_users()
 		return (request, 'webtanks/users.html')
 
-@csrf_exempt
 def rat(request):
-	c = {}
-	c.update(csrf(request))
-	POST = request.POST  
-	f = open("webtanks/templates/webtanks/rating.html", "w")
-	f.write('{% extends "base.html" %}'
-			"{% load staticfiles %}"
-			"{% block title %}Рейтинг{% endblock %}"
-			"{% block content %}"
-			'<div style="display: table; margin: 0 auto; padding: 1em 0; text-align: center;">'
-			'<label for=""num""><font size="6" color="black" face="Calibri">')	
-	f.write(str(request.user))
-	f.write(', ваш рейтинг:</font></label>'
-			"</div>")
-	r = Rating.objects.filter(who = User.objects.get(username=str(request.user)))
-	for result in r:
-		f.write('<div style="display: table; margin: 0 auto; padding: 5px; text-align: center;"><font size="5" color="navy" face="Arial">')
-		f.write(str(result.rating))
-		f.write('</font>')
-		f.write('</div>')
-	f.write("</div>"
-			"{% endblock %}")
-	f.close
+	__main__.newview.create_rating(request)	
 	return (request, 'webtanks/rating.html')
 
 @csrf_exempt
@@ -250,31 +195,14 @@ def numbots(request):
 def multiwin(request):
 	c = {}
 	c.update(csrf(request))
-	try:
-		Field.objects.get(field_id = request.session['field']).delete()
-	except:
-		a = 0
-	if request.method == 'POST':
-		f = Rating.objects.get(who = User.objects.get(username=str(request.user)))
-		f.rating = f.rating + 100
-		f.save()
-		return render(request,'webtanks/WIN.html')
-
+	return __main__.newview.change_rating(request)
+	
 @csrf_exempt
 def win(request):
 	c = {}
 	c.update(csrf(request))
-	try:
-		Field.objects.get(field_id = request.session['field']).delete()
-	except:
-		a = 0
-	if request.method == 'POST':
-		f = Rating.objects.filter(who = User.objects.get(username=str(request.user)))
-		for t in f:
-			t.rating = t.rating + 100
-			t.save()
-		return render(request,'webtanks/WIN.html')
-
+	return __main__.newview.change_rating(request)
+	
 @csrf_exempt
 def lose(request):
 	c = {}
@@ -286,10 +214,7 @@ def lose(request):
 def multilose(request):
 	c = {}
 	c.update(csrf(request))
-	try:
-		Field.objects.get(field_id = request.session['field']).delete()
-	except:
-		a = 0
+	__main__.newview.delete()
 	__main__.life = 2
 	if request.method == 'POST':
 		return render(request,'webtanks/LOSE.html')	
@@ -322,12 +247,7 @@ def choose(request):
 	c = {}
 	c.update(csrf(request))
 	POST = request.POST
-	res = 0
-	t = Field.objects.filter(field_id = request.session['field'])
-	for r in t:
-		if(r.state == 1):
-			res = 1
-	return HttpResponse (json.dumps(res), content_type="application/json")
+	return __main__.newview.chooose(request)
 	
 @csrf_exempt
 def con(request):
@@ -340,21 +260,21 @@ def con(request):
 def users(request):
 	c = {}
 	c.update(csrf(request))
-	POST = request.POST  
-	if request.method == 'POST':
-		u1 = int(time.mktime(time.gmtime()))
-		user = User.objects.get(username=str(POST['num']))
-		us = User.objects.get(username=str(request.user))
-		f = Field(field_id = u1, user1 = user, user2 = us)
-		f.save()
-		__main__.user1 = str(POST['num'])
-		__main__.user2 = str(request.user)
-		__main__.newfield = field()
-		__main__.newfield.createTank(900, 120)
-		__main__.newfield.createOpp(120, 690)
-		__main__.newfield.num = 0
-		request.session['field'] = u1
-		return render(request, 'webtanks/connecting.html')
+	POST = request.POST
+	u1 = int(time.mktime(time.gmtime()))
+	user = User.objects.get(username=str(POST['num']))
+	us = User.objects.get(username=str(request.user))
+	f = Field(field_id = u1, user1 = user, user2 = us)
+	f.save()
+	request.session['field'] = u1
+	__main__.user1 = str(POST['num'])
+	__main__.user2 = str(request.user)
+	__main__.newfield = field()
+	__main__.newfield.createTank(900, 120)
+	__main__.newfield.createOpp(120, 690)
+	__main__.newfield.num = 0
+	request.session['field'] = u1
+	return render(request, 'webtanks/connecting.html')
 
 @csrf_exempt
 def breakwall(request):
